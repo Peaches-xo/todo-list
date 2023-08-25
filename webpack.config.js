@@ -8,11 +8,12 @@ module.exports = {
     // index: './src/index.js',
     // print: './src/print.js',
     // },
+    devtool: 'inline-source-map',
     output: {
         //filename: 'bundle.js',
        // filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
         filename: 'index_bundle.js',
+        path: path.resolve(__dirname, 'dist'),
         //clean: true,
     },
     module: {

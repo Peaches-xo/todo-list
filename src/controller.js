@@ -1,21 +1,27 @@
 import './style.css';
-
-import { homePageLoad } from "./model.js";
-import { menuPageLoad } from "./view.js";
-
-
-console.log('testing');
-
-document.addEventListener("DOMContentLoaded", (event) => {
+//Our main file - handles requests. Tells model what to do (logic wise), 
+//tells view what do to.
+//Controls and decides how data is displayed
+import { thisistheview } from './view.js';
+import { modelfunc } from './model.js';
+console.log('testing from controller.js');
 
 
 
 
 
+//inititation function 
+thisistheview();
+modelfunc();
 
 
-    const addbtn = document.querySelector('.add');
-    return addbtn;
 
-});
-export { addbtn };
+//function that runs when submit button is clicked
+function createNewProject(projname){
+    console.log('createNewProject firing');
+    console.log(projname);
+
+    // event.preventDefault();
+    // let projname = domCachedElements.name.value;
+     domCachedElements.container.textContent = projname;
+};
