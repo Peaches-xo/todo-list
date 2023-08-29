@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body class="fancy-gradient">
     
    
  
@@ -19,7 +19,35 @@
     </form> -->
 
     <div class="container">
-        
+        <nav class="nav">
+            <button class="btn btn-home ">Home</button>
+               <!-- modal button -->
+            <button class="add btn btn-open">Add New</button>
+            <button class="btn btn-allproj">View All Projects</button>
+            <button class="btn btn-alltasks">View All Tasks</button>
+            <button class="btn btn-github">Github</button>
+        </nav>
+        <header class="hello"><img class="img-hand" src="/src/wavinghand.png">Hi, Peaches</header>
+        <div class="info">
+            <div class="info-item"><strong>7 </strong>Active</div>
+            <div class="info-item"><strong>12</strong>Completed</div>
+            <div class="info-item"><strong>3 </strong>Overdue</div>
+        </div>
+        <h3 class="heading">Active  <strong>  tasks</strong></h3>
+        <!-- <div class="toggle">
+                <span>Projects</span>
+                <span>Tasks</span>
+        </div> -->
+        <section class="taskbox">
+            <div class="project-item"><h5>Example Project</h5></div>
+            <div class="project-item"><h5>Example Project</h5></div>
+            <div class="project-item"><h5>Example Project</h5></div>
+            <div class="project-item"><h5>Example Project</h5></div>
+            <div class="project-item"><h5>Example Project</h5></div>
+            <div class="project-item"><h5>Example Project</h5></div>
+        </section>
+        <section class="project"></section>
+
     </div>
 
 
@@ -40,8 +68,7 @@
     </section>
     <!-- dark blurred bg -->
     <div class="overlay hidden"></div>
-    <!-- modal button -->
-    <button class="add btn btn-open">Add New</button>
+ 
 
 
     <script defer src="index_bundle.js"></script>

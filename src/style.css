@@ -1,19 +1,114 @@
 /* CSS for ToDo List */
-
-
 *{
     margin: 0;
     padding: 0;
     text-decoration: none;
     list-style-type: none;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
-body{
-    /* margin: 2%;
-    padding: 2%;
-    border: solid 2px limegreen;
-    border-radius: 20px; */
 
+:root {
+    --gradient_bg_color:#ede5fd;
+    --gradient_spot1_color:#e1cbfb;
+    --gradient_spot1_w: 75%;
+    --gradient_spot1_h: 75%;
+    --gradient_spot1_x: 0%;
+    --gradient_spot1_y: 0%;
+    --gradient_spot2_color:#ffe0d6;
+    --gradient_spot2_w: 75%;
+    --gradient_spot2_h: 75%;
+    --gradient_spot2_x: 100%;
+    --gradient_spot2_y: 0%;
+    --gradient_spot3_color:#ebe0ff;
+    --gradient_spot3_w: 75%;
+    --gradient_spot3_h: 75%;
+    --gradient_spot3_x: 100%;
+    --gradient_spot3_y: 100%;
+    
+    --gradient_spot4_color:#ffdbf3;
+    --gradient_spot4_w: 75%;
+    --gradient_spot4_h: 75%;
+    --gradient_spot4_x: 0%;
+    --gradient_spot4_y: 100%;
+    
+    --gradient_spot2_w:100%;
+    --gradient_spot2_x:94%;
+    --gradient_spot2_h:44%;
+    --gradient_spot1_w:51%;
+    --gradient_spot1_h:64%;
+    --gradient_spot1_x:7%;
+    --gradient_spot3_w:100%;
+    --gradient_spot3_h:82%;
+    --gradient_spot3_x:90%;
+    --gradient_spot4_w:64%;
+    --gradient_spot4_x:0%;
+    --gradient_spot4_y:45%;
+
+    /* Project Colours */
+    --project_color1: #FFEDD6;
+    --project_color2: #FFCB9A;
+    --project_color3: #F8AEF9;
+    --project_color4: #B8DBFD;
+    --project_color5: #C8BAFA;
+    --project_color6: #8FE4E9;
+
+    --darkGrey: #252B3D;
+
+  }
+  
+  .fancy-gradient {
+    background-color: var(--gradient_bg_color);
+    background-image: radial-gradient(var(--gradient_spot1_w) var(--gradient_spot1_h) at left var(--gradient_spot1_x) top var(--gradient_spot1_y), var(--gradient_spot1_color), transparent), radial-gradient(var(--gradient_spot2_w) var(--gradient_spot2_h) at left var(--gradient_spot2_x) top var(--gradient_spot2_y), var(--gradient_spot2_color), transparent), radial-gradient(var(--gradient_spot3_w) var(--gradient_spot3_h) at left var(--gradient_spot3_x) top var(--gradient_spot3_y), var(--gradient_spot3_color), transparent), radial-gradient(var(--gradient_spot4_w) var(--gradient_spot4_h) at left var(--gradient_spot4_x) top var(--gradient_spot4_y), var(--gradient_spot4_color), transparent);
+  }
+  
+/*  
+  .animated {
+    animation-fill-mode: both;
+  }
+@keyframes chameleon {
+
+    0% {
+      color: red;
+    }
+  
+    14.2999% {
+      color: orange;
+    }
+  
+    28.5999% {
+      color: yellow;
+    }
+  
+    42.8998% {
+      color: green;
+    }
+  
+    57.1996% {
+      color: blue;
+    }
+  
+    71.4995% {
+      color: indigo;
+    }
+  
+    85.7994% {
+      color: violet;
+    }
+    100% {
+      color: red;
+    }
+  }
+  .chameleon {
+    animation-name: chameleon;
+    animation-duration: 5s;
+  } TO USE, ADD CLASS ANIMATE AND CLASS CHAMELEON*/
+  
+  
+
+  
+
+body{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,15 +116,195 @@ body{
     color: #222;
     position: relative;
     min-height: 100vh;
+    overflow:hidden;
 }
 
 .container{
-    padding: 50px;
-    border: solid 2px peachpuff;
+    padding: 20px;
     border-radius: 20px;
-    margin: 100px 50px;
-    height: 100px;
-width: 500px;
+    margin: auto;
+    height: 85vh;
+    width: 85vw;
+    background-color: rgba(246, 243, 248, 0.622); 
+    background-color:rgb(246 243 248 / 56%); /* gradient blend into bg  */
+    box-shadow: 0px 0px 0px 1px floralwhite;
+    display:grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-rows: 0.5fr 1.5fr 0.5fr 3fr;
+    grid-template-areas: "nav hello hello"
+                         "nav info info"
+                         "nav heading toggle"
+                         "nav taskbox project";
+}
+
+.nav{
+    grid-area: nav;
+    border-radius: 10px;
+    margin: 0px 30px 0px 20px;
+    background-color: var(--darkGrey);
+    box-shadow: 0px 0px 10px 3px lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+   /* stying of buttons on dash */
+  .btn{
+    display: inline-block;
+    padding: 0.8rem;
+    background: transparent;
+    border: solid 5px transparent;
+    color: #94969b;
+    cursor: pointer;
+    transition: 0.3s ease;
+    /* outline: solid 5px transparent;
+    border-radius: 10px; */
+  }
+
+  .btn:hover{
+    /* color: #c6adf2;
+    border-left: solid 1px #c6adf2; */
+    background-color: #464B5B;
+    /* color: #ff94ea; */
+    color: #fff;
+    border-left: solid 5px #ff94ea;
+    /* outline: 3px solid #F8AEF9; */
+   
+  }
+
+
+.hello{
+    grid-area: hello;
+    /* background-color: #e1cbfb; */
+    color: #302b2b;
+    color: var(--darkGrey);
+    font-size: 40px;
+    font-weight: bold;
+    display:flex;
+    align-items: center;
+}
+
+.info{
+    grid-area: info;
+    background-color: #ebe0ff;
+    background: linear-gradient(0deg, rgba(236,224,253,1) 51%, rgba(238,238,238,1) 99%);
+    background: linear-gradient(0deg, rgba(236,224,253,1) 51%, rgba(246,237,243,1) 99%);
+    display: flex;
+    border-radius: 10px;
+}
+
+.heading{
+    grid-area: heading;
+    /* background-color:#ede5fd; */
+    
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    gap: 5px;
+}
+
+/* .toggle{
+    grid-area: toggle;
+    background-color:#fff;
+    border: solid 1px lightgrey;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 0px 0px 0px 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+    .toggle span{
+         border-radius: 50px;
+        background-color: white;
+        padding: 5px 50px;
+        margin: 0px 10px; 
+    } */
+
+.taskbox{
+    grid-area: taskbox;
+    /* background-color:#ffe0d6; */
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+    .project-item{
+        border-radius: 10px;
+        margin: 8px;
+        padding: 10px;
+        display: flex;
+    }
+
+    .project-item:nth-child(1){
+        background-color: var(--project_color1);
+        background-color:#FDE1DB;
+    }
+    .project-item:nth-child(2){
+        background-color: var(--project_color2);
+        background-color:#FDE1DB;
+    }
+    .project-item:nth-child(3){
+        background-color: var(--project_color3);
+        background-color:#FDE1DB;
+    }
+    .project-item:nth-child(4){
+        background-color: var(--project_color4);
+        background-color:#FDE1DB;
+    }
+    .project-item:nth-child(5){
+        background-color: var(--project_color5);
+        background-color:#FDE1DB;
+    }
+    .project-item:nth-child(6){
+        background-color: var(--project_color6);
+        background-color:#FDE1DB
+    }
+
+
+    
+
+.project{
+    grid-area: project;
+    background-color:#eee;
+}
+
+
+.img-hand{
+    width: 11%;
+    padding: 0px 10px;
+}
+
+.info-item{
+    padding: 10px;
+    margin: 10px;
+    width: 100px;
+    background-color:#c8aef8;
+    
+    border-left: solid 2px #c6adf2;
+    border-bottom: solid 2px #c6adf2;
+
+    color: whitesmoke;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: 0.3s ease;
+}
+.info strong{
+    font-size: 28px;
+    padding-bottom: 5px;
+}
+
+.info-item:hover{
+    transform: translateY(-5px);
+    background-color: #c6adf2;
+    /* background-color: #b491f1; */
+    box-shadow: 0px 0px 8px 5px whitesmoke;
+    border-left: solid 2px #d1bcf8;
+    border-bottom: solid 2px #d1bcf8;
 }
 
 .modal {
@@ -67,27 +342,25 @@ width: 500px;
     margin: 0.4rem 0 0.2rem;
   }
   
-  button {
+  
+
+  button[type="submit"] {
+    display: inline-block;
+    padding: 0.8rem;
+    
+    background-color:  black;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1em;
     cursor: pointer;
     border: none;
     font-weight: 600;
   }
   
-  .btn,
-  button[type="submit"] {
-    display: inline-block;
-    padding: 0.8rem 1.4rem;
-    font-weight: 700;
-    background-color: black;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1em;
-  }
-  
   .btn-open {
-    position: absolute;
-    bottom: 150px;
+    /* position: absolute;
+    bottom: 100px; */
   }
   
   .btn-close {
