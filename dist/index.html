@@ -23,29 +23,78 @@
             <button class="btn btn-home ">Home</button>
                <!-- modal button -->
             <button class="add btn btn-open">Add New</button>
-            <button class="btn btn-allproj">View All Projects</button>
+            <button class="btn btn-allproj"> View All Projects</button>
             <button class="btn btn-alltasks">View All Tasks</button>
             <button class="btn btn-github">Github</button>
         </nav>
-        <header class="hello"><img class="img-hand" src="/src/wavinghand.png">Hi, Peaches</header>
+        <header class="hello"><img class="img-hand" src="/src/images/wavinghand.png">Hi, Peaches</header>
         <div class="info">
-            <div class="info-item"><strong>7 </strong>Active</div>
+            <div class="info-item"> <strong>7 </strong>Active</div>
             <div class="info-item"><strong>12</strong>Completed</div>
             <div class="info-item"><strong>3 </strong>Overdue</div>
         </div>
-        <h3 class="heading">Active  <strong>  tasks</strong></h3>
+        <h3 class="heading">All  <strong>  projects</strong></h3>
         <!-- <div class="toggle">
                 <span>Projects</span>
                 <span>Tasks</span>
         </div> -->
         <section class="taskbox">
-            <div class="project-item"><h5>Example Project</h5></div>
-            <div class="project-item"><h5>Example Project</h5></div>
-            <div class="project-item"><h5>Example Project</h5></div>
-            <div class="project-item"><h5>Example Project</h5></div>
-            <div class="project-item"><h5>Example Project</h5></div>
-            <div class="project-item"><h5>Example Project</h5></div>
+            <div class="project-item">
+                <h5>Default Project</h5>
+                <p class="project-item-taskno">7 active tasks</p>
+                <div class="project-item-wrapper">
+                    <button class="project-item-editbtn"><img src="/src/images/edit.png"></button>
+                    <div class="project-item-duedate"><em>Due </em>  23 Dec, 2023</div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h5>Default Project</h5>
+               
+                <p class="project-item-taskno"><strong>7 </strong> active tasks</p>
+                <div class="project-item-wrapper">
+                    <button class="project-item-editbtn"><img src="/src/images/edit.png"></button>
+                    <div class="project-item-duedate"><em>Due </em>  23 Dec, 2023</div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h5>Default Project</h5>
+                <p class="project-item-taskno"><strong>7 </strong> active tasks</p>
+                <div class="project-item-wrapper">
+                    <button class="project-item-editbtn"><img src="/src/images/edit.png"></button>
+                    <div class="project-item-duedate"><em>Due </em>  23 Dec, 2023</div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h5>Default Project</h5>
+                <p class="project-item-taskno"><strong>7 </strong> active tasks</p>
+                <div class="project-item-wrapper">
+                    <button class="project-item-editbtn"><img src="/src/images/edit.png"></button>
+                    <div class="project-item-duedate"><em>Due </em>  23 Dec, 2023</div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h5>Default Project</h5>
+                <p class="project-item-taskno"><strong>7 </strong> active tasks</p>
+                <div class="project-item-wrapper">
+                    <button class="project-item-editbtn"><img src="/src/images/edit.png"></button>
+                    <div class="project-item-duedate"><em>Due </em>  23 Dec, 2023</div>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h5>Default Project</h5>
+                <p class="project-item-taskno"><strong>7 </strong> active tasks</p>
+                <div class="project-item-wrapper">
+                    <button class="project-item-editbtn"><img src="/src/images/edit.png"></button>
+                    <div class="project-item-duedate"><em>Due </em>  23 Dec, 2023</div>
+                </div>
+            </div>
         </section>
+        <div class="projheading">Current <strong>project</strong></div>
         <section class="project"></section>
 
     </div>
@@ -59,7 +108,7 @@
         <h3>Create a new... </h3>
         <div class="flex">
             <!-- <img src="user.png" width="50px" height="50px" alt="user" /> -->
-            <button class="btn-close">⨉</button>
+            <button class="btn-close"><img src="/src/images/circle-xmark.png">⨉</button>
         </div>
         <label for="name">Project/Task</label>
         <input type="text" class="name" id="name">
