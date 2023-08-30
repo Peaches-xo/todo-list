@@ -135,6 +135,12 @@ body{
                          "nav info project"
                          "nav heading project"
                          "nav taskbox project";
+                         box-shadow:
+                         0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+                         0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+                         0 12.5px 10px rgba(0, 0, 0, 0.06),
+                         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+                         0 41.8px 33.4px rgba(0, 0, 0, 0.086);
 }
 
 .nav{
@@ -146,6 +152,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: flex-start;
 }
 
    /* stying of buttons on dash */
@@ -158,6 +165,8 @@ body{
     cursor: pointer;
     transition: 0.3s ease;
     font-size: 1rem;
+    width: 100%;
+    text-align: left;
   }
 
   .btn:hover{
@@ -193,20 +202,30 @@ body{
     border-radius: 10px;
     /* background-color: #ebe0ff; */
     position: relative;
+    /* box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072);  */
+   
+
 }
 
-/* .info::before{
+.info::before{
     content: "";
-    background-image: url('/src/geobg.jpg');
-    background-size: cover;
+    background-image: linear-gradient(0deg, rgba(236,224,253,0.1) 11%, rgba(246,237,243,1) 99%), url('/src/images/low-poly-grid-haikei.png'); 
+    
+    background-size: contain;
     background-position: 100px 0px;
+    border-radius:10px;
+    /* border: solid 1px #c6adf2; */
     position: absolute;
     top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.4;
-} */
+    opacity: 0.5;
+}
 
 
 .info-item{
@@ -226,6 +245,7 @@ body{
     transition: 0.3s ease;
     position: relative;
     box-shadow: 0 2px 4px #3a474e26, 0 1px 2px #3a474e26;
+
 }
 .info strong{
     font-size: 30px;
@@ -251,7 +271,6 @@ body{
     padding-left: 10px;
     gap: 5px;
 }
-
 
 
 .taskbox{
@@ -351,12 +370,13 @@ body{
 
 
 
-
+/* PROJECT SECTION ------------------------------------- */
 .projheading{
     grid-area: projheading;
     background-color: white;
     color: var(--darkGrey);
     display:flex;
+
     align-items:center;
     gap: 5px;
     margin-top:-20px;
@@ -380,7 +400,80 @@ body{
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 15px;
     box-shadow: -5px -46px 58px -20px lightgrey;
+    padding: 10px;
 }
+.project-task-priority{
+    background-color: var(--project_color6);
+    color: #008b92;
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 1px 15px;
+}
+
+.lowPriority{
+    /* background-color: var(--project_color6);
+    color: #008b92; */
+    background-color: var(--project_color4);
+    color: #0080fd;
+}
+
+.highPriority{
+    background-color: var(--project_color3);
+    color:#d002d4;
+}
+
+.medPriority{
+    background-color: var(--project_color2);
+    color: #e16d01;
+}
+
+
+
+.project-task-img{
+    vertical-align: top;
+}
+
+input[type=checkbox]:checked + label{
+    color: var(--lightGrey);
+    /* text-decoration: line-through; */
+} 
+    
+strikethrough {
+	display: inline-block;
+	position: relative;
+	transition: all 0.5s cubic-bezier(.55, 0, .1, 1);
+}
+
+.strikethrough:after {
+	content: '';
+	position: absolute;
+	display: block;
+	width: 13%;
+    margin-left: 15px;
+	height: 1px;
+	box-shadow: 0 1px rgba(255,255,255,0.6);
+	margin-top: -0.7em;
+	background: rgb(96, 95, 95);
+    background: var(--project_color3);
+	transform-origin: center left;
+	animation: strikethrough 1s 0.5s cubic-bezier(.55, 0, .1, 1) 1;
+	transition: transform 0.5s cubic-bezier(.55, 0, .1, 1);   
+}
+/* Keyframes for initial animation */
+@keyframes strikethrough {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+
+
+
+
+
 
 
 
