@@ -12,16 +12,16 @@ console.log('testing from controller.js');
 
 //inititation function 
 thisistheview();
-modelfunc();
+
 
 
 
 //function that runs when submit button is clicked
-function createNewProject(projname){
+export function createNewProject(projname){
     console.log('createNewProject firing');
     console.log(projname);
 
     // event.preventDefault();
     // let projname = domCachedElements.name.value;
-     domCachedElements.container.textContent = projname;
+     //domCachedElements.container.textContent = projname;
 };

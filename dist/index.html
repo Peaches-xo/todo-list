@@ -20,12 +20,13 @@
 
     <div class="container">
         <nav class="nav">
-            <button class="btn btn-home ">Home</button>
+            <img class="logo" src="/src/images/crystals.png">
+            <button class="btn btn-home "><img src="/src/images/squares24.png">Home</button>
                <!-- modal button -->
-            <button class="add btn btn-open">Add New</button>
-            <button class="btn btn-allproj"> View All Projects</button>
-            <button class="btn btn-alltasks">View All Tasks</button>
-            <button class="btn btn-github">Github</button>
+            <button class="add btn btn-open"><img src="/src/images/wand24.png">Add New</button>
+            <button class="btn btn-allproj"> <img src="/src/images/viewallprojects.png">View All Projects</button>
+            <button class="btn btn-alltasks"><img src="/src/images/viewalltasks.png">View All Tasks</button>
+            <button class="btn btn-github"><img src="/src/images/github24.png">Github</button>
         </nav>
         <header class="hello"><img class="img-hand" src="/src/images/wavinghand.png">Hi, Peaches</header>
         <div class="info">
@@ -103,7 +104,7 @@
             <h2 class="project-heading">Default Project</h2>
 
 
-            <h3>To do</h3>
+            <h3 class="gradient-text">To do</h3>
            
          
                 
@@ -111,32 +112,41 @@
                  <summary>
                     <label for="task1"><input type="checkbox" class="checkbox" id="task1"> Walk the dog </label>
                     
-                    <span class="project-task-priority">High</span>
+                    <span class="project-task-priority highPriority">High</span>
                     <img class="project-task-img" src="/src/images/angle-small-down.png">
                 </summary> 
                 <p class="project-task-description">Walk The Dog to talburpin park</p> 
+                <img class="project-task-editbtn" src="/src/images/edit.png">
             </details>
+
+
+
+
 
                   
             <details class="project-task-item">
                 <summary>
-                   <label for="task1"><input type="checkbox" class="checkbox" id="task1"> Walk the dog </label>
+                   <label for="task2"><input type="checkbox" class="checkbox" id="task2"> Label then input inside label </label>
                    
-                   <span class="project-task-priority">High</span>
+                   <span class="project-task-priority medPriority">Med</span>
                    <img class="project-task-img" src="/src/images/angle-small-down.png">
                </summary> 
                <p class="project-task-description">Walk The Dog to talburpin park</p> 
+               <img class="project-task-editbtn" src="/src/images/edit.png">
            </details>
+
+
 
                  
            <details class="project-task-item">
             <summary>
-               <label for="task1"><input type="checkbox" class="checkbox" id="task1"> Walk the dog </label>
+               <label for="task3"><input type="checkbox" class="checkbox" id="task3"> Another really quite long task name </label>
                
-               <span class="project-task-priority">High</span>
+               <span class="project-task-priority lowPriority">Low</span>
                <img class="project-task-img" src="/src/images/angle-small-down.png">
            </summary> 
            <p class="project-task-description">Walk The Dog to talburpin park</p> 
+           <img class="project-task-editbtn" src="/src/images/edit.png">
        </details>
 
 
@@ -145,20 +155,18 @@
 
 
             <h3>Completed</h3>
-
-
-       <!-- CHECKEED -->
+       <!-- CHECKED -->
        <details class="project-task-item">
-        <summary class="strikethrough">
-          <input type="checkbox" class="checkbox" id="task1" checked="true"> <label for="task1">Walk the dog  
+        <summary>
+           <label for="task4"><input type="checkbox" class="checkbox" id="task4" checked="true"> Another really quite long task name </label>
            
-           <span class="project-task-priority">High</span>
-        </label>
+           <span class="project-task-priority lowPriority">Low</span>
            <img class="project-task-img" src="/src/images/angle-small-down.png">
-       
        </summary> 
        <p class="project-task-description">Walk The Dog to talburpin park</p> 
+       <img class="project-task-editbtn" src="/src/images/edit.png">
    </details>
+
 
         </section>
 
@@ -184,15 +192,32 @@
 
     <!-- modal container -->
     <section class="modal hidden">
+        <img class= "create-modal-icon" src="/src/images/stars.png" alt="">
+        <!-- <img class= "create-modal-icon" src="/src/images/staricon64.png" alt=""> -->
+        <button class="btn-close"><img src="/src/images/circle-xmark.png"></button>
         <h3>Create a new... </h3>
-        <div class="flex">
-            <!-- <img src="user.png" width="50px" height="50px" alt="user" /> -->
-            <button class="btn-close"><img src="/src/images/circle-xmark.png">⨉</button>
+        <div class="flex">          
+            <div class="create-modal-select-type">
+                <span class="create-modal-select-task">Task </span>
+                <span class="create-modal-select-project">Project </span>
+            </div>
         </div>
-        <label for="name">Project/Task</label>
-        <input type="text" class="name" id="name">
-        <button type="submit">submit</button>
+        <div class="create-modal-input-area">
+            <!-- Code for PROJECT CREATION -->
+            <label for="name">Project/Task</label>
+            <input type="text" class="name" id="name">
 
+
+            <!-- Code for TASK CREATION -->
+
+
+        </div>
+  
+      
+    <div class="create-modal-buttons">
+        <button type="">clear</button>
+        <button type="submit">submit</button>
+    </div>
     </section>
 
 
