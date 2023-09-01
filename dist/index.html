@@ -168,6 +168,8 @@
    </details>
 
 
+
+  
         </section>
 
     </div>
@@ -198,8 +200,16 @@
         <h3>Create a new... </h3>
         <div class="flex">          
             <div class="create-modal-select-type">
-                <span class="create-modal-select-task">Task </span>
-                <span class="create-modal-select-project">Project </span>
+                <!-- <span class="create-modal-select-task">Task </span>
+                <span class="create-modal-select-project">Project </span> -->
+
+
+                <!-- Project/Task toggle - TODO update class names  -->
+                <label class="switch btn-color-mode-switch">
+                    <input type="checkbox" name="color_mode" id="color_mode" value="">
+                    <label for="color_mode" data-on="Task" data-off="Project" class="btn-color-mode-switch-inner"></label>
+                </label>
+
             </div>
         </div>
         <div class="create-modal-input-area">
@@ -216,7 +226,7 @@
       
     <div class="create-modal-buttons">
         <button type="">clear</button>
-        <button type="submit">submit</button>
+        <button type="submit">Save </button>
     </div>
     </section>
 
