@@ -1,63 +1,75 @@
-//the view handles how the UI is displayed
+//the view handles how the UI is displayed. Only talks to controller. 
 import { createNewProject } from "./controller.js";
 export function thisistheview(){
 
     let domCachedElements = {
         container: document.querySelector(".container"),
-        addbutton: document.querySelector(".add"),
+        addbutton: document.querySelector(".btn-add"),
+   }
+
+    let modalElements = {
         name: document.querySelector("#name"),
         submitbutton: document.querySelector('button[type="submit"]'),
         modal: document.querySelector(".modal"),
-        openModalBtn: document.querySelector(".btn-open"),
         overlay: document.querySelector(".overlay"),
         closeModalBtn: document.querySelector(".btn-close")
-   }
+    }
 
-
+  
 
    //opens modal to create new project/task
    const openModal = function () {
-        domCachedElements.modal.classList.remove("hidden");
-        domCachedElements.overlay.classList.remove("hidden");
+        modalElements.modal.classList.remove("hidden");
+        modalElements.overlay.classList.remove("hidden");
     };
     //add event listener to open modal on click
-    domCachedElements.openModalBtn.addEventListener("click", openModal);
+    domCachedElements.addbutton.addEventListener("click", openModal);
 
     //closes modal
     const closeModal = function () {
-        domCachedElements.modal.classList.add("hidden");
-        domCachedElements.overlay.classList.add("hidden");
+        modalElements.modal.classList.add("hidden");
+        modalElements.overlay.classList.add("hidden");
     };
     //add event listener to close modal on click
-    domCachedElements.closeModalBtn.addEventListener("click", closeModal);
-    domCachedElements.overlay.addEventListener("click", closeModal);
-    domCachedElements.submitbutton.addEventListener("click", closeModal);
+    modalElements.closeModalBtn.addEventListener("click", closeModal);
+    modalElements.overlay.addEventListener("click", closeModal);
+    modalElements.submitbutton.addEventListener("click", closeModal);
 
 
 
 
-   domCachedElements.submitbutton.addEventListener('click', function(event){
+    modalElements.submitbutton.addEventListener('click', function(event){
     //this function may need to be moved to controller
     //get the value from the input, display on screen 
 
      event.preventDefault();
 
 
-     let projname = domCachedElements.name.value;
+     let projname = modalElements.name.value;
 
     //createNewProject(projname);
+    //currently wipes all content from container and displays projname, instead needs to:
+    //          pass name to controller 
+    //          controller received name and passes to model
+    //          model receives name and creates new project and adds it to the project array
+    //          passes project array back to controller
+    //          controller passes project to view to display 
      domCachedElements.container.textContent = projname;
    });
 
 
 
-    //connect add new button to modal to display input
-    domCachedElements.addbutton.addEventListener('click', function () {
-             console.log('add btn works');
-        });
 
 
 
 
+        let createNewProjElements = {
+            nameInput: document.querySelector("#color_mode")
+        }
+
+        console.log(createNewProjElements.nameInput.checked);
+        if (createNewProjElements.nameInput.checked == true ){
+            console.log ("checked");
+        }
     
 }

@@ -406,6 +406,7 @@ h2.project-heading {
     text-decoration-color: var(--lightGrey); */
 
     background: -webkit-linear-gradient(#fa83fc, #cabcfb);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -540,31 +541,6 @@ input[type="checkbox"]:checked {
     justify-content: center;
   } 
 
-.create-modal-select-type{
-    background-color: white;
-    padding: 5px;
-    margin: 0 auto;
-    width: 40%;
-    text-align: center;
-    border-radius: 50px;
-    border: solid 1px lightgrey;
-    color: var(--medGrey);
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 4px #3a474e26, 0 1px 2px #3a474e26;
-}
-
-/* .create-modal-select-type span:first-of-type {
-    border: solid 1px pink;
-    background-color: pink;
-    color: white;
-    border-radius: 50px;
-    padding: 5px 24px;
-    margin: 0px 4px;
-    box-shadow: 0 2px 4px #3a474e26, 0 1px 2px #3a474e26;
-} */
 
 .create-modal-input-area {
   padding-left: 15px;
@@ -612,8 +588,6 @@ input[type="checkbox"]:checked {
     border-bottom-right-radius: 20px;
     border-left: solid 3px pink;
   }
-
-
   
   .btn-close {
     padding: 0;
@@ -644,18 +618,11 @@ input[type="checkbox"]:checked {
   .hidden {
     display: none;
   }
+/* CURRENT TASK  - remove all references to label.btn-color-mode-switch  */
 
 
-  /* html, body{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-}
 
-body{
-    display: table;
-} */
-
+  /* Task/Project Switcher inside Modal */
 /*selected side*/
 label {
     font-size: 13px;
@@ -663,34 +630,37 @@ label {
     font-weight: 500;
 }
 
-/*  bg of task when not selected*/
-.btn-color-mode-switch > label.btn-color-mode-switch-inner{
+/*  bg of Task when not selected*/
+/* .btn-color-mode-switch > label.btn-color-mode-switch-inner{ */
+                            label.btn-color-mode-switch-inner{
     margin: 0px;
     width: 140px;
     height: 30px;
     background: #E0E0E0;
-  background: linear-gradient(90deg,pink, lavender);
+    background: linear-gradient(90deg,pink, lavender);
     border-radius: 26px;
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease;
-/*     box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset; */
     display: block;
+    cursor: pointer;
 }
-/* text of task when not selected  */
-.btn-color-mode-switch > label.btn-color-mode-switch-inner:before{
-    content: attr(data-on);
+/* text of Task when not selected  */
+/* .btn-color-mode-switch > label.btn-color-mode-switch-inner:before{ */
+                        label.btn-color-mode-switch-inner::before{
+    content: attr(data-on); /* Task */
     position: absolute;
     font-size: 13px;
     font-weight: 500;
     top: 7px;
     right: 20px;
-  color: grey;
+    color: grey;
 }
 
 /*  project selected */
-.btn-color-mode-switch > label.btn-color-mode-switch-inner:after{
-    content: attr(data-off);
+/* .btn-color-mode-switch > label.btn-color-mode-switch-inner:after{  */
+                          label.btn-color-mode-switch-inner::after{
+    content: attr(data-off); /* Project */
     width: 70px;
     height: 16px;
     background: #fff;
@@ -705,51 +675,39 @@ label {
 }
 
 
-
-.btn-color-mode-switch input[type="checkbox"]{
+/* .btn-color-mode-switch input[type="checkbox"]{ */
+  input#color_mode[type="checkbox"] {
     cursor: pointer;
     width: 50px;
     height: 25px;
     opacity: 0;
     position: absolute;
-    top: 0;
+    top: 68px;
+    left: 44%;
     z-index: 1;
     margin: 0px;
-
 }
 
 /*  set bg and text on project, not selected */
-.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
-    background: #151515;
-  background: lightgrey;
-   background: linear-gradient(90deg,pink, lavender);
-    color: grey;
-
- 
+input#color_mode[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
+  background: linear-gradient(90deg,pink, lavender);
+  color: grey;
 }
+
 /*  Sets bg of Task when selected*/
-.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after{
-    content: attr(data-on);
-    left: 68px;
+input#color_mode[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after{
+  content: attr(data-on); /*Tasks*/
+  left: 68px;
   background: white;
   color: black;
 }
 
-.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before{
-    content: attr(data-off);
+input#color_mode[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before{
+    content: attr(data-off); /*Project */
     right: auto;
     left: 20px;
 }
 
-.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
-/*  color to make green for on  */
-/*     background: #66BB6A; */
-/*     color: #fff; */
-}
-
-.btn-color-mode-switch input[type="checkbox"]:checked ~ .alert{
-    display: block;
-}
 
 
 
