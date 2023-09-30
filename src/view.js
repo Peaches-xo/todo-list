@@ -60,16 +60,36 @@ export function thisistheview(){
 
 
 
-
+//    
 
 
         let createNewProjElements = {
-            nameInput: document.querySelector("#color_mode")
+            nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
+            ischecked: document.querySelector('input#color_mode[type="checkbox"]:checked'),
+            //  isChecked: document.getElementById("#color_mode").checked,
+            toggleModalDisplay: function (){
+                console.log("function toggleModalDisplay reached");
+                // if (this.nameInput === true){
+                    if (this.ischecked){
+                    console.log ("checked");
+                } else  if (!(this.ischecked)){
+                    console.log ("not checked");
+                }
+            }
         }
+       
 
-        console.log(createNewProjElements.nameInput.checked);
-        if (createNewProjElements.nameInput.checked == true ){
-            console.log ("checked");
-        }
+
+        createNewProjElements.nameInput.addEventListener("change", createNewProjElements.toggleModalDisplay);
+
+        // console.log(createNewProjElements.nameInput.checked);
+
+
+
+        // if (createNewProjElements.nameInput.checked == true ){
+        //     console.log ("checked");
+        // } else {
+        //     console.log ("not checked");
+        // }
     
 }
