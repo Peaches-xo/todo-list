@@ -1,7 +1,5 @@
 //the view handles how the UI is displayed. Only talks to controller. 
 import { createNewProject } from "./controller.js";
-
-
 export function thisistheview(){
 
     let domCachedElements = {
@@ -10,7 +8,7 @@ export function thisistheview(){
    }
 
     let modalElements = {
-        projName: document.querySelector("#projName"),
+        name: document.querySelector("#name"),
         submitbutton: document.querySelector('button[type="submit"]'),
         modal: document.querySelector(".modal"),
         overlay: document.querySelector(".overlay"),
@@ -39,41 +37,51 @@ export function thisistheview(){
 
 
 
-    //this function may need to be moved to controller
+
     modalElements.submitbutton.addEventListener('click', function(event){
+    //this function may need to be moved to controller
+    //get the value from the input, display on screen 
 
-        //get the value from the input 
-        console.log("modalElements.projName.value: " + modalElements.projName.value);
-        let projName = modalElements.projName.value;
-
-        //passes value to controller
-        createNewProject(projName);
+     event.preventDefault();
 
 
-        // use value to create new Project by passing the value to the controller
+     let projname = modalElements.name.value;
 
-
-    // needs to:
+    //createNewProject(projname);
+    //currently wipes all content from container and displays projname, instead needs to:
     //          pass name to controller 
     //          controller received name and passes to model
     //          model receives name and creates new project and adds it to the project array
     //          passes project array back to controller
     //          controller passes project to view to display 
-
+     domCachedElements.container.textContent = projname;
    });
 
 
 
 
-//    Checkbox toggle - come back to this later - not working as at 5 Oct
+//    
+
+
         let createNewProjElements = {
             nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
-            ischecked: document.querySelector('input#color_mode[type="checkbox"]:checked'),
             toggleModalDisplay: function (){
                 console.log("function toggleModalDisplay reached");
-                //add code here to display either Create New Project or Create New Task from modules
+             
+                if (createNewProjElements.nameInput.checked){
+                    console.log("toggle is checked/ Add new TASK");
+                  } else {
+                    console.log("toggle not checked/ Add new PROJECT");
+                  };
+        
             }
         }
-        createNewProjElements.nameInput.addEventListener("change", createNewProjElements.toggleModalDisplay);
+       
 
+
+
+        createNewProjElements.nameInput.addEventListener("click", createNewProjElements.toggleModalDisplay);
+
+      
+    
 }

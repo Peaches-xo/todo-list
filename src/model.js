@@ -4,7 +4,7 @@ import { createNewProject } from './controller.js';
 
 
 function modelfunc(){
-    console.log('testing from modelfunc()');
+    //console.log('testing from modelfunc()');
     // //array of all projects
     let allProjectsArr = [];
 
