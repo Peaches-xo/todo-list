@@ -70,8 +70,66 @@ export function thisistheview(){
              
                 if (createNewProjElements.nameInput.checked){
                     console.log("toggle is checked/ Add new TASK");
+                    //function that returns element - will be its own module?
+                    //append returned element to div
+
+
+                    let label = document.createElement("label");
+                    let input = document.createElement("input");
+                    let div = document.querySelector("div.create-modal-input-area");
+
+                    //if div has children, remove children
+                    if (div.hasChildNodes){
+                        while (div.firstChild) {
+                            div.removeChild(div.firstChild);
+                          }
+                    }
+
+                
+
+                    label.setAttribute("for","name");
+                    label.textContent="Task Name:";
+                    input.setAttribute("type", "text");
+                    input.classList.add("name");
+                    input.setAttribute("id", "name");
+
+                    div.appendChild(label);
+                    div.appendChild(input);
+
+
+
+
+
+
                   } else {
                     console.log("toggle not checked/ Add new PROJECT");
+
+
+                    //function that returns element - will be its own module?
+                    //append returned element to div
+
+                    let label = document.createElement("label");
+                    let input = document.createElement("input");
+                    let div = document.querySelector("div.create-modal-input-area");
+
+                    //if div has children, remove children
+                    if (div.hasChildNodes){
+                        while (div.firstChild) {
+                            div.removeChild(div.firstChild);
+                          }
+                    }
+
+                    label.setAttribute("for","projName");
+                    label.textContent="Project Name:";
+                    input.setAttribute("type", "text");
+                    input.classList.add("name");
+                    input.setAttribute("id", "projName");
+
+                    div.appendChild(label);
+                    div.appendChild(input);
+
+
+
                   };
         
             }
