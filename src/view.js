@@ -8,14 +8,15 @@ export function thisistheview(){
    }
 
     let modalElements = {
-        name: document.querySelector("#name"),
+        taskName: document.querySelector("#name"),
+        projName: document.querySelector("#projName"),
         submitbutton: document.querySelector('button[type="submit"]'),
         modal: document.querySelector(".modal"),
         overlay: document.querySelector(".overlay"),
         closeModalBtn: document.querySelector(".btn-close")
     }
 
-  
+  console.log(modalElements);
 
    //opens modal to create new project/task
    const openModal = function () {
@@ -45,7 +46,13 @@ export function thisistheview(){
      event.preventDefault();
 
 
-     let projname = modalElements.name.value;
+
+    //cannot read properties of null 
+     console.log("task name: " + modalElements.taskName.value);
+   
+     console.log("project name: " + modalElements.projName.value);
+
+
 
     //createNewProject(projname);
     //currently wipes all content from container and displays projname, instead needs to:
@@ -54,25 +61,21 @@ export function thisistheview(){
     //          model receives name and creates new project and adds it to the project array
     //          passes project array back to controller
     //          controller passes project to view to display 
-     domCachedElements.container.textContent = projname;
+     //domCachedElements.container.textContent = projname;
    });
-
-
-
-
-//    
 
 
         let createNewProjElements = {
             nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
+    
             toggleModalDisplay: function (){
                 console.log("function toggleModalDisplay reached");
+              
              
                 if (createNewProjElements.nameInput.checked){
                     console.log("toggle is checked/ Add new TASK");
                     //function that returns element - will be its own module?
                     //append returned element to div
-
 
                     let label = document.createElement("label");
                     let input = document.createElement("input");
@@ -85,8 +88,7 @@ export function thisistheview(){
                           }
                     }
 
-                
-
+                    // Set attributes
                     label.setAttribute("for","name");
                     label.textContent="Task Name:";
                     input.setAttribute("type", "text");
@@ -97,14 +99,8 @@ export function thisistheview(){
                     div.appendChild(input);
 
 
-
-
-
-
                   } else {
                     console.log("toggle not checked/ Add new PROJECT");
-
-
                     //function that returns element - will be its own module?
                     //append returned element to div
 
@@ -119,6 +115,7 @@ export function thisistheview(){
                           }
                     }
 
+                     // Set attributes
                     label.setAttribute("for","projName");
                     label.textContent="Project Name:";
                     input.setAttribute("type", "text");
@@ -127,8 +124,6 @@ export function thisistheview(){
 
                     div.appendChild(label);
                     div.appendChild(input);
-
-
 
                   };
         
