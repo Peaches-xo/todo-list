@@ -1,22 +1,99 @@
 //the view handles how the UI is displayed. Only talks to controller. 
 import { createNewProject } from "./controller.js";
+import { allProjectsArr } from "./controller.js";
+
+
 export function thisistheview(){
 
     let domCachedElements = {
         container: document.querySelector(".container"),
         addbutton: document.querySelector(".btn-add"),
+        viewAllProjectsBtn: document.querySelector(".btn-allproj"),
+        taskbox: document.querySelector(".taskbox"),
    }
 
+   domCachedElements.viewAllProjectsBtn.addEventListener("click", viewAllProjects);
+
+   function viewAllProjects(){
+    //1. clears project display area 
+             //if div has children, remove children
+             if (domCachedElements.taskbox.hasChildNodes){
+                while (domCachedElements.taskbox.firstChild) {
+                    domCachedElements.taskbox.removeChild(domCachedElements.taskbox.firstChild);
+                  }
+            }
+        //2. loops over all projects array (if arr not empty) & creates project card for each project & append to taskbox
+        if (allProjectsArr.length != 0){
+            allProjectsArr.forEach(createProjectItemCard);
+        }
+   }
+
+
+   function createProjectItemCard (item, index){
+        //create elements, 
+        let projectItem = document.createElement("div");
+        projectItem.classList.add("project-item");
+
+        let projectTitle = document.createElement("h5");
+        projectTitle.textContent = allProjectsArr[index]; 
+        projectItem.appendChild(projectTitle);
+
+        let projectTaskNo = document.createElement("p");
+        projectTaskNo.classList.add("project-item-taskno");
+        projectTaskNo.textContent = "7 active tasks"; /*This will be updated to fetch number */
+        projectItem.appendChild(projectTaskNo);
+
+        let projectItemWrapper = document.createElement("div");
+        projectItemWrapper.classList.add("project-item-wrapper");
+        projectItem.appendChild(projectItemWrapper);
+
+            let projectItemEditBtn = document.createElement("button");
+            projectItemEditBtn.classList.add("project-item-editbtn");
+
+                let projectItemEditIcon = document.createElement("img");
+                projectItemEditIcon.setAttribute("src", "/src/images/edit.png");
+                projectItemEditBtn.appendChild(projectItemEditIcon);
+
+            projectItemWrapper.appendChild(projectItemEditBtn);
+            //code to add project due date if including?
+
+            //3. append each project cards to  display area (domCachedElements.taskbox)
+            domCachedElements.taskbox.appendChild(projectItem);
+   }
+
+
+
+
+function addProjectToDropdown(projname){
+    //function that gets called when proj is created
+    //receives project name
+    //checks if already in dropdown
+        //if not, create item & append to dropdown 
+        console.log("addProjectToDropdown accessed" + projname); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     let modalElements = {
-        taskName: document.querySelector("#name"),
-        projName: document.querySelector("#projName"),
         submitbutton: document.querySelector('button[type="submit"]'),
+        clearButton: document.querySelector('button.clear-btn'),
         modal: document.querySelector(".modal"),
         overlay: document.querySelector(".overlay"),
         closeModalBtn: document.querySelector(".btn-close")
     }
-
-  console.log(modalElements);
 
    //opens modal to create new project/task
    const openModal = function () {
@@ -36,32 +113,28 @@ export function thisistheview(){
     modalElements.overlay.addEventListener("click", closeModal);
     modalElements.submitbutton.addEventListener("click", closeModal);
 
-
-
-
+    //call functions on click of Submit button
     modalElements.submitbutton.addEventListener('click', function(event){
     //this function may need to be moved to controller
-    //get the value from the input, display on screen 
+    //get the value from the input, pass to controller to pass to model, display on screen 
 
      event.preventDefault();
 
+     const taskName = document.querySelector("#name");
+     const projName =  document.querySelector("#projName");
 
+    if (taskName !== null){
+        console.log("task name: " + taskName.value);
+       
+    }
 
-    //cannot read properties of null 
-     console.log("task name: " + modalElements.taskName.value);
-   
-     console.log("project name: " + modalElements.projName.value);
+    if (projName !== null){
+        console.log("project name: " + projName.value);
+        createNewProject(projName.value);
+        viewAllProjects();
+    }
+     
 
-
-
-    //createNewProject(projname);
-    //currently wipes all content from container and displays projname, instead needs to:
-    //          pass name to controller 
-    //          controller received name and passes to model
-    //          model receives name and creates new project and adds it to the project array
-    //          passes project array back to controller
-    //          controller passes project to view to display 
-     //domCachedElements.container.textContent = projname;
    });
 
 
@@ -69,17 +142,19 @@ export function thisistheview(){
             nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
     
             toggleModalDisplay: function (){
-                console.log("function toggleModalDisplay reached");
-              
              
                 if (createNewProjElements.nameInput.checked){
                     console.log("toggle is checked/ Add new TASK");
                     //function that returns element - will be its own module?
                     //append returned element to div
 
-                    let label = document.createElement("label");
-                    let input = document.createElement("input");
+                    let projDropdown = document.createElement("select");
+                    let projDropdownLabel = document.createElement("label");
+
+                    let taskLabel = document.createElement("label");
+                    let taskInput = document.createElement("input");
                     let div = document.querySelector("div.create-modal-input-area");
+
 
                     //if div has children, remove children
                     if (div.hasChildNodes){
@@ -89,14 +164,33 @@ export function thisistheview(){
                     }
 
                     // Set attributes
-                    label.setAttribute("for","name");
-                    label.textContent="Task Name:";
-                    input.setAttribute("type", "text");
-                    input.classList.add("name");
-                    input.setAttribute("id", "name");
+                    projDropdownLabel.setAttribute("for", "projDropdown");
+                    projDropdownLabel.textContent = "Project: ";
 
-                    div.appendChild(label);
-                    div.appendChild(input);
+                    projDropdown.setAttribute("id", "projDropdown");
+                    projDropdown.setAttribute("name", "projDropdown");
+
+                    //get values from proj array and create option tag for each
+                    if (allProjectsArr.length != 0){
+                    //    allProjectsArr.forEach(createDropdownOptions);
+                       for (let i = 0; i <= allProjectsArr.length; i++){
+                        
+                        projDropdown.appendChild(createDropdownOptions(allProjectsArr)); 
+                       }
+                    }
+                  
+
+                    taskLabel.setAttribute("for","name");//change name to something descriptive
+                    taskLabel.textContent="Task Name:";
+                    taskInput.setAttribute("type", "text");
+                    taskInput.classList.add("name"); //change name to something descriptive
+                    taskInput.setAttribute("id", "name");//change name to something descriptive
+
+
+                    div.appendChild(projDropdownLabel);
+                    div.appendChild(projDropdown);
+                    div.appendChild(taskLabel);
+                    div.appendChild(taskInput);
 
 
                   } else {
@@ -132,9 +226,27 @@ export function thisistheview(){
        
 
 
-
+        //project/task toggle
         createNewProjElements.nameInput.addEventListener("click", createNewProjElements.toggleModalDisplay);
 
+
+        function createDropdownOptions(index,item){
+
+            let option = document.createElement("option");
+            option.setAttribute("value", item); //undefined - how to get project name 
+            option.textContent= item; //undefined 
+            return option;
+          
+        };
       
     
+        //clear inputs on click of clearn btn
+        modalElements.clearButton.addEventListener("click", clearInputs);
+
+
+        function clearInputs(){
+            //if on task page, clear task inputs
+
+            //else clear all project inputs
+        }
 }

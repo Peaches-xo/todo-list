@@ -397,7 +397,8 @@ h2.project-heading {
   text-align: center;
 }
 
-.project h3{
+.project h3,
+.gradient-h3{
     padding: 10px 0px 0px 10px;
     margin-top: 20px;
     /* color: var(--project_color5); */
@@ -568,20 +569,35 @@ input[type="checkbox"]:checked {
 
   
   .create-modal-buttons button {
-    display: inline-block;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 8px;
     padding: 0.8rem;
     background-color: white;
     color: pink;
-    /* border-radius: 5px; */
     text-align: center;
-    font-size: 1em;
+    font-size: 1.3em;
     cursor: pointer;
     border: none;
     font-weight: 600;
     width: 100%;
     border-top: solid 3px;
     border-bottom-left-radius: 20px;
+   transition: 0.3s;
   }
+
+  .create-modal-buttons button:hover {
+    background: -webkit-linear-gradient(#43A3E8, #0EDBDD);
+    transition: 0.3s;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+.create-modal-buttons button img{
+  width: 25px;
+}
+
 
   button[type="submit"]{
     border-bottom-left-radius: 0;

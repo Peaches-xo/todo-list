@@ -3,26 +3,72 @@ import './style.css';
 //tells view what do to.
 //Controls and decides how data is displayed
 import { thisistheview } from './view.js';
-import { modelfunc } from './model.js';
-
+// import { model } from './model.js';
+// import { createNewProjFactory } from './model.js';
 
 
 //inititation function 
 thisistheview();
-modelfunc();
+//model();
 
+  // //array of all projects
+  let allProjectsArr = [];
 
+  class Project {
+    constructor(name){ 
+        this.name = name;
+    }
+    tasks = [];
+    createProj(){
+        //creates new project and put in projects array - currently uses name of proj but would id# system be better?
+        allProjectsArr.push(this.name);
+        console.log(allProjectsArr);
+        //add project to list in 'create new task' modal 
+        addProjectToDropdown(this.name);
+    }
+    deleteProj(){
+        //modal pop up 'are you sure' if yes,
+        //find proj in projs array and deletes. proj arrray is updated.
+    }
+  };
+
+  //set up default project
+  let defaultproj = new Project('Default Project');
+  defaultproj.createProj();
+
+  //this function to move to model
+ function createNewProjFactory(projName){
+     let newprojName = new Project (projName);
+     newprojName.createProj();
+ };
 
 //function that runs when submit button is clicked
-export function createNewProject(projName){
+ export function createNewProject(projName){
     console.log('createNewProject firing');
-    console.log(projName);    //pass projname to model to create new project 
- 
+    console.log(projName);    //pass projname to model to create new project
 
     //this should be a call to a function inside model, passing the projName
-    createNewProjFactory(projName);
-
+    createNewProjFactory(projName); 
+  
 }
+
+//function that runs when proj is created - should be in view
+function addProjectToDropdown(projname){
+  //receives project name
+  //checks if already in dropdown
+      //if not, create item & append to dropdown 
+      console.log("addProjectToDropdown accessed" + projname); 
+}
+
+
+
+
+
+
+
+
+
+
 
 export const pubSub = {
   events: {},
@@ -52,3 +98,4 @@ export const pubSub = {
 
 
 
+export { allProjectsArr };
