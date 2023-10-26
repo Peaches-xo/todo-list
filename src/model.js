@@ -1,6 +1,6 @@
 //the model handles all the data and logic 
  export { model };
-
+import { createNewProject } from './controller.js';
 
  function model(){
 
@@ -32,13 +32,14 @@
     //     newprojName.createProj();
     // }
 
-    // class Task {
+    // class Task { //add id as well
     //     constructor(name, description, project, priority, duedate){
     //         this.name = name,
-    //         this.icon = icon,
+    //         this.project = project,
     //         this.tasks = tasks
     //     }
     // }
 
+    createNewProject("testname");
 
 }
