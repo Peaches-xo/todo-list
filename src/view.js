@@ -80,7 +80,7 @@ export function thisistheview(){
 
 
 
-
+// --------- CREATE NEW - MODAL ----------------
     let modalElements = {
         submitbutton: document.querySelector('button[type="submit"]'),
         clearButton: document.querySelector('button.clear-btn'),
@@ -107,29 +107,30 @@ export function thisistheview(){
     modalElements.overlay.addEventListener("click", closeModal);
     modalElements.submitbutton.addEventListener("click", closeModal);
 
+
+
+
+
+
     //call functions on click of Submit button
     modalElements.submitbutton.addEventListener('click', function(event){
     //this function may need to be moved to controller
     //get the value from the input, pass to controller to pass to model, display on screen 
+        event.preventDefault();
 
-     event.preventDefault();
+        const taskName = document.querySelector("#name");
+        const projName =  document.querySelector("#projName");
 
-     const taskName = document.querySelector("#name");
-     const projName =  document.querySelector("#projName");
+        if (taskName !== null){
+            console.log("task name: " + taskName.value);
+        }
 
-    if (taskName !== null){
-        console.log("task name: " + taskName.value);
-       
-    }
-
-    if (projName !== null){
-        console.log("project name: " + projName.value);
-        createNewProject(projName.value);
-        viewAllProjects();
-        newProjectForm();
-    }
-     
-
+        if (projName !== null){
+            console.log("project name: " + projName.value);
+            createNewProject(projName.value);
+            viewAllProjects();
+            newProjectForm();
+        }
    });
 
 

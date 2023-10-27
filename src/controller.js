@@ -3,34 +3,34 @@ import './style.css';
 //tells view what do to.
 //Controls and decides how data is displayed
 import { thisistheview } from './view.js';
-// import { model } from './model.js';
-// import { createNewProjFactory } from './model.js';
+import { model } from './model.js';
+
 
 
 //inititation function 
 thisistheview();
-//model();
+
 
   // //array of all projects
-  let allProjectsArr = [];
+  // let allProjectsArr = [];
 
-  class Project {
-    constructor(name){ 
-        this.name = name;
-    }
-    tasks = [];
-    createProj(){
-        //creates new project and put in projects array - currently uses name of proj but would id# system be better?
-        allProjectsArr.push(this.name);
-        console.log(allProjectsArr);
-        //add project to list in 'create new task' modal 
-        addProjectToDropdown(this.name);
-    }
-    deleteProj(){
-        //modal pop up 'are you sure' if yes,
-        //find proj in projs array and deletes. proj arrray is updated.
-    }
-  };
+  // class Project {
+  //   constructor(name){ 
+  //       this.name = name;
+  //   }
+  //   tasks = [];
+  //   createProj(){
+  //       //creates new project and put in projects array - currently uses name of proj but would id# system be better?
+  //       allProjectsArr.push(this.name);
+  //       console.log(allProjectsArr);
+  //       //add project to list in 'create new task' modal 
+  //       addProjectToDropdown(this.name);
+  //   }
+  //   deleteProj(){
+  //       //modal pop up 'are you sure' if yes,
+  //       //find proj in projs array and deletes. proj arrray is updated.
+  //   }
+  // };
 
   //set up default project
   let defaultproj = new Project('Default Project');
