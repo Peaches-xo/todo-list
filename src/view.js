@@ -1,7 +1,8 @@
 //the view handles how the UI is displayed. Only talks to controller. 
-import { createNewProject } from "./controller.js";
-
-import { newProjectForm } from "./newProjectForm.js";
+import { createNewProject } from './controller.js';
+import { newProjectForm } from './newProjectForm.js';
+import { newTaskForm } from './newTaskForm.js';
+import { allProjectsArr } from './model.js'; //maybe move
 
 
 export function thisistheview(){
@@ -82,7 +83,7 @@ export function thisistheview(){
 
 // --------- CREATE NEW - MODAL ----------------
     let modalElements = {
-        submitbutton: document.querySelector('button[type="submit"]'),
+        submitButton: document.querySelector('button[type="submit"]'),
         clearButton: document.querySelector('button.clear-btn'),
         modal: document.querySelector(".modal"),
         overlay: document.querySelector(".overlay"),
@@ -105,144 +106,85 @@ export function thisistheview(){
     //add event listener to close modal on click
     modalElements.closeModalBtn.addEventListener("click", closeModal);
     modalElements.overlay.addEventListener("click", closeModal);
-    modalElements.submitbutton.addEventListener("click", closeModal);
+    modalElements.submitButton.addEventListener("click", closeModal);
 
 
 
 
-
+    let taskNameInput = document.querySelector("#name");
+    let projNameInput =  document.querySelector("#projName");
 
     //call functions on click of Submit button
-    modalElements.submitbutton.addEventListener('click', function(event){
+    modalElements.submitButton.addEventListener('click', function(event){
     //this function may need to be moved to controller
     //get the value from the input, pass to controller to pass to model, display on screen 
         event.preventDefault();
 
-        const taskName = document.querySelector("#name");
-        const projName =  document.querySelector("#projName");
-
-        if (taskName !== null){
-            console.log("task name: " + taskName.value);
+        //NOT WORKING 
+        if (taskNameInput !== null){ //if element exists
+            console.log("taskNameInput.value: " + taskNameInput.value);
+            let taskName = taskNameInput.value;
+            console.log ("taskName: " + taskName);
         }
 
-        if (projName !== null){
-            console.log("project name: " + projName.value);
-            createNewProject(projName.value); //in controller
+        if (projNameInput !== null){
+            console.log("project name: " + projNameInput.value);
+            //let projectName = projNameInput.value;
+
+            createNewProject(projNameInput.value); //in controller
+            console.log("allProjArr: " + allProjectsArr);
+            //add function to clear values 
+
+
             viewAllProjects();
-            newProjectForm();
         }
    });
 
+   //clear input on click of Clear Button
+    modalElements.clearButton.addEventListener('click', function(event){
+      
+            //find way to clear corresponding input value 
+            // ONLY WORKS ONCE
+            if (taskNameInput){
+                taskNameInput.value = "";
+            }
+
+            if (projNameInput){
+                projNameInput.value = "";
+            }
+           
+        
+    });
 
         let createNewProjElements = {
             nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
     
             toggleModalDisplay: function (){
-             
+                let div = document.querySelector("div.create-modal-input-area");
                 if (createNewProjElements.nameInput.checked){
                     console.log("toggle is checked/ Add new TASK");
-                    //function that returns element - will be its own module?
-                    //append returned element to div
-
-                    let projDropdown = document.createElement("select");
-                    let projDropdownLabel = document.createElement("label");
-
-                    let taskLabel = document.createElement("label");
-                    let taskInput = document.createElement("input");
-                    let div = document.querySelector("div.create-modal-input-area");
-
-
                     //if div has children, remove children
                     if (div.hasChildNodes){
                         while (div.firstChild) {
                             div.removeChild(div.firstChild);
                           }
                     }
-
-                    // Set attributes
-                    projDropdownLabel.setAttribute("for", "projDropdown");
-                    projDropdownLabel.textContent = "Project: ";
-
-                    projDropdown.setAttribute("id", "projDropdown");
-                    projDropdown.setAttribute("name", "projDropdown");
-
-                    //get values from proj array and create option tag for each
-                    if (allProjectsArr.length != 0){
-                    //    allProjectsArr.forEach(createDropdownOptions);
-                       for (let i = 0; i <= allProjectsArr.length; i++){
-                        
-                        projDropdown.appendChild(createDropdownOptions(allProjectsArr)); 
-                       }
-                    }
-                  
-
-                    taskLabel.setAttribute("for","name");//change name to something descriptive
-                    taskLabel.textContent="Task Name:";
-                    taskInput.setAttribute("type", "text");
-                    taskInput.classList.add("name"); //change name to something descriptive
-                    taskInput.setAttribute("id", "name");//change name to something descriptive
-
-
-                    div.appendChild(projDropdownLabel);
-                    div.appendChild(projDropdown);
-                    div.appendChild(taskLabel);
-                    div.appendChild(taskInput);
-
-
+                    //load New Task Inputs
+                    newTaskForm();
                   } else {
                     console.log("toggle not checked/ Add new PROJECT");
-                    //function that returns element - will be its own module?
-                    //append returned element to div
-
-                    let label = document.createElement("label");
-                    let input = document.createElement("input");
-                    let div = document.querySelector("div.create-modal-input-area");
-
                     //if div has children, remove children
                     if (div.hasChildNodes){
                         while (div.firstChild) {
                             div.removeChild(div.firstChild);
                           }
                     }
-
-                     // Set attributes
-                    label.setAttribute("for","projName");
-                    label.textContent="Project Name:";
-                    input.setAttribute("type", "text");
-                    input.classList.add("name");
-                    input.setAttribute("id", "projName");
-
-                    div.appendChild(label);
-                    div.appendChild(input);
-
+                    newProjectForm();
                   };
-        
             }
         }
-       
-
 
         //project/task toggle
         createNewProjElements.nameInput.addEventListener("click", createNewProjElements.toggleModalDisplay);
-
-
-        function createDropdownOptions(index,item){
-
-            let option = document.createElement("option");
-            option.setAttribute("value", item); //undefined - how to get project name 
-            option.textContent= item; //undefined 
-            return option;
-          
-        };
       
-    
-        //clear inputs on click of clearn btn
-        modalElements.clearButton.addEventListener("click", clearInputs);
-
-
-        function clearInputs(){
-            //if on task page, clear task inputs
-
-            //else clear all project inputs
-        }
-}
+    }

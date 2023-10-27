@@ -4,12 +4,13 @@ import './style.css';
 //tells VIEW what do to (display wise)
 //Controls and decides how data is displayed
 import { thisistheview } from './view.js';
-import { model } from './model.js';
+import { createNewProjectModel } from './model.js';
+
 
 
 //inititation function 
 thisistheview();
-model();
+
 
 
 
@@ -18,15 +19,9 @@ model();
 
 
 //function that runs when submit button is clicked
-
- 
- 
  export function createNewProject(projName){
-    console.log('createNewProject in controller firing');
-
     //this should be a call to a function inside model, passing the projName
-    createNewProjectModel(projName); //needs to call model but isnt
-
+    createNewProjectModel(projName); //in model
 }
  
 

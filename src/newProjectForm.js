@@ -1,11 +1,25 @@
 //modal display - create New Project
+//contains code to create dom elements and append them inside modal 
 
-//contains code to create dom elements and append them to modal 
 
+let div = document.querySelector("div.create-modal-input-area");
+
+//create elements 
+let label = document.createElement("label");
+let input = document.createElement("input");
+
+// Set attributes
+label.setAttribute("for","projName");
+label.textContent="Project Name:";
+input.setAttribute("type", "text");
+input.classList.add("name");
+input.setAttribute("id", "projName");
+
+  
 function newProjectForm(){
-
-    console.log("testing from inside newProjectForm");
- 
+    //append elements to div
+    div.appendChild(label);
+    div.appendChild(input);
 };
 
-export { newProjectForm } ; 
+export { newProjectForm } ; //to view
