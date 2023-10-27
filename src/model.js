@@ -1,6 +1,6 @@
 //the model handles all the data and logic 
  export { model };
-import { createNewProject } from './controller.js';
+
 
  function model(){
 
@@ -40,6 +40,6 @@ import { createNewProject } from './controller.js';
     //     }
     // }
 
-    createNewProject("testname");
+
 
 }

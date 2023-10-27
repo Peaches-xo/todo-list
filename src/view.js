@@ -1,6 +1,7 @@
 //the view handles how the UI is displayed. Only talks to controller. 
 import { createNewProject } from "./controller.js";
 import { allProjectsArr } from "./controller.js";
+import { newProjectForm } from "./newProjectForm.js";
 
 
 export function thisistheview(){
@@ -64,13 +65,6 @@ export function thisistheview(){
 
 
 
-function addProjectToDropdown(projname){
-    //function that gets called when proj is created
-    //receives project name
-    //checks if already in dropdown
-        //if not, create item & append to dropdown 
-        console.log("addProjectToDropdown accessed" + projname); 
-}
 
 
 
@@ -132,6 +126,7 @@ function addProjectToDropdown(projname){
         console.log("project name: " + projName.value);
         createNewProject(projName.value);
         viewAllProjects();
+        newProjectForm();
     }
      
 
