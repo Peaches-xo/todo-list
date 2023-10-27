@@ -1,47 +1,46 @@
 //the model handles all the data and logic 
-
+// potentially import something from CONTROLLER? 
 
 
 export function model(){
 
-    //array of all projects
+    //array of all projects, each project is an object
    let allProjectsArr = [];
 
+    const projectFactory = (projName) => {
+        let tasks = [];
 
-    class Project {
-        constructor(name){ 
-            this.name = name;
-        }
-        tasks = [];
-        createProj(){
+        const createProject = () => {
             //creates new project and put in projects array - currently uses name of proj but would id# system be better?
-            allProjectsArr.push(this.name);
-            console.log(allProjectsArr);
+            allProjectsArr.push(projName);
             //add project to list in 'create new task' modal 
-            addProjectToDropdown(this.name);
+            addProjectToDropdown(projName);
         }
-        deleteProj(){
+        const deleteProject = () => {
             //modal pop up 'are you sure' if yes,
             //find proj in projs array and deletes. proj arrray is updated.
         }
-    }
-    //set up default project
-    let defaultproj = new Project('default');
-    defaultproj.createProj();
-
-     function createNewProjFactory(projName){ //change this name as its not a factory
-        let newprojName = new Project (projName);
-        newprojName.createProj();
+        return { projName, createProject };
     }
 
-    // class Task { //add id as well
-    //     constructor(name, description, project, priority, duedate){
-    //         this.name = name,
-    //         this.project = project,
-    //         this.tasks = tasks
-    //     }
-    // }
+
+    //set up default project as FACTORY
+    let defaultproj = projectFactory('default');
+    defaultproj.createProject();
 
 
+     function createNewProjectModel(projName){ 
+         let newprojName = projectFactory(projName);
+         newprojName.createProject();
+     }
 
+    //function that runs when proj is created
+    function addProjectToDropdown(projname){
+    //receives project name
+    //checks if already in dropdown
+        //if not, create item & append to dropdown & pass to view to rerender dropdown
+        console.log("addProjectToDropdown accessed" + projname); 
+  }
+
+return allProjectsArr, createNewProjectModel;
 }
