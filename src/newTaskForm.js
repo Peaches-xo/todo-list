@@ -29,32 +29,43 @@ function populateDropdown(allProjectsArr){
     //remove all values and rerender
     clearDropdownOptions();
 
-
     //get values from proj array and create option tag for each
-    if (allProjectsArr.length != 0){
-        for (let i = 0; i <= allProjectsArr.length+1; i++){
+    if (allProjectsArr.length > 0){
+        for (let i = 0; i <= allProjectsArr.length-1; i++){
             projDropdown.appendChild(createDropdownOptions(allProjectsArr[i])); 
         }
     }
-}
+};
 
 function clearDropdownOptions(){
  //if div has children, remove children
+ console.log("called from clearDropDownOptions");
     if (projDropdown.hasChildNodes){
         while (projDropdown.firstChild) {
             projDropdown.removeChild(projDropdown.firstChild);
         }
     }
-}
+};
 
 function createDropdownOptions(item){
     let option = document.createElement("option");
-    option.setAttribute("value", item); //undefined - how to get project name 
-    option.textContent= item; //undefined 
+        option.setAttribute("value", item); 
+        option.textContent= item;  
     return option;
 };
 
 function newTaskForm(){
+
+
+
+    div.classList.add("showTaskModule");
+div.classList.remove("showProjModule");
+
+
+
+        //clear elements 
+        taskInput.value = "";
+
     populateDropdown(allProjectsArr);
     div.appendChild(projDropdownLabel);
     div.appendChild(projDropdown);

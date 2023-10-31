@@ -20,6 +20,7 @@ thisistheview();
 
 //function that runs when submit button is clicked
  export function createNewProject(projName){
+    console.log("projName within createNewProject - controller " + projName);
     //this should be a call to a function inside model, passing the projName
     createNewProjectModel(projName); //in model
 }

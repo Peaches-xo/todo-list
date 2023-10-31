@@ -114,6 +114,9 @@ export function thisistheview(){
     let taskNameInput = document.querySelector("#name");
     let projNameInput =  document.querySelector("#projName");
 
+
+    let div = document.querySelector("div.create-modal-input-area");
+
     //call functions on click of Submit button
     modalElements.submitButton.addEventListener('click', function(event){
     //this function may need to be moved to controller
@@ -121,22 +124,33 @@ export function thisistheview(){
         event.preventDefault();
 
         //NOT WORKING 
-        if (taskNameInput !== null){ //if element exists
+        //if (taskNameInput !== null){ //if element exists
+        //if div has class of task,
+        if (div.classList.contains("showTaskModule")){
+
             console.log("taskNameInput.value: " + taskNameInput.value);
             let taskName = taskNameInput.value;
+            
+            taskNameInput.setAttribute("value", "");
             console.log ("taskName: " + taskName);
-        }
 
-        if (projNameInput !== null){
-            console.log("project name: " + projNameInput.value);
-            //let projectName = projNameInput.value;
+        //else if div has class of project
+        } else if (div.classList.contains("showProjModule")){
 
-            createNewProject(projNameInput.value); //in controller
+        //if (projNameInput !== null){
+            console.log("projNameInput.value: " + projNameInput.value);
+            let projectName = projNameInput.value;
+
+            console.log("projectName: "+ projectName);
+            createNewProject(projectName); //in controller
+            projNameInput.setAttribute("value", "");
+           
             console.log("allProjArr: " + allProjectsArr);
             //add function to clear values 
 
 
             viewAllProjects();
+
         }
    });
 
@@ -158,12 +172,19 @@ export function thisistheview(){
 
         let createNewProjElements = {
             nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
-    
+            
             toggleModalDisplay: function (){
                 let div = document.querySelector("div.create-modal-input-area");
+
+                
+
+                
                 if (createNewProjElements.nameInput.checked){
                     console.log("toggle is checked/ Add new TASK");
-                    //if div has children, remove children
+
+
+                
+                    // //if div has children, remove children
                     if (div.hasChildNodes){
                         while (div.firstChild) {
                             div.removeChild(div.firstChild);
@@ -171,9 +192,10 @@ export function thisistheview(){
                     }
                     //load New Task Inputs
                     newTaskForm();
+
                   } else {
                     console.log("toggle not checked/ Add new PROJECT");
-                    //if div has children, remove children
+                    // //if div has children, remove children
                     if (div.hasChildNodes){
                         while (div.firstChild) {
                             div.removeChild(div.firstChild);
