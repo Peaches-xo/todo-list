@@ -59,6 +59,19 @@
 
   }
 
+  .welcome-text{
+    color: var(--lightGrey);
+    /* background: linear-gradient(45deg, var(--project_color4) 30%, var(--project_color6) 100%); */
+    text-align: center;
+    padding: 10px;
+
+    /* background: -webkit-linear-gradient(#fa83fc, #cabcfb); */
+    /* background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    color: var(--lightGrey);
+  }
+
   @font-face {
     font-family: 'Nunito';
     src: url('./fonts/Nunito-VariableFont_wght.ttf') format('opentype'),
@@ -73,29 +86,29 @@
 
  
   
-/*  
+/* 
   .animated {
     animation-fill-mode: both;
   }
 @keyframes chameleon {
 
     0% {
-      color: red;
+      color: var(--project_color1);
     }
     14.2999% {
-      color: orange;
+      color: var(--project_color2);
     }
     28.5999% {
-      color: yellow;
+      color: var(--project_color3);
     }
     42.8998% {
-      color: green;
+      color: var(--project_color4);
     }
     57.1996% {
-      color: blue;
+      color: var(--project_color5);
     }
     71.4995% {
-      color: indigo;
+      color: var(--project_color6);
     }
     85.7994% {
       color: violet;
@@ -107,7 +120,9 @@
   .chameleon {
     animation-name: chameleon;
     animation-duration: 5s;
-  } TO USE, ADD CLASS ANIMATE AND CLASS CHAMELEON*/
+    animation-iteration-count: infinite;
+  }  */
+  /* TO USE, ADD CLASS ANIMATE AND CLASS CHAMELEON */
   
 
 body{
@@ -548,7 +563,8 @@ input[type="checkbox"]:checked {
   margin-bottom: 20px;
 }
    
-  .modal input {
+  .modal input,
+  select#projDropdown {
     padding: 0.7rem 1rem;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -565,7 +581,14 @@ input[type="checkbox"]:checked {
     display: flex;
   }
 
-
+  select#projDropdown {
+    width: 47%;
+    height: 35px;
+    padding: 5px;
+    /* font-size: 16px;
+    border: solid 1px lightgrey;
+    border-radius: 3px; */
+}
 
   
   .create-modal-buttons button {

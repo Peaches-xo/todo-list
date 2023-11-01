@@ -3,14 +3,18 @@
 
 import { allProjectsArr } from './model';
 
-let div = document.querySelector("div.create-modal-input-area");
+let div = document.querySelector('div.create-modal-input-area');
 
 //create elements
-let projDropdown = document.createElement("select");
-let projDropdownLabel = document.createElement("label");
+let projDropdownLabel = document.createElement('label');
+let projDropdown = document.createElement('select');
 
-let taskLabel = document.createElement("label");
-let taskInput = document.createElement("input");
+let taskLabel = document.createElement('label');
+let taskInput = document.createElement('input');
+
+let taskDescriptionLabel = document.createElement('label');
+let taskDescriptionInput = document.createElement('input');
+
 
 // Set attributes
 projDropdownLabel.setAttribute("for", "projDropdown");
@@ -18,11 +22,17 @@ projDropdownLabel.textContent = "Project: ";
 projDropdown.setAttribute("id", "projDropdown");
 projDropdown.setAttribute("name", "projDropdown");
 
-taskLabel.setAttribute("for","name");//change name to something descriptive
+taskLabel.setAttribute("for","taskName");
 taskLabel.textContent="Task Name:";
 taskInput.setAttribute("type", "text");
-taskInput.classList.add("name"); //change name to something descriptive
-taskInput.setAttribute("id", "name");//change name to something descriptive
+taskInput.classList.add("taskName");
+taskInput.setAttribute("id", "taskName");
+
+taskDescriptionLabel.setAttribute("for","taskDesc");
+taskDescriptionLabel.textContent="Task Description:";
+taskDescriptionInput.setAttribute("type", "text");
+taskDescriptionInput.classList.add("taskDesc");
+taskDescriptionInput.setAttribute("id", "taskDesc");
 
 
 function populateDropdown(allProjectsArr){
@@ -39,7 +49,7 @@ function populateDropdown(allProjectsArr){
 
 function clearDropdownOptions(){
  //if div has children, remove children
- console.log("called from clearDropDownOptions");
+
     if (projDropdown.hasChildNodes){
         while (projDropdown.firstChild) {
             projDropdown.removeChild(projDropdown.firstChild);
@@ -55,22 +65,20 @@ function createDropdownOptions(item){
 };
 
 function newTaskForm(){
-
-
-
+    //toggle display
     div.classList.add("showTaskModule");
-div.classList.remove("showProjModule");
+    div.classList.remove("showProjModule");
 
-
-
-        //clear elements 
-        taskInput.value = "";
+    //clear elements 
+    taskInput.value = "";
 
     populateDropdown(allProjectsArr);
     div.appendChild(projDropdownLabel);
     div.appendChild(projDropdown);
     div.appendChild(taskLabel);
     div.appendChild(taskInput);
+    div.appendChild(taskDescriptionLabel);
+    div.appendChild(taskDescriptionInput);
 }
 
 export { newTaskForm };

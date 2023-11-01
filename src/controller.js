@@ -8,7 +8,7 @@ import { createNewProjectModel } from './model.js';
 
 
 
-//inititation function 
+//inititation function/ loads the view
 thisistheview();
 
 
@@ -20,11 +20,14 @@ thisistheview();
 
 //function that runs when submit button is clicked
  export function createNewProject(projName){
-    console.log("projName within createNewProject - controller " + projName);
-    //this should be a call to a function inside model, passing the projName
+
+    //this should be a call to a function inside model, passing the projName, model will create the object and return the object to controller
     createNewProjectModel(projName); //in model
+
+    //pass newly created obj to view to add card
 }
  
+//when project is created, pass no of tasks to view to display
 
 
 

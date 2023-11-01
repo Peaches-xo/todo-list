@@ -30,7 +30,7 @@ export function thisistheview(){
         }
    }
 
-
+//callback from foreach above
    function createProjectItemCard (item, index){
         //create elements, 
         let projectItem = document.createElement("div");
@@ -43,6 +43,9 @@ export function thisistheview(){
         let projectTaskNo = document.createElement("p");
         projectTaskNo.classList.add("project-item-taskno");
         projectTaskNo.textContent = "7 active tasks"; /*This will be updated to fetch number */
+        //call 
+     
+
         projectItem.appendChild(projectTaskNo);
 
         let projectItemWrapper = document.createElement("div");
@@ -94,6 +97,7 @@ export function thisistheview(){
    const openModal = function () {
         modalElements.modal.classList.remove("hidden");
         modalElements.overlay.classList.remove("hidden");
+        clearInputValues();
     };
     //add event listener to open modal on click
     domCachedElements.addbutton.addEventListener("click", openModal);
@@ -111,102 +115,113 @@ export function thisistheview(){
 
 
 
-    let taskNameInput = document.querySelector("#name");
+    let taskNameInput = document.querySelector("#taskName");
+    let taskDescriptionInput = document.querySelector('#taskDesc');
     let projNameInput =  document.querySelector("#projName");
-
-
     let div = document.querySelector("div.create-modal-input-area");
 
-    //call functions on click of Submit button
+
+
+
+
+
+
+    let createNewProjElements = {
+        nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
+        
+        toggleModalDisplay: function (){
+            let div = document.querySelector("div.create-modal-input-area");
+
+            if (createNewProjElements.nameInput.checked){
+                console.log("toggle checked/ Add new TASK");
+                clearInputValues();
+                // //if div has children, remove children
+                if (div.hasChildNodes){
+                    while (div.firstChild) {
+                        div.removeChild(div.firstChild);
+                      }
+                }
+                //load New Task Inputs
+                newTaskForm();
+              } else {
+                console.log("toggle not checked/ Add new PROJECT");
+                clearInputValues();
+                // //if div has children, remove children
+                if (div.hasChildNodes){
+                    while (div.firstChild) {
+                        div.removeChild(div.firstChild);
+                      }
+                }
+                newProjectForm();
+              };
+        }
+    }
+    //project/task toggle
+    createNewProjElements.nameInput.addEventListener("click", createNewProjElements.toggleModalDisplay);
+
+
+
+
+
+    //SUBMIT BUTTON
     modalElements.submitButton.addEventListener('click', function(event){
     //this function may need to be moved to controller
-    //get the value from the input, pass to controller to pass to model, display on screen 
+    //get the value from the inputs, pass to controller 
+    //(controller wil pass to model, to display on screen )
         event.preventDefault();
+        //get latest values
+         taskNameInput = document.querySelector("#taskName");
+         taskDescriptionInput = document.querySelector('#taskDesc');
+         projNameInput =  document.querySelector("#projName");
 
-        //NOT WORKING 
-        //if (taskNameInput !== null){ //if element exists
-        //if div has class of task,
+
         if (div.classList.contains("showTaskModule")){
 
-            console.log("taskNameInput.value: " + taskNameInput.value);
+            //get task data
+           // let projNameOption =  //get proj name from dropdown option.value
             let taskName = taskNameInput.value;
-            
-            taskNameInput.setAttribute("value", "");
+            let taskDescription = taskDescriptionInput.value;
+
+
+
+            //console.log ("project selected: " + projName );
             console.log ("taskName: " + taskName);
+            console.log ("taskDescription: " + taskDescription);
 
         //else if div has class of project
         } else if (div.classList.contains("showProjModule")){
 
-        //if (projNameInput !== null){
+
             console.log("projNameInput.value: " + projNameInput.value);
             let projectName = projNameInput.value;
 
             console.log("projectName: "+ projectName);
             createNewProject(projectName); //in controller
-            projNameInput.setAttribute("value", "");
-           
+        
             console.log("allProjArr: " + allProjectsArr);
-            //add function to clear values 
+         
 
 
             viewAllProjects();
 
         }
+      
    });
 
-   //clear input on click of Clear Button
-    modalElements.clearButton.addEventListener('click', function(event){
-      
-            //find way to clear corresponding input value 
-            // ONLY WORKS ONCE
-            if (taskNameInput){
-                taskNameInput.value = "";
-            }
 
-            if (projNameInput){
-                projNameInput.value = "";
-            }
-           
-        
-    });
+    function clearInputValues(){
+        //get latest values
+        taskNameInput = document.querySelector("#taskName");
+        taskDescriptionInput = document.querySelector('#taskDesc');
+        projNameInput =  document.querySelector("#projName");
 
-        let createNewProjElements = {
-            nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
-            
-            toggleModalDisplay: function (){
-                let div = document.querySelector("div.create-modal-input-area");
-
-                
-
-                
-                if (createNewProjElements.nameInput.checked){
-                    console.log("toggle is checked/ Add new TASK");
-
-
-                
-                    // //if div has children, remove children
-                    if (div.hasChildNodes){
-                        while (div.firstChild) {
-                            div.removeChild(div.firstChild);
-                          }
-                    }
-                    //load New Task Inputs
-                    newTaskForm();
-
-                  } else {
-                    console.log("toggle not checked/ Add new PROJECT");
-                    // //if div has children, remove children
-                    if (div.hasChildNodes){
-                        while (div.firstChild) {
-                            div.removeChild(div.firstChild);
-                          }
-                    }
-                    newProjectForm();
-                  };
-            }
+        if (taskNameInput !== null && taskDescriptionInput !==null){
+            taskNameInput.value = "";
+            taskDescriptionInput.value = "";
+        } else if (projNameInput.value !== null){
+            projNameInput.value = "";
         }
-
-        //project/task toggle
-        createNewProjElements.nameInput.addEventListener("click", createNewProjElements.toggleModalDisplay);
-      
     }
+    //clear input on click of Clear Button
+        modalElements.clearButton.addEventListener('click', clearInputValues);
+}

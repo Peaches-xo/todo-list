@@ -1,26 +1,56 @@
 //the model handles all the data and logic 
 import { addProjectToDropdown } from './model';
+import { newProjectForm } from './newProjectForm';
 
 
     //array of all projects, each project is an object
-   export let allProjectsArr = []; //export to view
+  export let allProjectsArr = []; //export to view
 
   const projectFactory = (projName) => {
-        let tasks = [];
+  //create an object, set the project name to projName, set task array to empty, push projName to allprojarr, return obj
+        let obj = Object.create(projectFactory.proto);
+        obj.name = projName;
+
+        let proj_tasksArr = [];  //arr of objects
 
         //potentially getter and setter for project name? 
+        const setProjectName = () => {
+           const name = projName;
+        };
+        const getProjectName = () => projName;
+        
 
-        const createProject = () => {
+       const createProject = () => {
             //creates new project and put in projects array - currently uses name of proj but would id# system be better?
-            allProjectsArr.push(projName);
-           // console.log("project pushed to allProj via projectFactory");
-        }
+   
+            allProjectsArr.push(obj.name);
+            console.log("allprojarr: " + allProjectsArr);
+        };
         const deleteProject = () => {
             //modal pop up 'are you sure' if yes,
             //find proj in projs array and deletes. proj arrray is updated.
+        };
+
+        const addTaskToProject = () => {}
+        const removeTaskFromProject = () => {
+            
+        }
+
+        const getNoOfTasks = () => {
+            let noOfTasks = proj_tasksArr.length;
+            console.log("No Of Tasks: (from proj_tasksArr.length) " + proj_tasksArr.length);
+            return noOfTasks;
         }
  
-        return { projName, createProject };
+        return { projName, createProject, getNoOfTasks, obj };
+     
+    }
+
+    projectFactory.proto = {
+        addtoArray: function(){
+            allProjectsArr.push(this.name);
+        }
+       
     }
 
 
@@ -30,9 +60,9 @@ import { addProjectToDropdown } from './model';
 
 
    export function createNewProjectModel(projName){  //export to controller
-    
          let newprojName = projectFactory(projName);
          newprojName.createProject();
+         newprojName.getNoOfTasks();
      }
 
 

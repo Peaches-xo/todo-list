@@ -3,7 +3,6 @@
 
 let div = document.querySelector("div.create-modal-input-area");
 
-
 //create elements 
 let label = document.createElement("label");
 let input = document.createElement("input");
@@ -16,20 +15,14 @@ input.classList.add("name");
 input.setAttribute("id", "projName");
 input.setAttribute("autocomplete", "off");
 
-
-
-  
-
 function newProjectForm(){
-
-console.log("newprojectform  called");
-div.classList.add("showProjModule");
-div.classList.remove("showTaskModule");
+    //toggle display
+    div.classList.add("showProjModule");
+    div.classList.remove("showTaskModule");
 
     //append elements to div
     div.appendChild(label);
     div.appendChild(input);
-    
 };
 
 export { newProjectForm } ; //to view
