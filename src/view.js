@@ -37,7 +37,7 @@ export function thisistheview(){
         projectItem.classList.add("project-item");
 
         let projectTitle = document.createElement("h5");
-        projectTitle.textContent = allProjectsArr[index]; 
+        projectTitle.textContent = allProjectsArr[index].name; 
         projectItem.appendChild(projectTitle);
 
         let projectTaskNo = document.createElement("p");
@@ -197,10 +197,7 @@ export function thisistheview(){
 
             console.log("projectName: "+ projectName);
             createNewProject(projectName); //in controller
-        
-            console.log("allProjArr: " + allProjectsArr);
          
-
 
             viewAllProjects();
 
