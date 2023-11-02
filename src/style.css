@@ -756,7 +756,13 @@ input#color_mode[type="checkbox"]:checked + label.btn-color-mode-switch-inner:be
 
 
 
+@media screen and (max-width: 1065px){
 
+  div.container{
+    width: 98vw;
+    height: 98vh;
+  }
+}
 
 
 

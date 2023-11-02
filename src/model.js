@@ -3,72 +3,62 @@ import { addProjectToDropdown } from './model';
 import { newProjectForm } from './newProjectForm';
 
 
-    //array of all projects, each project is an object
-  export let allProjectsArr = []; //export to view
+//array of all projects, each project is an object
+export let allProjectsArr = []; //export to controller and view (try to remove from view)
 
-  const ProjectFactory = (projName) => {
+const ProjectFactory = (projName) => {
   //create an object, set the project name to projName, set task array to empty, push projName to allprojarr, return obj
-        // let obj = Object.create(projectFactory.proto);
-        // obj.name = projName;
 
-        let project = {};
-        project.name = projName;
+    //set project name to projName from input rec from controller
+    let name = projName;
 
-        let proj_tasksArr = [];  //arr of objects
+    //set task array to empty array (arr of objects)
+    let proj_tasksArr = [];  
 
-        //potentially getter and setter for project name? 
-        // const setProjectName = () => {
-        //    const name = projName;
-        // };
-        // const getProjectName = () => projName;
+    //potentially getter and setter functions for project name? 
+
         
-
-       const createProject = () => {
-            //creates new project and put in projects array - currently uses name of proj but would id# system be better?
+    //push project to array of all projects    
+    const addProjToAllProjArr = () => { //change name of this
+        //creates new project and put in projects array - currently uses name of proj but would id# system be better? Should this be outside of the Project Factory as returned object needs to be added to array
    
-            allProjectsArr.push(project);
+           // allProjectsArr.push(project.name); //adds string to arr
+            // allProjectsArr.push({project}); // adds obj to arr
+            allProjectsArr.push(projName);
 
         };
 
 
+    const deleteProject = () => {
+        //modal pop up 'are you sure' if yes,
+        //find proj in projs array and deletes. proj arrray is updated.
+    };
 
-
-        const deleteProject = () => {
-            //modal pop up 'are you sure' if yes,
-            //find proj in projs array and deletes. proj arrray is updated.
-        };
-
-        const addTaskToProject = () => {}
-        const removeTaskFromProject = () => {
-            
-        }
-
-        const getNoOfTasks = () => {
-            let noOfTasks = proj_tasksArr.length;
-            console.log("No Of Tasks: (from proj_tasksArr.length) " + proj_tasksArr.length);
-            return noOfTasks;
-        }
- 
-        return { project, projName, createProject, getNoOfTasks };
-     
+    const addTaskToProject = () => {}
+    const removeTaskFromProject = () => {
+        
     }
 
-    // projectFactory.proto = {
-    //     addtoArray: function(){
-    //         console.log("addToArray called");
-    //         allProjectsArr.push(this.name);
-    //     } 
-    // }
+    const getNoOfTasks = () => {
+        let noOfTasks = proj_tasksArr.length;
+        console.log("No Of Tasks: (from proj_tasksArr.length) " + proj_tasksArr.length);
+        return noOfTasks;
+    }
+ 
+    return { projName, addProjToAllProjArr, getNoOfTasks };
+     
+}
 
 
     //set up default project as FACTORY
     let defaultproj = ProjectFactory('default');
-    defaultproj.createProject();
+    defaultproj.addProjToAllProjArr();
 
 
    export function createNewProjectModel(projName){  //export to controller
          let newprojName = ProjectFactory(projName);
-         newprojName.createProject();
+         console.log("newprojname: " + newprojName);
+         newprojName.addProjToAllProjArr();
          newprojName.getNoOfTasks();
 
      }

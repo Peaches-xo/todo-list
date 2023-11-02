@@ -5,6 +5,7 @@ import { newTaskForm } from './newTaskForm.js';
 import { allProjectsArr } from './model.js'; //maybe move
 
 
+
 export function thisistheview(){
 
     let domCachedElements = {
@@ -37,14 +38,34 @@ export function thisistheview(){
         projectItem.classList.add("project-item");
 
         let projectTitle = document.createElement("h5");
-        projectTitle.textContent = allProjectsArr[index].name; 
+        projectTitle.textContent = allProjectsArr[index]; 
         projectItem.appendChild(projectTitle);
 
         let projectTaskNo = document.createElement("p");
         projectTaskNo.classList.add("project-item-taskno");
         projectTaskNo.textContent = "7 active tasks"; /*This will be updated to fetch number */
         //call 
-     
+
+        //how to access value of 'name' key from object in array 
+   
+        console.log("allPRojArr: " + allProjectsArr);
+   
+   // get the keys from first object in array
+const keys = Object.keys(allProjectsArr[0]);
+console.log("keys: " + keys);
+
+for (const obj of allProjectsArr) {
+  // get values for current object
+  const values = Object.values(obj);
+  console.log(`Object: ${JSON.stringify(obj)}, Keys: ${keys}, Values: 
+${values}`);
+}
+
+
+
+
+
+
 
         projectItem.appendChild(projectTaskNo);
 
