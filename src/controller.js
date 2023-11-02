@@ -4,6 +4,7 @@ import './style.css';
 //tells VIEW what do to (display wise)
 //Controls and decides how data is displayed
 import { thisistheview } from './view.js';
+import { allProjectsArr } from './model.js';
 import { createNewProjectModel } from './model.js';
 
 
