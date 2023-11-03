@@ -5,7 +5,6 @@ import { newTaskForm } from './newTaskForm.js';
 import { allProjectsArr } from './model.js'; //maybe move
 
 
-
 export function thisistheview(){
 
     let domCachedElements = {
@@ -18,13 +17,8 @@ export function thisistheview(){
    domCachedElements.viewAllProjectsBtn.addEventListener("click", viewAllProjects);
 
    function viewAllProjects(){
-    //1. clears project display area 
-             //if div has children, remove children
-             if (domCachedElements.taskbox.hasChildNodes){
-                while (domCachedElements.taskbox.firstChild) {
-                    domCachedElements.taskbox.removeChild(domCachedElements.taskbox.firstChild);
-                  }
-            }
+        //1. clears project display area 
+        removeChildren(domCachedElements.taskbox);
         //2. loops over all projects array (if arr not empty) & creates project card for each project & append to taskbox
         if (allProjectsArr.length != 0){
             allProjectsArr.forEach(createProjectItemCard);
@@ -38,7 +32,7 @@ export function thisistheview(){
         projectItem.classList.add("project-item");
 
         let projectTitle = document.createElement("h5");
-        projectTitle.textContent = allProjectsArr[index]; 
+        projectTitle.textContent = allProjectsArr[index].name; 
         projectItem.appendChild(projectTitle);
 
         let projectTaskNo = document.createElement("p");
@@ -48,22 +42,18 @@ export function thisistheview(){
 
         //how to access value of 'name' key from object in array 
    
-        console.log("allPRojArr: " + allProjectsArr);
+       
    
    // get the keys from first object in array
-const keys = Object.keys(allProjectsArr[0]);
-console.log("keys: " + keys);
+// const keys = Object.keys(allProjectsArr[0]);
+// console.log("keys: " + keys);
 
-for (const obj of allProjectsArr) {
-  // get values for current object
-  const values = Object.values(obj);
-  console.log(`Object: ${JSON.stringify(obj)}, Keys: ${keys}, Values: 
-${values}`);
-}
-
-
-
-
+// for (const obj of allProjectsArr) {
+//   // get values for current object
+//   const values = Object.values(obj);
+//   console.log(`Object: ${JSON.stringify(obj)}, Keys: ${keys}, Values: 
+// ${values}`);
+// }
 
 
 
@@ -136,51 +126,46 @@ ${values}`);
 
 
 
+
+    let projNameInput =  document.querySelector("#projName");
+
+    let selectedProject = document.querySelector('#projDropdown'); 
     let taskNameInput = document.querySelector("#taskName");
     let taskDescriptionInput = document.querySelector('#taskDesc');
-    let projNameInput =  document.querySelector("#projName");
+    let taskDueDateInput = document.querySelector('#taskDueDate');
+    let taskPriority = document.querySelector('.taskPriority_radio');
+
     let div = document.querySelector("div.create-modal-input-area");
 
 
 
-
-
-
-
-    let createNewProjElements = {
-        nameInput: document.querySelector('input#color_mode[type="checkbox"]'),
+    let createNewElements = {
+        toggleInput: document.querySelector('input#toggleInput[type="checkbox"]'),
         
         toggleModalDisplay: function (){
             let div = document.querySelector("div.create-modal-input-area");
 
-            if (createNewProjElements.nameInput.checked){
-                console.log("toggle checked/ Add new TASK");
+            if (createNewElements.toggleInput.checked){ //Add New Task shows (toggle checked)
                 clearInputValues();
-                // //if div has children, remove children
-                if (div.hasChildNodes){
-                    while (div.firstChild) {
-                        div.removeChild(div.firstChild);
-                      }
-                }
-                //load New Task Inputs
-                newTaskForm();
-              } else {
-                console.log("toggle not checked/ Add new PROJECT");
+                removeChildren(div);
+                newTaskForm(); //load New Task Inputs
+              } else { //Add New Project Shows (toggle not checked)
                 clearInputValues();
-                // //if div has children, remove children
-                if (div.hasChildNodes){
-                    while (div.firstChild) {
-                        div.removeChild(div.firstChild);
-                      }
-                }
+                removeChildren(div);
                 newProjectForm();
               };
         }
     }
+
+    function removeChildren(element){
+        if (element.hasChildNodes){
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+              }
+        }
+    }
     //project/task toggle
-    createNewProjElements.nameInput.addEventListener("click", createNewProjElements.toggleModalDisplay);
-
-
+    createNewElements.toggleInput.addEventListener("click", createNewElements.toggleModalDisplay);
 
 
 
@@ -191,41 +176,39 @@ ${values}`);
     //(controller wil pass to model, to display on screen )
         event.preventDefault();
         //get latest values
-         taskNameInput = document.querySelector("#taskName");
-         taskDescriptionInput = document.querySelector('#taskDesc');
-         projNameInput =  document.querySelector("#projName");
-
-
+        projNameInput =  document.querySelector("#projName");
+        
         if (div.classList.contains("showTaskModule")){
-
             //get task data
-           // let projNameOption =  //get proj name from dropdown option.value
+            selectedProject = document.querySelector('#projDropdown'); 
+            taskNameInput = document.querySelector("#taskName");
+            taskDescriptionInput = document.querySelector('#taskDesc');
+            taskDueDateInput = document.querySelector('#taskDueDate');
+            taskPriority = document.querySelector('.taskPriority_radio'); //how to get selected value
+
+
+            let selectedProjName = selectedProject.value;  //needs to get selected project name and save to variable. If none selected, use default. 
             let taskName = taskNameInput.value;
             let taskDescription = taskDescriptionInput.value;
+            let taskDueDate = taskDueDateInput.value;
 
-
-
-            //console.log ("project selected: " + projName );
+            console.log ("selectedProject: " + selectedProjName);
             console.log ("taskName: " + taskName);
             console.log ("taskDescription: " + taskDescription);
+            console.log ("taskDueDate: " + taskDueDate);
+
+
 
         //else if div has class of project
         } else if (div.classList.contains("showProjModule")){
-
-
-            console.log("projNameInput.value: " + projNameInput.value);
             let projectName = projNameInput.value;
-
-            console.log("projectName: "+ projectName);
             createNewProject(projectName); //in controller
-         
-
             viewAllProjects();
-
         }
-      
-   });
-
+    });
+ 
+    //CLEAR BUTTON
+    modalElements.clearButton.addEventListener('click', clearInputValues);
 
     function clearInputValues(){
         //get latest values
@@ -240,6 +223,4 @@ ${values}`);
             projNameInput.value = "";
         }
     }
-    //clear input on click of Clear Button
-        modalElements.clearButton.addEventListener('click', clearInputValues);
 }

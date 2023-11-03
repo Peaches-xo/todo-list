@@ -15,6 +15,14 @@ let taskInput = document.createElement('input');
 let taskDescriptionLabel = document.createElement('label');
 let taskDescriptionInput = document.createElement('input');
 
+let taskDueDateLabel = document.createElement('label');
+let taskDueDateInput = document.createElement('input');
+
+let taskPriorityWrapper = document.createElement('div');
+let taskPriorityInput_low = document.createElement('input');
+let taskPriorityInput_med = document.createElement('input');
+let taskPriorityInput_high = document.createElement('input');
+
 
 // Set attributes
 projDropdownLabel.setAttribute("for", "projDropdown");
@@ -34,6 +42,34 @@ taskDescriptionInput.setAttribute("type", "text");
 taskDescriptionInput.classList.add("taskDesc");
 taskDescriptionInput.setAttribute("id", "taskDesc");
 
+taskDueDateLabel.setAttribute('for', 'taskDueDate');
+taskDueDateLabel.textContent = 'Task Due Date:';
+taskDueDateInput.setAttribute('type', 'date');
+taskDueDateInput.setAttribute('id', 'taskDueDate');
+
+taskPriorityWrapper.classList.add('taskPriority_radio'); 
+taskPriorityInput_low.setAttribute('label','Low');
+taskPriorityInput_low.setAttribute('type','radio');
+taskPriorityInput_low.setAttribute('id','taskPriority_low');
+taskPriorityInput_low.setAttribute('name','taskPriority');
+taskPriorityInput_low.setAttribute('value','low');
+
+taskPriorityInput_med.setAttribute('label','Medium');
+taskPriorityInput_med.setAttribute('type','radio');
+taskPriorityInput_med.setAttribute('id','taskPriority_med');
+taskPriorityInput_med.setAttribute('name','taskPriority');
+taskPriorityInput_med.setAttribute('value','med');
+
+taskPriorityInput_high.setAttribute('label','High');
+taskPriorityInput_high.setAttribute('type','radio');
+taskPriorityInput_high.setAttribute('id','taskPriority_high');
+taskPriorityInput_high.setAttribute('name','taskPriority');
+taskPriorityInput_high.setAttribute('value','high');
+
+taskPriorityWrapper.appendChild(taskPriorityInput_low);
+taskPriorityWrapper.appendChild(taskPriorityInput_med);
+taskPriorityWrapper.appendChild(taskPriorityInput_high);
+
 
 function populateDropdown(allProjectsArr){
     //remove all values and rerender
@@ -42,7 +78,7 @@ function populateDropdown(allProjectsArr){
     //get values from proj array and create option tag for each
     if (allProjectsArr.length > 0){
         for (let i = 0; i <= allProjectsArr.length-1; i++){
-            projDropdown.appendChild(createDropdownOptions(allProjectsArr[i])); 
+            projDropdown.appendChild(createDropdownOptions(allProjectsArr[i].name)); 
         }
     }
 };
@@ -79,6 +115,9 @@ function newTaskForm(){
     div.appendChild(taskInput);
     div.appendChild(taskDescriptionLabel);
     div.appendChild(taskDescriptionInput);
+    div.appendChild(taskDueDateLabel);
+    div.appendChild(taskDueDateInput);
+    div.appendChild(taskPriorityWrapper);
 }
 
 export { newTaskForm };

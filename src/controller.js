@@ -6,6 +6,7 @@ import './style.css';
 import { thisistheview } from './view.js';
 import { allProjectsArr } from './model.js';
 import { createNewProjectModel } from './model.js';
+import { createNewTaskModel } from './model.js';
 
 
 
@@ -21,7 +22,6 @@ thisistheview();
 
 //function that runs when submit button is clicked
  export function createNewProject(projName){
-
     //this should be a call to a function inside model, passing the projName, model will create the object and return the object to controller
     createNewProjectModel(projName); //in model
 
@@ -29,6 +29,13 @@ thisistheview();
 }
  
 //when project is created, pass no of tasks to view to display
+
+
+export function createNewTask(taskName, taskDesc, taskDue, taskPriority, isComplete, projectName){
+
+    createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, isComplete, projectName); //in model
+
+}
 
 
 
