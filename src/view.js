@@ -133,7 +133,8 @@ export function thisistheview(){
     let taskNameInput = document.querySelector("#taskName");
     let taskDescriptionInput = document.querySelector('#taskDesc');
     let taskDueDateInput = document.querySelector('#taskDueDate');
-    let taskPriority = document.querySelector('.taskPriority_radio');
+    let taskPriorityInput = document.querySelector('.taskPriority_radio');
+  
 
     let div = document.querySelector("div.create-modal-input-area");
 
@@ -177,6 +178,7 @@ export function thisistheview(){
         event.preventDefault();
         //get latest values
         projNameInput =  document.querySelector("#projName");
+        // taskPriority = document.querySelector('.taskPriority_radio');
         
         if (div.classList.contains("showTaskModule")){
             //get task data
@@ -184,7 +186,7 @@ export function thisistheview(){
             taskNameInput = document.querySelector("#taskName");
             taskDescriptionInput = document.querySelector('#taskDesc');
             taskDueDateInput = document.querySelector('#taskDueDate');
-            taskPriority = document.querySelector('.taskPriority_radio'); //how to get selected value
+            taskPriorityInput = document.querySelector('.taskPriority_radio'); //how to get selected value
 
 
             let selectedProjName = selectedProject.value;  //needs to get selected project name and save to variable. If none selected, use default. 
@@ -196,8 +198,10 @@ export function thisistheview(){
             console.log ("taskName: " + taskName);
             console.log ("taskDescription: " + taskDescription);
             console.log ("taskDueDate: " + taskDueDate);
+            let taskPriority = getRadioValue();
+            console.log("taskPriority: " + taskPriority);
 
-
+            
 
         //else if div has class of project
         } else if (div.classList.contains("showProjModule")){
@@ -221,6 +225,15 @@ export function thisistheview(){
             taskDescriptionInput.value = "";
         } else if (projNameInput.value !== null){
             projNameInput.value = "";
+        }
+    }
+
+    function getRadioValue(){
+        let radio = document.getElementsByName('taskPriority');
+        for (let i = 0; i < radio.length; i++){
+            if (radio[i].checked){
+                return radio[i].value;
+            }
         }
     }
 }

@@ -719,18 +719,13 @@ input[type="checkbox"]:checked {
 
 
 
-
-
-
-
-
-
-
   .hidden {
     display: none;
   }
-/* CURRENT TASK  - remove all references to label.btn-color-mode-switch  */
 
+  button.gradient-h3 {
+    margin-top: 0px;
+}
 
 
 
@@ -745,11 +740,11 @@ label {
     font-size: 13px;
     color: #424242;
     font-weight: 500;
+    padding-top:10px;
 }
 
 /*  bg of Task when not selected*/
-/* .btn-color-mode-switch > label.btn-color-mode-switch-inner{ */
-                            label.btn-color-mode-switch-inner{
+label.toggleInput-switch-inner{
     margin: 0px;
     width: 140px;
     height: 30px;
@@ -763,8 +758,8 @@ label {
     cursor: pointer;
 }
 /* text of Task when not selected  */
-/* .btn-color-mode-switch > label.btn-color-mode-switch-inner:before{ */
-                        label.btn-color-mode-switch-inner::before{
+/* .btn-color-mode-switch > label.toggleInput-switch-inner:before{ */
+                        label.toggleInput-switch-inner::before{
     content: attr(data-on); /* Task */
     position: absolute;
     font-size: 13px;
@@ -775,8 +770,8 @@ label {
 }
 
 /*  project selected */
-/* .btn-color-mode-switch > label.btn-color-mode-switch-inner:after{  */
-                          label.btn-color-mode-switch-inner::after{
+/* .btn-color-mode-switch > label.toggleInput-switch-inner:after{  */
+                          label.toggleInput-switch-inner::after{
     content: attr(data-off); /* Project */
     width: 70px;
     height: 16px;
@@ -806,20 +801,20 @@ label {
 }
 
 /*  set bg and text on project, not selected */
-input#toggleInput[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
+input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner{
   background: linear-gradient(90deg,pink, lavender);
   color: grey;
 }
 
 /*  Sets bg of Task when selected*/
-input#toggleInput[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after{
+input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:after{
   content: attr(data-on); /*Tasks*/
   left: 68px;
   background: white;
   color: black;
 }
 
-input#toggleInput[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before{
+input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:before{
     content: attr(data-off); /*Project */
     right: auto;
     left: 20px;
@@ -827,8 +822,7 @@ input#toggleInput[type="checkbox"]:checked + label.btn-color-mode-switch-inner:b
 
 
 .create-modal-input-area input[type="text"]:focus-visible{
-  outline: solid 1px #af76f3;
- 
+  outline: solid 3px #af76f333;
 }
 
 
