@@ -31,9 +31,9 @@ thisistheview();
 //when project is created, pass no of tasks to view to display
 
 
-export function createNewTask(taskName, taskDesc, taskDue, taskPriority, isComplete, projectName){
-
-    createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, isComplete, projectName); //in model
+export function createNewTask(taskName, taskDesc, taskDue, taskPriority, projectName){
+    console.log("called from inside createNewTask in controller");
+    createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projectName); //in model
 
 }
 

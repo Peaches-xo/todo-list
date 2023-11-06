@@ -134,11 +134,7 @@ body{
     position: relative;
     min-height: 100vh;
     overflow:hidden;
-
-    /* font-size: 1.125rem; 
-  line-height: 1.5;  */
-
-
+    cursor: url('./images/cursor16.png'), auto;
 }
 
 .container{
@@ -313,6 +309,8 @@ body{
     grid-area: taskbox;
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
+
+    perspective: 60rem;
 }
 
     .project-item{
@@ -327,7 +325,14 @@ body{
         background-color:#FDE1DB;
         border-left: solid 2px #fbded7;
         border-bottom: solid 2px #fbded7;
-        transition: 0.4s ease;
+        /* transition: 0.4s ease; */
+
+        transition: rotate 400ms, scale 200ms;
+    }
+
+    .project-item:hover  {
+      rotate: y 20deg;
+      scale: 1.05;
     }
 
     .project-item h5{
@@ -513,7 +518,7 @@ input[type="checkbox"]:checked {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.4rem;
+    gap: 1rem;
     width: 450px;
     /* padding: 1.3rem; */
     min-height: 250px;
@@ -585,9 +590,6 @@ input[type="checkbox"]:checked {
     width: 47%;
     height: 35px;
     padding: 5px;
-    /* font-size: 16px;
-    border: solid 1px lightgrey;
-    border-radius: 3px; */
 }
 
   
@@ -649,7 +651,6 @@ input[type="checkbox"]:checked {
     width: 100%;
     height: 100%;
     background: rgba(105, 97, 82, 0.5);
-    
     backdrop-filter: blur(3px);
     z-index: 1;
   }
@@ -758,8 +759,7 @@ label.toggleInput-switch-inner{
     cursor: pointer;
 }
 /* text of Task when not selected  */
-/* .btn-color-mode-switch > label.toggleInput-switch-inner:before{ */
-                        label.toggleInput-switch-inner::before{
+label.toggleInput-switch-inner::before{
     content: attr(data-on); /* Task */
     position: absolute;
     font-size: 13px;
@@ -770,8 +770,7 @@ label.toggleInput-switch-inner{
 }
 
 /*  project selected */
-/* .btn-color-mode-switch > label.toggleInput-switch-inner:after{  */
-                          label.toggleInput-switch-inner::after{
+label.toggleInput-switch-inner::after{
     content: attr(data-off); /* Project */
     width: 70px;
     height: 16px;
@@ -786,9 +785,7 @@ label.toggleInput-switch-inner{
     padding: 5px 0px;
 }
 
-
-/* .btn-color-mode-switch input[type="checkbox"]{ */
-  input#toggleInput[type="checkbox"] {
+input#toggleInput[type="checkbox"] {
     cursor: pointer;
     width: 50px;
     height: 25px;

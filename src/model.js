@@ -18,6 +18,7 @@ let projectActions = {
     },
     addProjToAllProjArr(){
         allProjectsArr.push(this);
+        return allProjectsArr;
         // let lengthofArr = allProjectsArr.length;
         // console.log("Number of Projects in allProjectsArr: " + lengthofArr);
         // console.log("allProjectsArr: " + allProjectsArr[lengthofArr-1].name);
@@ -40,6 +41,12 @@ let projectActions = {
     defaultproj.addProjToAllProjArr();
 
 
+    
+
+
+
+
+
 
 
     export function createNewProjectModel(projName){  //export to controller
@@ -47,16 +54,16 @@ let projectActions = {
          //working
          //console.log("newprojname: " + newprojName.getProjectName());
          newprojName.addProjToAllProjArr();
-         //newprojName.getNoOfTasks();
+         newprojName.getNoOfTasks();
      }
 
-     function TaskFactory(taskName, taskDesc, taskDue, taskPriority, isComplete, projectName){
+     function TaskFactory(taskName, taskDesc, taskDue, taskPriority, projectName){
         let task = Object.create(taskActions);
         task.name = taskName;
         task.description = taskDesc;
         task.dueDate = taskDue;
         task.priority = taskPriority;
-        task.isComplete = isComplete;
+        //task.isComplete = isComplete;
         task.projName = projectName;
         return task;
     }
@@ -74,27 +81,36 @@ let projectActions = {
         getTaskPriority(){
             return this.priority;
         },
-        getTaskIsComplete(){
-            return this.isComplete;
-        },
+        // getTaskIsComplete(){
+        //     return this.isComplete;
+        // },
         getTaskProjectName(){
             return this.projName;
         },
 
-        addTask(taskObj){
-            //adds taskObj to this.taskArr
-            taskArr.push(taskObj);
-            let lastTask = taskArr.length-1;
-            console.log(taskArr[lastTask]);
+        addTask(){
+            //this method finds the projectName and pushes the task to the taskArr within the corresponding Project
+            //get corresponding project name
+         let currentProj =  this.getTaskProjectName(); 
+         var result = allProjectsArr.find(item => item.name === currentProj);
+         if (result !== undefined) {
+            result.taskArr.push(this);
+         } 
+         //re-calculare # of active tasks & rerender display
+            result.getNoOfTasks();
+          
         }
     }
 
 
 
 
-    export function createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, isComplete, projName){
+    export function createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projName){
+        console.log("called from inside createNewTaskModel in model");
         //call to task Factory
-        let newTask = TaskFactory(taskName, taskDesc, taskDue, taskPriority, isComplete, projName);
+        let newTask = TaskFactory(taskName, taskDesc, taskDue, taskPriority, projName);
+        
+        newTask.addTask();
     }
 
 

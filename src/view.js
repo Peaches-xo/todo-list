@@ -1,5 +1,6 @@
 //the view handles how the UI is displayed. Only talks to controller. 
 import { createNewProject } from './controller.js';
+import { createNewTask } from './controller.js';
 import { newProjectForm } from './newProjectForm.js';
 import { newTaskForm } from './newTaskForm.js';
 import { allProjectsArr } from './model.js'; //maybe move
@@ -37,26 +38,7 @@ export function thisistheview(){
 
         let projectTaskNo = document.createElement("p");
         projectTaskNo.classList.add("project-item-taskno");
-        projectTaskNo.textContent = "7 active tasks"; /*This will be updated to fetch number */
-        //call 
-
-        //how to access value of 'name' key from object in array 
-   
-       
-   
-   // get the keys from first object in array
-// const keys = Object.keys(allProjectsArr[0]);
-// console.log("keys: " + keys);
-
-// for (const obj of allProjectsArr) {
-//   // get values for current object
-//   const values = Object.values(obj);
-//   console.log(`Object: ${JSON.stringify(obj)}, Keys: ${keys}, Values: 
-// ${values}`);
-// }
-
-
-
+        projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active tasks`; 
         projectItem.appendChild(projectTaskNo);
 
         let projectItemWrapper = document.createElement("div");
@@ -81,7 +63,11 @@ export function thisistheview(){
 
 
 
-
+let deleteBtn = document.querySelector('.project-item-editbtn');
+deleteBtn.addEventListener('click', function(event){
+    console.log('deletebtn clicked');
+    console.log(event.target.value);
+});
 
 
 
@@ -189,7 +175,7 @@ export function thisistheview(){
             taskPriorityInput = document.querySelector('.taskPriority_radio'); //how to get selected value
 
 
-            let selectedProjName = selectedProject.value;  //needs to get selected project name and save to variable. If none selected, use default. 
+            let selectedProjName = selectedProject.value || 'default';  //needs to get selected project name and save to variable. If none selected, use default. 
             let taskName = taskNameInput.value;
             let taskDescription = taskDescriptionInput.value;
             let taskDueDate = taskDueDateInput.value;
@@ -198,10 +184,10 @@ export function thisistheview(){
             console.log ("taskName: " + taskName);
             console.log ("taskDescription: " + taskDescription);
             console.log ("taskDueDate: " + taskDueDate);
-            let taskPriority = getRadioValue();
+            let taskPriority = getRadioValue(); //|| 'low'; //maybe remove low as default 
             console.log("taskPriority: " + taskPriority);
 
-            
+            createNewTask(taskName, taskDescription, taskDueDate, taskPriority, selectedProjName); //in controller
 
         //else if div has class of project
         } else if (div.classList.contains("showProjModule")){
