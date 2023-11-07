@@ -15,6 +15,7 @@ export function thisistheview(){
         taskbox: document.querySelector(".taskbox"),
    }
 
+   
    domCachedElements.viewAllProjectsBtn.addEventListener("click", viewAllProjects);
 
    function viewAllProjects(){
@@ -26,8 +27,10 @@ export function thisistheview(){
         }
    }
 
+   viewAllProjects();
+
 //callback from foreach above
-   function createProjectItemCard (item, index){
+    function createProjectItemCard (item, index){
         //create elements, 
         let projectItem = document.createElement("div");
         projectItem.classList.add("project-item");
@@ -63,11 +66,6 @@ export function thisistheview(){
 
 
 
-let deleteBtn = document.querySelector('.project-item-editbtn');
-deleteBtn.addEventListener('click', function(event){
-    console.log('deletebtn clicked');
-    console.log(event.target.value);
-});
 
 
 

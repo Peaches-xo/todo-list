@@ -2,6 +2,7 @@
 import { addProjectToDropdown } from './model';
 import { newProjectForm } from './newProjectForm';
 
+
 //array of all projects, each project is an object
 export let allProjectsArr = []; //export to controller and view (try to remove from view)
 
@@ -39,6 +40,7 @@ let projectActions = {
     //set up default project as FACTORY
     let defaultproj = ProjectFactory('default');
     defaultproj.addProjToAllProjArr();
+    viewAllProjects();
 
 
     
@@ -98,7 +100,7 @@ let projectActions = {
          } 
          //re-calculare # of active tasks & rerender display
             result.getNoOfTasks();
-          
+            //call createProjectItemCard from view
         }
     }
 
