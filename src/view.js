@@ -26,13 +26,27 @@ export function thisistheview(){
             allProjectsArr.forEach(createProjectItemCard);
         }
    }
-
+   //initialises default project
+viewAllProjects();
 
 
 //callback from foreach above
     function createProjectItemCard (item, index){
         //create elements, 
         let projectItem = document.createElement("div");
+
+        projectItem.addEventListener('click', function projClickHandler(e){
+            if (e.target == projectItemDelIcon){
+                //code to remove project from display
+                domCachedElements.taskbox.removeChild(projectItem);
+                deleteProject(projectItem);
+            } else {
+                //code to display project in white section 
+                //displayProject();
+             
+            }
+        });
+
         projectItem.classList.add("project-item");
 
         let projectTitle = document.createElement("h5");
@@ -41,27 +55,43 @@ export function thisistheview(){
 
         let projectTaskNo = document.createElement("p");
         projectTaskNo.classList.add("project-item-taskno");
-        projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active tasks`; 
+        
+        
+        if ( (allProjectsArr[index].getNoOfTasks()) === 1 ){
+            projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active task`; 
+        } else {
+            projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active tasks`; 
+        };
+        
         projectItem.appendChild(projectTaskNo);
 
         let projectItemWrapper = document.createElement("div");
         projectItemWrapper.classList.add("project-item-wrapper");
         projectItem.appendChild(projectItemWrapper);
 
-            let projectItemEditBtn = document.createElement("button");
-            projectItemEditBtn.classList.add("project-item-editbtn");
+            let projectItemDelBtn = document.createElement("button");
+            // projectItemDelBtn.addEventListener('click', deleteProject);
+            
+            projectItemDelBtn.classList.add("project-item-delbtn");
 
-                let projectItemEditIcon = document.createElement("img");
-                projectItemEditIcon.setAttribute("src", "/src/images/edit.png");
-                projectItemEditBtn.appendChild(projectItemEditIcon);
+                let projectItemDelIcon = document.createElement("img");
+                projectItemDelIcon.setAttribute("src", "/src/images/bin24.png");
+                projectItemDelBtn.appendChild(projectItemDelIcon);
 
-            projectItemWrapper.appendChild(projectItemEditBtn);
+            projectItemWrapper.appendChild(projectItemDelBtn);
             //code to add project due date if including?
 
             //3. append each project cards to  display area (domCachedElements.taskbox)
             domCachedElements.taskbox.appendChild(projectItem);
    }
 
+
+   function deleteProject(index){
+        //code to remove project from array
+        allProjectsArr.splice(index,1);
+        //rerender display
+        viewAllProjects();
+;   }
 
 
 

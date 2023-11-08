@@ -20,21 +20,12 @@ let projectActions = {
     addProjToAllProjArr(){
         allProjectsArr.push(this);
         return allProjectsArr;
-        // let lengthofArr = allProjectsArr.length;
-        // console.log("Number of Projects in allProjectsArr: " + lengthofArr);
-        // console.log("allProjectsArr: " + allProjectsArr[lengthofArr-1].name);
     },
     getNoOfTasks(){
         let noOfTasks = this.taskArr.length;
-        console.log("No Of Tasks: (from tasksArr.length) " + this.taskArr.length);
+        // console.log("No Of Tasks: (from tasksArr.length) " + this.taskArr.length);
         return noOfTasks;
     },
-    // addTask(taskObj){
-    //     //adds taskObj to this.taskArr
-    //     taskArr.push(taskObj);
-    //     let lastTask = taskArr.length-1;
-    //     console.log(taskArr[lastTask]);
-    // }
 };
 
     //set up default project as FACTORY
@@ -53,7 +44,6 @@ let projectActions = {
     export function createNewProjectModel(projName){  //export to controller
          let newprojName = ProjectFactory(projName);
          //working
-         //console.log("newprojname: " + newprojName.getProjectName());
          newprojName.addProjToAllProjArr();
          newprojName.getNoOfTasks();
      }
