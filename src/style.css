@@ -1093,9 +1093,7 @@ input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:befo
 
 
 
-/* WOBBLE */
-
-/* Wobble Top */
+/* WOBBLE EFFECT ON BIN */
 @-webkit-keyframes hvr-wobble-top {
   16.65% {
     -webkit-transform: skew(-12deg);

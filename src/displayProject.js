@@ -15,9 +15,6 @@ export let displayProject = {
     },
 
     display(projectObj){ //may need to refactor to smaller functions as contains some logic
-        //get project name and append 
-
-
         //create elements
         let headingh2 = document.createElement('h2');
         headingh2.classList.add('project-heading');
@@ -38,11 +35,11 @@ export let displayProject = {
         }
 
         function createTaskElement(item, index){
+            //add event listener on parent object of edit btn 
+
             console.log(item); //task object
             console.log(index); //0
         
-
-
         let details = document.createElement('details');
         details.classList.add('project-task-item');
             let summary = document.createElement('summary');
@@ -77,19 +74,7 @@ export let displayProject = {
             details.appendChild(pencil);
             displayProject.section.appendChild(details);
         }
-        // <details class="project-task-item">
-        // <summary>
-        //     <div class="task-checkbox"> 
-        //         <input id="task1" type="checkbox" class="checkbox taskcheckbox">
-        //         <label for="task1">Walk the dog </label>
-        //     </div>
-        //     <span class="project-task-priority highPriority">High</span>
-        //     <img class="project-task-img" src="/src/images/downgrey16.png">
-        // </summary> 
-
-        // <p class="project-task-description">Walk The Dog to talburpin park</p> 
-        // <img class="project-task-editbtn" src="/src/images/edit24.png">
-        // </details>
+       
 
 
 
