@@ -1,6 +1,7 @@
 //the model handles all the data and logic 
 import { addProjectToDropdown } from './model';
 import { newProjectForm } from './newProjectForm';
+import { displayProject } from './displayProject';
 
 
 //array of all projects, each project is an object
@@ -90,6 +91,9 @@ let projectActions = {
          //re-calculare # of active tasks & rerender display
             result.getNoOfTasks();
             //call createProjectItemCard from view
+
+            //call displayProject.display()
+            //displayProject.display();
         }
     }
 

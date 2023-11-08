@@ -4,6 +4,7 @@ import { createNewTask } from './controller.js';
 import { newProjectForm } from './newProjectForm.js';
 import { newTaskForm } from './newTaskForm.js';
 import { allProjectsArr } from './model.js'; //maybe move
+import { displayProject } from './displayProject.js';
 
 
 export function thisistheview(){
@@ -22,7 +23,7 @@ export function thisistheview(){
         //1. clears project display area 
         removeChildren(domCachedElements.taskbox);
         //2. loops over all projects array (if arr not empty) & creates project card for each project & append to taskbox
-        if (allProjectsArr.length != 0){
+        if (allProjectsArr.length > 0){
             allProjectsArr.forEach(createProjectItemCard);
         }
    }
@@ -42,7 +43,8 @@ viewAllProjects();
                 deleteProject(projectItem);
             } else {
                 //code to display project in white section 
-                //displayProject();
+                displayProject.clearSection();
+                displayProject.display(allProjectsArr[index]);
              
             }
         });
@@ -70,12 +72,12 @@ viewAllProjects();
         projectItem.appendChild(projectItemWrapper);
 
             let projectItemDelBtn = document.createElement("button");
-            // projectItemDelBtn.addEventListener('click', deleteProject);
             
             projectItemDelBtn.classList.add("project-item-delbtn");
 
                 let projectItemDelIcon = document.createElement("img");
                 projectItemDelIcon.setAttribute("src", "/src/images/bin24.png");
+                projectItemDelIcon.classList.add('hvr-wobble-top');
                 projectItemDelBtn.appendChild(projectItemDelIcon);
 
             projectItemWrapper.appendChild(projectItemDelBtn);
@@ -91,7 +93,7 @@ viewAllProjects();
         allProjectsArr.splice(index,1);
         //rerender display
         viewAllProjects();
-;   }
+   }
 
 
 
