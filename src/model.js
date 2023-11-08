@@ -40,8 +40,7 @@ let projectActions = {
     //set up default project as FACTORY
     let defaultproj = ProjectFactory('default');
     defaultproj.addProjToAllProjArr();
-    viewAllProjects();
-
+   
 
     
 
