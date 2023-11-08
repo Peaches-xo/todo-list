@@ -27,7 +27,7 @@ export function thisistheview(){
         }
    }
 
-   viewAllProjects();
+
 
 //callback from foreach above
     function createProjectItemCard (item, index){
@@ -193,6 +193,8 @@ export function thisistheview(){
             createNewProject(projectName); //in controller
             viewAllProjects();
         }
+
+        viewAllProjects();
     });
  
     //CLEAR BUTTON
