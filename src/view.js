@@ -5,6 +5,7 @@ import { newProjectForm } from './newProjectForm.js';
 import { newTaskForm } from './newTaskForm.js';
 import { allProjectsArr } from './model.js'; //maybe move
 import { displayProject } from './displayProject.js';
+import { populateDropdown } from './newTaskForm.js';
 
 
 export function thisistheview(){
@@ -26,24 +27,26 @@ export function thisistheview(){
         if (allProjectsArr.length > 0){
             allProjectsArr.forEach(createProjectItemCard);
         }
-   }
-   //initialises default project
-viewAllProjects();
+    }
+    //initialises default project by creating default proj card
+    viewAllProjects();
 
 
-//callback from foreach above
+    //callback from foreach above
     function createProjectItemCard (item, index){
         //create elements, 
         let projectItem = document.createElement("div");
 
         projectItem.addEventListener('click', function projClickHandler(e){
             if (e.target == projectItemDelIcon){
-                //code to remove project from display
-                domCachedElements.taskbox.removeChild(projectItem);
-                deleteProject(projectItem);
+                //remove proj 
+                deleteProject(projectItem,allProjectsArr[index]);
             } else {
-                //code to display project in white section 
+                //toggle currentProj boolean in project
+                allProjectsArr[index].isCurrentProj = true;
+                //clear section
                 displayProject.clearSection();
+                //display project in white section 
                 displayProject.display(allProjectsArr[index]);
              
             }
@@ -88,9 +91,22 @@ viewAllProjects();
    }
 
 
-   function deleteProject(index){
-        //code to remove project from array
-        allProjectsArr.splice(index,1);
+   function deleteProject(projectItem,projObj){
+        //remove project card from All Projects area
+        domCachedElements.taskbox.removeChild(projectItem);
+
+        //remove project from allProjectsArr
+        //allProjectsArr.splice(projectItem,1);
+        allProjectsArr.splice(projObj,1);
+
+        //remove project from white section if current proj
+        if (projObj.isCurrentProj = true){
+            displayProject.clearSection();
+            projObj.isCurrentProj = false;
+        }
+
+        //code to remove project name from dropdown in modal
+        populateDropdown(allProjectsArr);
         //rerender display
         viewAllProjects();
    }
@@ -194,28 +210,21 @@ viewAllProjects();
         event.preventDefault();
         //get latest values
         projNameInput =  document.querySelector("#projName");
-        // taskPriority = document.querySelector('.taskPriority_radio');
-        
+  
         if (div.classList.contains("showTaskModule")){
             //get task data
             selectedProject = document.querySelector('#projDropdown'); 
             taskNameInput = document.querySelector("#taskName");
             taskDescriptionInput = document.querySelector('#taskDesc');
             taskDueDateInput = document.querySelector('#taskDueDate');
-            taskPriorityInput = document.querySelector('.taskPriority_radio'); //how to get selected value
-
+            taskPriorityInput = document.querySelector('.taskPriority_radio'); 
 
             let selectedProjName = selectedProject.value || 'default';  //needs to get selected project name and save to variable. If none selected, use default. 
             let taskName = taskNameInput.value;
             let taskDescription = taskDescriptionInput.value;
             let taskDueDate = taskDueDateInput.value;
-
-            console.log ("selectedProject: " + selectedProjName);
-            console.log ("taskName: " + taskName);
-            console.log ("taskDescription: " + taskDescription);
-            console.log ("taskDueDate: " + taskDueDate);
-            let taskPriority = getRadioValue(); //|| 'low'; //maybe remove low as default 
-            console.log("taskPriority: " + taskPriority);
+            let taskPriority = getRadioValue(); 
+   
 
             createNewTask(taskName, taskDescription, taskDueDate, taskPriority, selectedProjName); //in controller
 

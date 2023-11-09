@@ -32,7 +32,7 @@ thisistheview();
 
 
 export function createNewTask(taskName, taskDesc, taskDue, taskPriority, projectName){
-    console.log("called from inside createNewTask in controller");
+    
     createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projectName); //in model
 
 }

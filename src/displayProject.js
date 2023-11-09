@@ -29,16 +29,16 @@ export let displayProject = {
 
         //if taskArr != empty, create task element for each task 
         if (projectObj.taskArr.length > 0){
-            console.log(projectObj.taskArr);
+      
             //create element for each item in task array
             projectObj.taskArr.forEach(createTaskElement);
         }
 
         function createTaskElement(item, index){
-            //add event listener on parent object of edit btn 
+            //TODO add event listener on parent object of edit btn 
 
-            console.log(item); //task object
-            console.log(index); //0
+            //console.log(item); //task object
+            //console.log(index); //0
         
         let details = document.createElement('details');
         details.classList.add('project-task-item');

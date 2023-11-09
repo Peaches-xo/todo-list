@@ -11,6 +11,7 @@ function ProjectFactory(projName){
     let project = Object.create(projectActions);
     project.name = projName;
     project.taskArr = [];  //set task array to empty array (arr of objects)
+    project.isCurrentProj = false;
     return project;
 }
 
@@ -24,7 +25,6 @@ let projectActions = {
     },
     getNoOfTasks(){
         let noOfTasks = this.taskArr.length;
-        // console.log("No Of Tasks: (from tasksArr.length) " + this.taskArr.length);
         return noOfTasks;
     },
 };
@@ -81,19 +81,24 @@ let projectActions = {
         },
 
         addTask(){
-            //this method finds the projectName and pushes the task to the taskArr within the corresponding Project
-            //get corresponding project name
+        //this method finds the projectName and pushes the task to the taskArr within the corresponding Project
+            
+        //get corresponding project name
          let currentProj =  this.getTaskProjectName(); 
          var result = allProjectsArr.find(item => item.name === currentProj);
+         console.log(result);
          if (result !== undefined) {
             result.taskArr.push(this);
          } 
-         //re-calculare # of active tasks & rerender display
-            result.getNoOfTasks();
-            //call createProjectItemCard from view
+         //re-calculate # of active tasks & rerender display
+        result.getNoOfTasks();
 
-            //call displayProject.display()
-            //displayProject.display();
+        if (result.isCurrentProj === true){
+            //code to call clear section, display section
+            //which is in View, need to change view to object, not fn 
+            console.log('result.isCurrentProj === true');
+        }
+           
         }
     }
 
@@ -101,11 +106,12 @@ let projectActions = {
 
 
     export function createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projName){
-        console.log("called from inside createNewTaskModel in model");
+
         //call to task Factory
         let newTask = TaskFactory(taskName, taskDesc, taskDue, taskPriority, projName);
         
         newTask.addTask();
+
     }
 
 

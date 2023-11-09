@@ -71,7 +71,7 @@ taskPriorityWrapper.appendChild(taskPriorityInput_med);
 taskPriorityWrapper.appendChild(taskPriorityInput_high);
 
 
-function populateDropdown(allProjectsArr){
+export function populateDropdown(allProjectsArr){
     //remove all values and rerender
     clearDropdownOptions();
 
