@@ -112,6 +112,8 @@ let projectActions = {
         
         newTask.addTask();
 
+        return newTask;
+
     }
 
 

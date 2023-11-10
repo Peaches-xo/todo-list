@@ -11,7 +11,7 @@ import { createNewTaskModel } from './model.js';
 
 
 //inititation function/ loads the view
-thisistheview();
+//thisistheview();
 
 
 
@@ -33,7 +33,7 @@ thisistheview();
 
 export function createNewTask(taskName, taskDesc, taskDue, taskPriority, projectName){
     
-    createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projectName); //in model
+   return createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projectName); //in model
 
 }
 

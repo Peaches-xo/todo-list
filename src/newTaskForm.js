@@ -1,5 +1,5 @@
 //modal display - create New Task
-//contains code to create dom elements and append them inside modal 
+//contains code to create dom elements and append them inside Add New... modal 
 
 import { allProjectsArr } from './model';
 

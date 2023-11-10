@@ -43,35 +43,56 @@ export let displayProject = {
         let details = document.createElement('details');
         details.classList.add('project-task-item');
             let summary = document.createElement('summary');
+
                 let div = document.createElement('div');
                 div.classList.add('task-checkbox');
+
                     let checkbox = document.createElement('input');
                     checkbox.setAttribute('id', 'task1'); //might need to dynamically create task#
                     checkbox.setAttribute('type', 'checkbox');
                     checkbox.classList.add('checkbox','taskcheckbox');
+
                     let label = document.createElement('label');
                     label.setAttribute('for', 'task1'); //might need to change
                     label.textContent = item.name;
                     div.appendChild(checkbox);
                     div.appendChild(label);
                     summary.appendChild(div);
+
                 let span = document.createElement('span');
-                span.classList.add('project-task-priority',`${item.priority}Priority`) //get and dynamically set priority
+                span.classList.add('project-task-priority',`${item.priority}Priority`) 
                 span.textContent = item.priority;
                 summary.appendChild(span);
+
                 let arrow = document.createElement('img');
                 arrow.classList.add('project-task-img');
                 arrow.setAttribute('src', '/src/images/downgrey16.png');
                 summary.appendChild(arrow);
                 details.appendChild(summary);
+
             let p = document.createElement('p');
             p.classList.add('project-task-description');
             p.textContent = item.description;
             details.appendChild(p);
+
+            let p2 = document.createElement('p');
+            p2.textContent = `Due Date: ${item.dueDate}`;
+            p2.classList.add('project-task-duedate');
+            details.appendChild(p2);
+
+            let imgWrapper = document.createElement('div');
+            imgWrapper.classList.add('project-task-imgWrapper');
+            details.appendChild(imgWrapper);
+
+            let taskDelIcon = document.createElement("img");
+            taskDelIcon.setAttribute("src", "/src/images/bin24.png");
+            taskDelIcon.classList.add('hvr-wobble-top');
+            imgWrapper.appendChild(taskDelIcon);
+
             let pencil = document.createElement('img');
-            pencil.classList.add('project-task-editbtn');
+            pencil.classList.add('project-task-editbtn', 'hvr-forward');
             pencil.setAttribute('src', '/src/images/edit24.png');
-            details.appendChild(pencil);
+            imgWrapper.appendChild(pencil);
             displayProject.section.appendChild(details);
         }
        
