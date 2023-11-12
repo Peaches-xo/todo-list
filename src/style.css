@@ -509,6 +509,7 @@ p.project-task-duedate {
 .project-task-img{
     vertical-align: top;
     padding-right: 5px;
+    
 }
 
 .project-task-imgWrapper {
@@ -518,6 +519,16 @@ p.project-task-duedate {
   gap: 5px;
 }
 
+.project-task-imgWrapper img{
+  padding: 5px;
+  transition: 0.2s ease;
+}
+
+.project-task-imgWrapper img:hover{
+  border-radius: 11px;
+  background: whitesmoke;
+  cursor: pointer;
+}
 
 input[type="checkbox"] {
     margin-right: 11px;
@@ -1221,7 +1232,6 @@ input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:befo
   -webkit-transform: translateX(5px);
   transform: translateX(5px);
 }
-
 
 
 

@@ -86,28 +86,54 @@ export let displayProject = {
 
             let taskDelIcon = document.createElement("img");
             taskDelIcon.setAttribute("src", "/src/images/bin24.png");
-            taskDelIcon.classList.add('hvr-wobble-top');
+            // taskDelIcon.classList.add('hvr-wobble-top');
+            taskDelIcon.addEventListener('click', displayProject.deleteToDo);
+            
             imgWrapper.appendChild(taskDelIcon);
 
             let pencil = document.createElement('img');
-            pencil.classList.add('project-task-editbtn', 'hvr-forward');
+            // pencil.classList.add('project-task-editbtn', 'hvr-forward');
+            pencil.addEventListener('click', displayProject.editToDo(item));
+            pencil.classList.add('project-task-editbtn');
             pencil.setAttribute('src', '/src/images/edit24.png');
             imgWrapper.appendChild(pencil);
             displayProject.section.appendChild(details);
         }
-       
-
-
-
-
-
-
-
-
-
-
     },
+    editToDo(item){
+        console.log("editToDo reached");
+        //console.log("currentproj: ", projectObj);
+        //swap pencil icon for save icon 
+        let pencil = document.querySelector('.project-task-editbtn');
+        pencil.classList.add('hidden');
+        let save = document.createElement('img');
+        save.setAttribute('src', '/src/images/diskette24.png');
+        //add click listener to save icon 
+        save.addEventListener('click', displayProject.saveEditedToDo);
+        save.classList.add('project-task-savebtn');
+        let imgWrapper = document.querySelector('.project-task-imgWrapper');
+        imgWrapper.appendChild(save);
+      
 
+        
+
+        //get fields
+        //find projectname
+        //replace divs with inputs
+        
+        //add click listener to priority
+            // change priority on click
+
+        //get values from inputs
+        //save new values over old in project & todo
+    },
+    saveEditedToDo(){
+        console.log('saveEditedToDo reached');
+        //code to swap icon back for pencil
+    },
+    deleteToDo(){
+        console.log('deleteToDo reached');
+    },
    
 
 
