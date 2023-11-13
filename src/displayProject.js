@@ -93,15 +93,18 @@ export let displayProject = {
 
             let pencil = document.createElement('img');
             // pencil.classList.add('project-task-editbtn', 'hvr-forward');
-            pencil.addEventListener('click', displayProject.editToDo(item));
             pencil.classList.add('project-task-editbtn');
             pencil.setAttribute('src', '/src/images/edit24.png');
+            pencil.addEventListener('click', displayProject.editToDo(item));
+           
+            
             imgWrapper.appendChild(pencil);
             displayProject.section.appendChild(details);
         }
     },
     editToDo(item){
         console.log("editToDo reached");
+        console.log(item);
         //console.log("currentproj: ", projectObj);
         //swap pencil icon for save icon 
         let pencil = document.querySelector('.project-task-editbtn');
