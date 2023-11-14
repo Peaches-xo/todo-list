@@ -75,47 +75,49 @@ export let displayProject = {
             p.textContent = item.description;
             details.appendChild(p);
 
-            let p2 = document.createElement('p');
-            p2.textContent = `Due Date: ${item.dueDate}`;
-            p2.classList.add('project-task-duedate');
-            details.appendChild(p2);
+           
 
-            let imgWrapper = document.createElement('div');
-            imgWrapper.classList.add('project-task-imgWrapper');
-            details.appendChild(imgWrapper);
+            let taskFooter = document.createElement('div');
+            taskFooter.classList.add('project-task-footer');
+            details.appendChild(taskFooter);
+
+            let p2 = document.createElement('p');
+            p2.textContent = `Due Date: \n ${item.dueDate}`;
+            p2.classList.add('project-task-duedate');
+            taskFooter.appendChild(p2);
 
             let taskDelIcon = document.createElement("img");
             taskDelIcon.setAttribute("src", "/src/images/bin24.png");
             // taskDelIcon.classList.add('hvr-wobble-top');
             taskDelIcon.addEventListener('click', displayProject.deleteToDo);
             
-            imgWrapper.appendChild(taskDelIcon);
+            taskFooter.appendChild(taskDelIcon);
 
             let pencil = document.createElement('img');
             // pencil.classList.add('project-task-editbtn', 'hvr-forward');
             pencil.classList.add('project-task-editbtn');
             pencil.setAttribute('src', '/src/images/edit24.png');
-            pencil.addEventListener('click', displayProject.editToDo(item));
+            pencil.addEventListener('click', displayProject.editToDo);
            
             
-            imgWrapper.appendChild(pencil);
+            taskFooter.appendChild(pencil);
             displayProject.section.appendChild(details);
         }
     },
     editToDo(item){
         console.log("editToDo reached");
-        console.log(item);
+     
         //console.log("currentproj: ", projectObj);
         //swap pencil icon for save icon 
-        let pencil = document.querySelector('.project-task-editbtn');
-        pencil.classList.add('hidden');
-        let save = document.createElement('img');
-        save.setAttribute('src', '/src/images/diskette24.png');
-        //add click listener to save icon 
-        save.addEventListener('click', displayProject.saveEditedToDo);
-        save.classList.add('project-task-savebtn');
-        let imgWrapper = document.querySelector('.project-task-imgWrapper');
-        imgWrapper.appendChild(save);
+        // let pencil = document.querySelector('.project-task-editbtn');
+        // pencil.classList.add('hidden');
+        // let save = document.createElement('img');
+        // save.setAttribute('src', '/src/images/diskette24.png');
+        // //add click listener to save icon 
+        // save.addEventListener('click', displayProject.saveEditedToDo);
+        // save.classList.add('project-task-savebtn');
+        // let taskFooter = document.querySelector('.project-task-footer');
+        // taskFooter.appendChild(save);
       
 
         

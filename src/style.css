@@ -504,6 +504,8 @@ p.project-task-duedate {
   align-items: center;
   padding: 0px 10px;
   margin-bottom: 5px;
+  margin-right: auto;
+  color: #cd8cfe;
 }
 
 .project-task-img{
@@ -512,19 +514,19 @@ p.project-task-duedate {
     
 }
 
-.project-task-imgWrapper {
+.project-task-footer {
   display: flex;
-  align-items: baseline;
+  align-items: self-end;
   justify-content: flex-end;
-  gap: 5px;
+  /* gap: 5px; */
 }
 
-.project-task-imgWrapper img{
-  padding: 5px;
+.project-task-footer img{
+  padding: 8px;
   transition: 0.2s ease;
 }
 
-.project-task-imgWrapper img:hover{
+.project-task-footer img:hover{
   border-radius: 11px;
   background: whitesmoke;
   cursor: pointer;
@@ -554,11 +556,11 @@ input[type="checkbox"]:checked {
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-    width: 450px;
+    width: 350px;
     /* padding: 1.3rem; */
     min-height: 250px;
     position: absolute;
-    top: 20%;
+    /* top: 20%; */
     background-color: white;
     
     border: 3px solid #fbd4fc;
@@ -702,7 +704,7 @@ input[type="checkbox"]:checked {
 	box-shadow: inset 0 0 0 3px rgba(35, 33, 45, 0.3),
 		0 0 0 3px rgba(185, 185, 185, 0.3);
 	position: relative;
-  width: 47%;
+  width: 56%;
   margin: 20px 0px -10px;
   display: flex;
   justify-content: center;

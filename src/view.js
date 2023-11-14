@@ -6,6 +6,7 @@ import { newTaskForm } from './newTaskForm.js';
 import { allProjectsArr } from './model.js'; //maybe move
 import { displayProject } from './displayProject.js';
 import { populateDropdown } from './newTaskForm.js';
+import { pubSub } from './controller.js';
 
 
 //export function thisistheview(){
@@ -150,9 +151,17 @@ function createProjectItemCard (item, index){
     modalElements.overlay.addEventListener("click", closeModal);
     modalElements.submitButton.addEventListener("click", closeModal);
 
+  
+// PUBSUB - not working
 
+    // modalElements.submitButton.addEventListener('click', () => {
+    //     pubSub.publish('event:name-changed', {name: input.value});
+    //   });
 
-
+    
+    //   pubSub.subscribe('event:name-changed', data => {
+    //     console.log(`Your name is: ${data.name}`);
+    //   });
 
     let projNameInput =  document.querySelector("#projName");
 
