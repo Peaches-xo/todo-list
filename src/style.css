@@ -412,6 +412,7 @@ body{
     background-image: url("/src/images/crystals.png");
     background-repeat: no-repeat;
     background-position: 95% 95%;
+    overflow: scroll;
 }
 
 h2.project-heading {

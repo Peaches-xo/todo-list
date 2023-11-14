@@ -7,9 +7,10 @@ import { displayProject } from './displayProject';
 //array of all projects, each project is an object
 export let allProjectsArr = []; //export to controller and view (try to remove from view)
 
-function ProjectFactory(projName){
+function ProjectFactory(projName, projID){
     let project = Object.create(projectActions);
     project.name = projName;
+    project.id = projID;
     project.taskArr = [];  //set task array to empty array (arr of objects)
     project.isCurrentProj = false;
     return project;
@@ -19,6 +20,9 @@ let projectActions = {
     getProjectName(){
         return this.name;
     },
+    getProjectID(){
+        return this.id;
+    },
     addProjToAllProjArr(){
         allProjectsArr.push(this);
         return allProjectsArr;
@@ -27,26 +31,29 @@ let projectActions = {
         let noOfTasks = this.taskArr.length;
         return noOfTasks;
     },
+    updateProject(){
+
+    },
+    removeProject(){
+
+    },
 };
 
-    //set up default project as FACTORY
-    let defaultproj = ProjectFactory('default');
-    defaultproj.addProjToAllProjArr();
+  
    
 
-    
 
 
 
 
-
-
-
-    export function createNewProjectModel(projName){  //export to controller
-         let newprojName = ProjectFactory(projName);
-         //working
+    export function createNewProjectModel(projName, projID){  //export to controller
+         let newprojName = ProjectFactory(projName, projID);
+     
          newprojName.addProjToAllProjArr();
          newprojName.getNoOfTasks();
+         
+
+         return newprojName;
      }
 
      function TaskFactory(taskName, taskDesc, taskDue, taskPriority, projectName){
@@ -84,9 +91,10 @@ let projectActions = {
         //this method finds the projectName and pushes the task to the taskArr within the corresponding Project
             
         //get corresponding project name
-         let currentProj =  this.getTaskProjectName(); 
+        let currentProj =  this.getTaskProjectName(); 
+         //let currentProj =  this.getTaskProjectID(); 
          var result = allProjectsArr.find(item => item.name === currentProj);
-         console.log(result);
+         console.log(result); 
          if (result !== undefined) {
             result.taskArr.push(this);
          } 

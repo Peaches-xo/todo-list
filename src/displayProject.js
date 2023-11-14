@@ -134,10 +134,16 @@ export let displayProject = {
     },
     saveEditedToDo(){
         console.log('saveEditedToDo reached');
-        //code to swap icon back for pencil
+        
     },
     deleteToDo(){
         console.log('deleteToDo reached');
+
+
+        // find project id
+        // find task name in array 
+        // remove task name from array 
+        // rerender display
     },
    
 

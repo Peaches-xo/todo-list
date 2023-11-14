@@ -3,7 +3,7 @@ import './style.css';
 //Tells MODEL what to do (logic wise), 
 //tells VIEW what do to (display wise)
 //Controls and decides how data is displayed
-import { thisistheview } from './view.js';
+ import {  } from './view.js';
 import { allProjectsArr } from './model.js';
 import { createNewProjectModel } from './model.js';
 import { createNewTaskModel } from './model.js';
@@ -20,16 +20,24 @@ import { createNewTaskModel } from './model.js';
 //function that runs when submit button is clicked
  export function createNewProject(projName){
     //this should be a call to a function inside model, passing the projName, model will create the object and return the object to controller
-    createNewProjectModel(projName); //in model
+
+    //generate ID
+    const generateUUID = function b(a){
+      return a ? (a^Math.random()*16>>a/4).toString(16) : ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,b)
+    } ;
+
+    createNewProjectModel(projName, generateUUID()); //in model
 
     //pass newly created obj to view to add card
 }
  
-//when project is created, pass no of tasks to view to display
+//initialise 'default' project
+createNewProject('default');
+
 
 
 export function createNewTask(taskName, taskDesc, taskDue, taskPriority, projectName){
-    
+  
    return createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projectName); //in model
 
 }

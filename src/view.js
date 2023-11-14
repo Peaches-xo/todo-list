@@ -19,6 +19,10 @@ let domCachedElements = {
 }
 domCachedElements.viewAllProjectsBtn.addEventListener("click", viewAllProjects);
 
+document.addEventListener("DOMContentLoaded", (event) => {
+    viewAllProjects();
+});
+
 function viewAllProjects(){
     //1. clears project display area 
     removeChildren(domCachedElements.taskbox);
@@ -235,9 +239,8 @@ function createProjectItemCard (item, index){
             if (foundProj.isCurrentProj === true){
                 //clear white section
                 displayProject.clearSection();
-                //display project in white section 
-                //displayProject.display(createdTask); not working
-                
+                //call fn that runs when project is clicked on to populate tasks in white secion 
+                displayProject.display(foundProj);
             }
            
            
