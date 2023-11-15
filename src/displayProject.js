@@ -1,4 +1,4 @@
-//displayProject module
+//displayProject module (view)
 
 export let displayProject = {
     //dom elements
@@ -14,7 +14,9 @@ export let displayProject = {
         }
     },
 
-    display(projectObj){ //may need to refactor to smaller functions as contains some logic
+    display(projectObj){ 
+        //takes in project and creates dom element for each task 
+        //may need to refactor to smaller functions as contains some logic
         //create elements
         let headingh2 = document.createElement('h2');
         headingh2.classList.add('project-heading');
@@ -26,10 +28,8 @@ export let displayProject = {
         headingh3.textContent = 'To do';
         this.section.appendChild(headingh3);
 
-
-        //if taskArr != empty, create task element for each task 
+        //if taskArr != empty
         if (projectObj.taskArr.length > 0){
-      
             //create element for each item in task array
             projectObj.taskArr.forEach(createTaskElement);
         }
@@ -89,7 +89,7 @@ export let displayProject = {
             let taskDelIcon = document.createElement("img");
             taskDelIcon.setAttribute("src", "/src/images/bin24.png");
             // taskDelIcon.classList.add('hvr-wobble-top');
-            taskDelIcon.addEventListener('click', displayProject.deleteToDo);
+            taskDelIcon.addEventListener('click', displayProject.deleteToDo(projectObj));
             
             taskFooter.appendChild(taskDelIcon);
 
@@ -104,10 +104,10 @@ export let displayProject = {
             displayProject.section.appendChild(details);
         }
     },
-    editToDo(item){
+    editToDo(projectObj){
         console.log("editToDo reached");
-     
-        //console.log("currentproj: ", projectObj);
+        console.log('projectObj: ', projectObj);
+
         //swap pencil icon for save icon 
         // let pencil = document.querySelector('.project-task-editbtn');
         // pencil.classList.add('hidden');
@@ -136,11 +136,11 @@ export let displayProject = {
         console.log('saveEditedToDo reached');
         
     },
-    deleteToDo(){
+    deleteToDo(projectObj){
         console.log('deleteToDo reached');
 
-
-        // find project id
+        console.log(this)
+;        // find project id
         // find task name in array 
         // remove task name from array 
         // rerender display

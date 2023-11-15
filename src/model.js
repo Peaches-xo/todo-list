@@ -51,7 +51,6 @@ let projectActions = {
      
          newprojName.addProjToAllProjArr();
          newprojName.getNoOfTasks();
-         
 
          return newprojName;
      }
@@ -92,6 +91,7 @@ let projectActions = {
             
         //get corresponding project name
         let currentProj =  this.getTaskProjectName(); 
+        
          //let currentProj =  this.getTaskProjectID(); 
          var result = allProjectsArr.find(item => item.name === currentProj);
          console.log(result); 
@@ -107,6 +107,14 @@ let projectActions = {
             console.log('result.isCurrentProj === true');
         }
            
+        },
+        deleteTask(){
+             //get corresponding project name
+            let currentProj =  this.getTaskProjectName(); 
+            console.log('currentproj', currentProj);
+
+
+            displayProject.deleteToDo();
         }
     }
 

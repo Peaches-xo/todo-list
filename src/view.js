@@ -114,7 +114,10 @@ function createProjectItemCard (item, index){
 
 
 
-
+   //task item cached elements
+   let taskItems = {
+       taskWrappersList : document.querySelectorAll('.project-task-item')
+   }
 
 
 
@@ -225,23 +228,29 @@ function createProjectItemCard (item, index){
             taskDueDateInput = document.querySelector('#taskDueDate');
             taskPriorityInput = document.querySelector('.taskPriority_radio'); 
 
+            //save values
             let selectedProjName = selectedProject.value || 'default';  
             let taskName = taskNameInput.value;
             let taskDescription = taskDescriptionInput.value;
             let taskDueDate = taskDueDateInput.value;
             let taskPriority = getRadioValue(); 
    
-
+            //create task
             let createdTask = createNewTask(taskName, taskDescription, taskDueDate, taskPriority, selectedProjName); //in controller
          
             //find project in AllProjArr with name: selectedProjName, 
+            //change to use projID instead of name
             let foundProj = allProjectsArr.find((element) => element.name == selectedProjName);
-            if (foundProj.isCurrentProj === true){
-                //clear white section
-                displayProject.clearSection();
-                //call fn that runs when project is clicked on to populate tasks in white secion 
-                displayProject.display(foundProj);
-            }
+            console.log('foundProj: ', foundProj);
+
+            //Clear project section
+            displayProject.clearSection();
+            //rerender project section
+            displayProject.display(foundProj);
+
+          
+
+
            
            
             
