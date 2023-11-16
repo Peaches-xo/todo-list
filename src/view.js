@@ -17,14 +17,14 @@ let domCachedElements = {
     viewAllProjectsBtn: document.querySelector(".btn-allproj"),
     taskbox: document.querySelector(".taskbox"),
 }
-domCachedElements.viewAllProjectsBtn.addEventListener("click", viewAllProjects);
+domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCards);
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    viewAllProjects();
+    renderProjectCards();
 });
 
 //TODO - change name of function to renderProjectCards()
-function viewAllProjects(){
+export function renderProjectCards(){
     //1. clears project display area 
     removeChildren(domCachedElements.taskbox);
     //2. loops over all projects array (if arr not empty) & creates project card for each project & append to taskbox
@@ -33,7 +33,7 @@ function viewAllProjects(){
     }
 }
  //initialises default project by creating default proj card
-viewAllProjects();
+renderProjectCards();
 
 //callback from foreach above
 //called on page load and also when new project is created
@@ -43,8 +43,13 @@ function createProjectItemCard (item, index){
 
     projectItem.addEventListener('click', function projClickHandler(e){
         if (e.target == projectItemDelIcon){
+            console.log('allProjArr: ', allProjectsArr);
+            console.log('item: ', item);
+            console.log('index: ', index);
             //remove proj 
+            //NOT WORKING - LOOK INTO INDEX. get item.id, and if matches, remove from allprojarr 
             deleteProject(projectItem,allProjectsArr[index]);
+
         } else {
             
             //clear section
@@ -111,7 +116,7 @@ function createProjectItemCard (item, index){
         //code to remove project name from dropdown in modal
         populateDropdown(allProjectsArr);
         //rerender display
-        viewAllProjects();
+        renderProjectCards();
    }
 
 
@@ -233,45 +238,35 @@ function createProjectItemCard (item, index){
 
             //save values
             let selectedProjName = selectedProject.value || 'default';  
-            //find selcted options data-id to pass to createNewTask
-            let projID = selectedProjName.dataset.id;
-            console.log(projID);
+            let projID = selectedProject.options[selectedProject.selectedIndex].dataset.projectid; 
             let taskName = taskNameInput.value;
             let taskDescription = taskDescriptionInput.value;
             let taskDueDate = taskDueDateInput.value;
             let taskPriority = getRadioValue(); 
    
             //create task
-            let createdTask = createNewTask(taskName, taskDescription, taskDueDate, taskPriority, selectedProjName); //in controller
+            let createdTask = createNewTask(taskName, taskDescription, taskDueDate, taskPriority, selectedProjName, projID); //in controller
          
-            //find project in AllProjArr with name: selectedProjName, 
-            //change to use projID instead of name
-            let foundProj = allProjectsArr.find((element) => element.name == selectedProjName);
+            //find project in AllProjArr 
+            let foundProj = allProjectsArr.find((project) => project.id === projID);
             console.log('foundProj: ', foundProj);
-
-
 
             //Clear project section
             displayProject.clearSection();
-            //rerender project section
+
+            //rerender project section with current project
             displayProject.display(foundProj);
 
           
-
-
-           
-           
-            
-
 
         //else if div has class of project
         } else if (div.classList.contains("showProjModule")){
             let projectName = projNameInput.value;
             createNewProject(projectName); //in controller
-            viewAllProjects();
+            renderProjectCards();
         }
 
-        viewAllProjects();
+        renderProjectCards();
     });
  
     //CLEAR BUTTON

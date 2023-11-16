@@ -4,13 +4,10 @@ import { allProjectsArr } from "./model";
 export let displayProject = {
     //dom elements
     section: document.querySelector('.project'),
-    // heading: document.querySelector('h2.project-heading'),
-
 
     clearSection(){
         //loop through allProjArr and change isCurrentProj to false
         allProjectsArr.forEach((project) => project.isCurrentProj = false);
-
 
         if (displayProject.section.hasChildNodes){
             while (displayProject.section.firstChild) {
@@ -25,7 +22,6 @@ export let displayProject = {
 
         //toggle currentProj boolean in projects
 
-
         //create elements
         let headingh2 = document.createElement('h2');
         headingh2.classList.add('project-heading');
@@ -37,18 +33,19 @@ export let displayProject = {
         headingh3.textContent = 'To do';
         this.section.appendChild(headingh3);
 
-        //if taskArr != empty
+        //if taskArr not empty
         if (projectObj.taskArr.length > 0){
             //create element for each item in task array
             projectObj.taskArr.forEach(createTaskElement);
         }
 
         function createTaskElement(item, index){
-            //console.log(item); //task object
+            console.log(item); //task object
             //console.log(index); //0
         
         let details = document.createElement('details');
         details.classList.add('project-task-item');
+        details.setAttribute('data-taskID', item.id);
             let summary = document.createElement('summary');
 
                 let div = document.createElement('div');
@@ -90,8 +87,9 @@ export let displayProject = {
             taskFooter.addEventListener('click', function taskClickHandler(e){
                 if (e.target == taskDelIcon){
                     //remove task
-                    console.log('task del icon reached');
-                    displayProject.deleteToDo(projectObj);
+                   // console.log(this); //footer element 
+                    projectObj.deleteTask(item.id);
+                    //displayProject.deleteTaskCard(projectObj);
                  
                 } else if (e.target == taskEditIcon){
                     //edit task
@@ -121,10 +119,6 @@ export let displayProject = {
     editToDo(projectObj){
         console.log("editToDo reached");
         console.log('projectObj: ', projectObj);
-
-       
-      
-
         
 
         //get fields
@@ -141,19 +135,7 @@ export let displayProject = {
         console.log('saveEditedToDo reached');
         
     },
-    deleteToDo(projectObj){
-        console.log('deleteToDo reached');
 
-        console.log(projectObj);
-
-         //call to prototype method deleteTask() in model
-
-
-        // find project id
-        // find task name in array 
-        // remove task name from array 
-        // rerender display
-    },
    
 
 

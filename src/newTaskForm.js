@@ -96,8 +96,8 @@ function clearDropdownOptions(){
 function createDropdownOptions(project){
     let option = document.createElement('option');
         option.setAttribute('value', project.name);
-        option.setAttribute('data-id', project.id);
-        option.textContent= project.name;  
+        option.setAttribute('data-projectid', project.id);
+        option.textContent = project.name;  
     return option;
 };
 

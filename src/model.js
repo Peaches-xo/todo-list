@@ -2,6 +2,7 @@
 import { addProjectToDropdown } from './model';
 import { newProjectForm } from './newProjectForm';
 import { displayProject } from './displayProject';
+import { renderProjectCards } from './view.js';
 
 
 //array of all projects, each project is an object
@@ -37,6 +38,26 @@ let projectActions = {
     removeProject(){
 
     },
+    deleteTask(taskid){
+        //find task id in this.taskArr that == taskid, remove from taskArr
+        //console.log(this.taskArr);
+        //how to find index of object with id of taskid 
+            let index = this.taskArr.findIndex(taskobj => taskobj.id == taskid);
+            if (index > -1){
+                this.taskArr.splice(index, 1);
+            }
+
+          //Clear project section
+          displayProject.clearSection();
+          //update # of tasks on proj card
+          this.getNoOfTasks();
+          //rerender proj cards
+          renderProjectCards();
+          //rerender proj section
+          displayProject.display(this);
+          
+    }
+
 };
 
   
@@ -55,20 +76,25 @@ let projectActions = {
          return newprojName;
      }
 
-     function TaskFactory(taskName, taskDesc, taskDue, taskPriority, projectName){
+     function TaskFactory(taskName, taskDesc, taskDue, taskPriority, projectName, projID, taskID){
         let task = Object.create(taskActions);
         task.name = taskName;
+        task.id = taskID;
         task.description = taskDesc;
         task.dueDate = taskDue || new Date().toDateString();
         task.priority = taskPriority;
         //task.isComplete = isComplete;
         task.projName = projectName;
+        task.projID = projID;
         return task;
     }
 
     let taskActions = {
         getTaskName(){
             return this.name;
+        },
+        getTaskID(){
+            return this.id;
         },
         getTaskDescription(){
             return this.description;
@@ -85,42 +111,29 @@ let projectActions = {
         getTaskProjectName(){
             return this.projName;
         },
-
-        addTask(){
-        //this method finds the projectName and pushes the task to the taskArr within the corresponding Project
-            
-        //get corresponding project name
-        let currentProj =  this.getTaskProjectName(); 
-        
-         //let currentProj =  this.getTaskProjectID(); 
-         var result = allProjectsArr.find(item => item.name === currentProj);
-        
-         if (result !== undefined) {
-            result.taskArr.push(this);
-         } 
-         //re-calculate # of active tasks & rerender display
-        result.getNoOfTasks();
-
-   
-           
+        getTaskProjectID(){
+            return this.projID;
         },
-        deleteTask(){
-             //get corresponding project name
-            //let currentProj =  this.getTaskProjectName(); 
-            //console.log('currentproj', currentProj);
+        addTask(){
+        //this method finds the projectID and pushes the task to the taskArr within the corresponding Project
+        
+            //get corresponding project id
+            let currentProj = this.getTaskProjectID();
+            var result = allProjectsArr.find(project => project.id === currentProj);
 
-
-            //displayProject.deleteToDo();
-        }
+            if (result !== undefined) {
+                result.taskArr.push(this);
+            };
+            //re-calculate # of active tasks & rerender display
+            result.getNoOfTasks();
+        },
     }
 
 
-
-
-    export function createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projName){
+    export function createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projName, projID, taskID){
 
         //call to task Factory
-        let newTask = TaskFactory(taskName, taskDesc, taskDue, taskPriority, projName);
+        let newTask = TaskFactory(taskName, taskDesc, taskDue, taskPriority, projName, projID, taskID);
         
         newTask.addTask();
 
