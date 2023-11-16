@@ -46,9 +46,10 @@ function createProjectItemCard (item, index){
             console.log('allProjArr: ', allProjectsArr);
             console.log('item: ', item);
             console.log('index: ', index);
+            console.log(this);
             //remove proj 
             //NOT WORKING - LOOK INTO INDEX. get item.id, and if matches, remove from allprojarr 
-            deleteProject(projectItem,allProjectsArr[index]);
+            deleteProject(projectItem,allProjectsArr[index]); //in view. might need to move to prototype
 
         } else {
             

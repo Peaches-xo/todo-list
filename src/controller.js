@@ -17,8 +17,6 @@ import { createNewTaskModel } from './model.js';
  export function createNewProject(projName){
     //call to a function inside model, passing the projName, model will create the object and return the object to controller to be passed to the view to render the display
 
-
-
     let createdProject = createNewProjectModel(projName, generateUUID()); //in model
 
     //pass newly created obj to view to add card
@@ -32,6 +30,7 @@ createNewProject('default');
 
 
 export function createNewTask(taskName, taskDesc, taskDue, taskPriority, projectName, projID){
+
   let task = createNewTaskModel(taskName, taskDesc, taskDue, taskPriority, projectName, projID, generateUUID()); //in model
    return task;
 
