@@ -1,4 +1,5 @@
 //displayProject module (view)
+import { allProjectsArr } from "./model";
 
 export let displayProject = {
     //dom elements
@@ -7,6 +8,10 @@ export let displayProject = {
 
 
     clearSection(){
+        //loop through allProjArr and change isCurrentProj to false
+        allProjectsArr.forEach((project) => project.isCurrentProj = false);
+
+
         if (displayProject.section.hasChildNodes){
             while (displayProject.section.firstChild) {
                 displayProject.section.removeChild(displayProject.section.firstChild);
@@ -17,6 +22,10 @@ export let displayProject = {
     display(projectObj){ 
         //takes in project and creates dom element for each task 
         //may need to refactor to smaller functions as contains some logic
+
+        //toggle currentProj boolean in projects
+
+
         //create elements
         let headingh2 = document.createElement('h2');
         headingh2.classList.add('project-heading');
@@ -35,8 +44,6 @@ export let displayProject = {
         }
 
         function createTaskElement(item, index){
-            //TODO add event listener on parent object of edit btn 
-
             //console.log(item); //task object
             //console.log(index); //0
         
@@ -75,11 +82,24 @@ export let displayProject = {
             p.textContent = item.description;
             details.appendChild(p);
 
-           
-
+        
             let taskFooter = document.createElement('div');
             taskFooter.classList.add('project-task-footer');
             details.appendChild(taskFooter);
+
+            taskFooter.addEventListener('click', function taskClickHandler(e){
+                if (e.target == taskDelIcon){
+                    //remove task
+                    console.log('task del icon reached');
+                    displayProject.deleteToDo(projectObj);
+                 
+                } else if (e.target == taskEditIcon){
+                    //edit task
+                    console.log('task edit icon reached');
+                    displayProject.editToDo(projectObj);
+                   
+                }
+            });
 
             let p2 = document.createElement('p');
             p2.textContent = `Due Date: \n ${item.dueDate}`;
@@ -88,19 +108,13 @@ export let displayProject = {
 
             let taskDelIcon = document.createElement("img");
             taskDelIcon.setAttribute("src", "/src/images/bin24.png");
-            // taskDelIcon.classList.add('hvr-wobble-top');
-            taskDelIcon.addEventListener('click', displayProject.deleteToDo(projectObj));
-            
             taskFooter.appendChild(taskDelIcon);
 
-            let pencil = document.createElement('img');
-            // pencil.classList.add('project-task-editbtn', 'hvr-forward');
-            pencil.classList.add('project-task-editbtn');
-            pencil.setAttribute('src', '/src/images/edit24.png');
-            pencil.addEventListener('click', displayProject.editToDo);
-           
+            let taskEditIcon = document.createElement('img');
+            taskEditIcon.classList.add('project-task-editbtn');
+            taskEditIcon.setAttribute('src', '/src/images/edit24.png');
             
-            taskFooter.appendChild(pencil);
+            taskFooter.appendChild(taskEditIcon);
             displayProject.section.appendChild(details);
         }
     },
@@ -108,16 +122,7 @@ export let displayProject = {
         console.log("editToDo reached");
         console.log('projectObj: ', projectObj);
 
-        //swap pencil icon for save icon 
-        // let pencil = document.querySelector('.project-task-editbtn');
-        // pencil.classList.add('hidden');
-        // let save = document.createElement('img');
-        // save.setAttribute('src', '/src/images/diskette24.png');
-        // //add click listener to save icon 
-        // save.addEventListener('click', displayProject.saveEditedToDo);
-        // save.classList.add('project-task-savebtn');
-        // let taskFooter = document.querySelector('.project-task-footer');
-        // taskFooter.appendChild(save);
+       
       
 
         
@@ -139,8 +144,12 @@ export let displayProject = {
     deleteToDo(projectObj){
         console.log('deleteToDo reached');
 
-        console.log(this)
-;        // find project id
+        console.log(projectObj);
+
+         //call to prototype method deleteTask() in model
+
+
+        // find project id
         // find task name in array 
         // remove task name from array 
         // rerender display

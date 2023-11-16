@@ -94,18 +94,14 @@ let projectActions = {
         
          //let currentProj =  this.getTaskProjectID(); 
          var result = allProjectsArr.find(item => item.name === currentProj);
-         console.log(result); 
+        
          if (result !== undefined) {
             result.taskArr.push(this);
          } 
          //re-calculate # of active tasks & rerender display
         result.getNoOfTasks();
 
-        if (result.isCurrentProj === true){
-            //code to call clear section, display section
-            //which is in View, need to change view to object, not fn 
-            console.log('result.isCurrentProj === true');
-        }
+   
            
         },
         deleteTask(){
