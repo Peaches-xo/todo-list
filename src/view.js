@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     viewAllProjects();
 });
 
+//TODO - change name of function to renderProjectCards()
 function viewAllProjects(){
     //1. clears project display area 
     removeChildren(domCachedElements.taskbox);
@@ -35,6 +36,7 @@ function viewAllProjects(){
 viewAllProjects();
 
 //callback from foreach above
+//called on page load and also when new project is created
 function createProjectItemCard (item, index){
     //create elements
     let projectItem = document.createElement("div");
@@ -44,10 +46,11 @@ function createProjectItemCard (item, index){
             //remove proj 
             deleteProject(projectItem,allProjectsArr[index]);
         } else {
-            //toggle currentProj boolean in project
-            allProjectsArr[index].isCurrentProj = true;
+            
             //clear section
             displayProject.clearSection();
+            //toggle currentProj boolean in project
+            allProjectsArr[index].isCurrentProj = true;
             //display project in white section 
             displayProject.display(allProjectsArr[index]);
         }
@@ -230,6 +233,9 @@ function createProjectItemCard (item, index){
 
             //save values
             let selectedProjName = selectedProject.value || 'default';  
+            //find selcted options data-id to pass to createNewTask
+            let projID = selectedProjName.dataset.id;
+            console.log(projID);
             let taskName = taskNameInput.value;
             let taskDescription = taskDescriptionInput.value;
             let taskDueDate = taskDueDateInput.value;
@@ -242,6 +248,8 @@ function createProjectItemCard (item, index){
             //change to use projID instead of name
             let foundProj = allProjectsArr.find((element) => element.name == selectedProjName);
             console.log('foundProj: ', foundProj);
+
+
 
             //Clear project section
             displayProject.clearSection();

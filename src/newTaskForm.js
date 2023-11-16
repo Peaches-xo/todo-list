@@ -78,7 +78,7 @@ export function populateDropdown(allProjectsArr){
     //get values from proj array and create option tag for each
     if (allProjectsArr.length > 0){
         for (let i = 0; i <= allProjectsArr.length-1; i++){
-            projDropdown.appendChild(createDropdownOptions(allProjectsArr[i].name)); 
+            projDropdown.appendChild(createDropdownOptions(allProjectsArr[i])); 
         }
     }
 };
@@ -93,17 +93,22 @@ function clearDropdownOptions(){
     }
 };
 
-function createDropdownOptions(item){
-    let option = document.createElement("option");
-        option.setAttribute("value", item); 
-        option.textContent= item;  
+function createDropdownOptions(project){
+    let option = document.createElement('option');
+        option.setAttribute('value', project.name);
+        option.setAttribute('data-id', project.id);
+        option.textContent= project.name;  
     return option;
 };
 
+
+
+
+
 function newTaskForm(){
     //toggle display
-    div.classList.add("showTaskModule");
-    div.classList.remove("showProjModule");
+    div.classList.add('showTaskModule');
+    div.classList.remove('showProjModule');
 
     //clear elements 
     taskInput.value = "";

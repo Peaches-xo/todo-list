@@ -106,11 +106,11 @@ let projectActions = {
         },
         deleteTask(){
              //get corresponding project name
-            let currentProj =  this.getTaskProjectName(); 
-            console.log('currentproj', currentProj);
+            //let currentProj =  this.getTaskProjectName(); 
+            //console.log('currentproj', currentProj);
 
 
-            displayProject.deleteToDo();
+            //displayProject.deleteToDo();
         }
     }
 
