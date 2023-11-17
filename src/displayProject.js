@@ -39,6 +39,7 @@ export let displayProject = {
             projectObj.taskArr.forEach(createTaskElement);
         }
 
+        //could this fn be moved up a level?
         function createTaskElement(item, index){
             console.log(item); //task object
             //console.log(index); //0
@@ -89,11 +90,12 @@ export let displayProject = {
                     //remove task
                    // console.log(this); //footer element 
                     projectObj.deleteTask(item.id);
-                    //displayProject.deleteTaskCard(projectObj);
+  
                  
                 } else if (e.target == taskEditIcon){
                     //edit task
                     console.log('task edit icon reached');
+                    //should the edit todo method be on the task or on the project??
                     displayProject.editToDo(projectObj);
                    
                 }

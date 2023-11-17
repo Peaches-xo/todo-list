@@ -10,46 +10,51 @@ import { pubSub } from './controller.js';
 
 
 //export function thisistheview(){
-
 let domCachedElements = {
     container: document.querySelector(".container"),
     addbutton: document.querySelector(".btn-add"),
     viewAllProjectsBtn: document.querySelector(".btn-allproj"),
     taskbox: document.querySelector(".taskbox"),
+    activeInfoItem: document.querySelector('.info-item-active'),
 }
 domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCards);
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    //initialises default project by creating default proj card
     renderProjectCards();
 });
 
-//TODO - change name of function to renderProjectCards()
+
 export function renderProjectCards(){
     //1. clears project display area 
     removeChildren(domCachedElements.taskbox);
     //2. loops over all projects array (if arr not empty) & creates project card for each project & append to taskbox
     if (allProjectsArr.length > 0){
+        // console.log('allProjArr.length: ', allProjectsArr.length)
+        // console.log('allProjArr: ', allProjectsArr)
         allProjectsArr.forEach(createProjectItemCard);
     }
 }
- //initialises default project by creating default proj card
-renderProjectCards();
+
 
 //callback from foreach above
 //called on page load and also when new project is created
 function createProjectItemCard (item, index){
+    // console.log('createProjectItemCard item: ', item); //project
+    // console.log('createProjectItemCard index: ', index); //index in allprojarr 
+
     //create elements
     let projectItem = document.createElement("div");
 
     projectItem.addEventListener('click', function projClickHandler(e){
         if (e.target == projectItemDelIcon){
-            console.log('allProjArr: ', allProjectsArr);
-            console.log('item: ', item);
-            console.log('index: ', index);
-            console.log(this);
+            // console.log('allProjArr: ', allProjectsArr);
+            // console.log('item: ', item);
+            // console.log('index: ', index);
+            // console.log(this); //the card div that has been clicked on
+
             //remove proj 
-            //NOT WORKING - LOOK INTO INDEX. get item.id, and if matches, remove from allprojarr 
-            deleteProject(projectItem,allProjectsArr[index]); //in view. might need to move to prototype
+            deleteProject(projectItem,allProjectsArr[index]); //in view. might need to move to proj.prototype
 
         } else {
             
@@ -102,31 +107,52 @@ function createProjectItemCard (item, index){
 
    function deleteProject(projectItem,projObj){
         //remove project card from All Projects area
+
+        //PROJECTITEM IS THE DIV 
+        //PROJECTOBJ IS THE OBJ
+
+        //removes card
         domCachedElements.taskbox.removeChild(projectItem);
 
+        //find index of projObj in arr
+        let indexOfProjObj = allProjectsArr.findIndex((object) => object === projObj);
+       
         //remove project from allProjectsArr
-        //allProjectsArr.splice(projectItem,1);
-        allProjectsArr.splice(projObj,1);
+        allProjectsArr.splice(indexOfProjObj,1);
 
         //remove project from white section if current proj
-        if (projObj.isCurrentProj = true){
-            displayProject.clearSection();
-            projObj.isCurrentProj = false;
+         if (projObj.isCurrentProj = true){
+             displayProject.clearSection();
+             projObj.isCurrentProj = false;
         }
 
-        //code to remove project name from dropdown in modal
+        //remove project name from dropdown in modal
         populateDropdown(allProjectsArr);
         //rerender display
         renderProjectCards();
    }
 
 
+   function renderInfoCards(allProjArr){
+    //this function will display the current number of ACTIVE, COMPLETED and OVERDUE tasks
+    //this function will need to be called upon starting & also whenever a new task is created, deleted, date changed or marked complete
 
 
-   //task item cached elements
-   let taskItems = {
-       taskWrappersList : document.querySelectorAll('.project-task-item')
+    // ACTIVE TASKS
+    //loop over all proj arr, for each proj, getNoOfTasks(), add total number of tasks
+    // update card
+
+    // COMPLETED TASKS
+    //loop over all proj arr, for each proj, loop over tasksArr and count how many are isComplete = true, add total number of tasks
+    // update card
+
+    //OVERDUE TASKS
+     //loop over all proj arr, for each proj, loop over tasksArr and count how many have due date in the past(less than current date), add total number of tasks
+    // update card
    }
+
+
+
 
 
 
