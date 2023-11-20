@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     console.log(window.localStorage.length);
     localStorage.clear();
    
-    
+    //change 'items'
     let lsProjArray = localStorage.getItem('items') ?
     JSON.parse(localStorage.getItem('items')) : [];
 

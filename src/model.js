@@ -36,20 +36,16 @@ let projectActions = {
 
     },
     addToLocalStorage(){
-       
-      //save projid as string
+      //save projid as string 
+      //SAVING INDIV PROJECT TO LS
         let projIDstr = JSON.stringify(this.getProjectID());
-       
         window.localStorage.setItem(projIDstr, (JSON.stringify(this)));
-
         console.log('add to local storage reached');
   
     },
     getFromLocalStorage(){
         console.log('get from local storage reached');
-
         let projIDstr = JSON.stringify(this.getProjectID());
-
         //update references to 'myobject
         let newObject = window.localStorage.getItem(projIDstr);
         console.log(newObject);
