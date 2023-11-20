@@ -57,6 +57,18 @@ export let displayProject = {
                     checkbox.setAttribute('type', 'checkbox');
                     checkbox.classList.add('checkbox','taskcheckbox');
 
+
+               
+
+
+
+
+
+
+
+
+
+
                     let label = document.createElement('label');
                     label.setAttribute('for', 'task1'); //might need to change
                     label.textContent = item.name;
@@ -95,8 +107,11 @@ export let displayProject = {
                 } else if (e.target == taskEditIcon){
                     //edit task
                     console.log('task edit icon reached');
-                    //should the edit todo method be on the task or on the project??
-                    displayProject.editToDo(projectObj);
+                    //should the edit todo method be on the task o
+                  
+
+                    
+                    item.editTask();
                    
                 }
             });
@@ -140,6 +155,7 @@ export let displayProject = {
 
    
 
+  
 
     
 }

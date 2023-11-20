@@ -19,8 +19,13 @@ import { createNewTaskModel } from './model.js';
 
     let createdProject = createNewProjectModel(projName, generateUUID()); //in model
 
+    createdProject.addToLocalStorage();
+    createdProject.getFromLocalStorage()
+
+
+  
     //pass newly created obj to view to add card
-}
+} 
 
 //call view displayProj or create project card (createdProject)
  
@@ -38,7 +43,7 @@ export function createNewTask(taskName, taskDesc, taskDue, taskPriority, project
 
 
 
-export const localStorage = {
+//export const localStorage = {
 
   //setItem()
     //takes 2 params, a key and a value
@@ -51,7 +56,7 @@ export const localStorage = {
   //clear()
 
   //key()
-}
+//}
 
 
 

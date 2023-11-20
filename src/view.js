@@ -20,6 +20,18 @@ let domCachedElements = {
 domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCards);
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    //check if projects in local storage, if so, load them
+    //how to  check if localstorage isnt empty? 
+    console.log(window.localStorage.length);
+    localStorage.clear();
+   
+    
+    let lsProjArray = localStorage.getItem('items') ?
+    JSON.parse(localStorage.getItem('items')) : [];
+
+    console.log(lsProjArray);
+
+
     //initialises default project by creating default proj card
     renderProjectCards();
 });

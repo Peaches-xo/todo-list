@@ -32,11 +32,28 @@ let projectActions = {
         let noOfTasks = this.taskArr.length;
         return noOfTasks;
     },
-    updateProject(){
-
-    },
     removeProject(){
 
+    },
+    addToLocalStorage(){
+       
+      //save projid as string
+        let projIDstr = JSON.stringify(this.getProjectID());
+       
+        window.localStorage.setItem(projIDstr, (JSON.stringify(this)));
+
+        console.log('add to local storage reached');
+  
+    },
+    getFromLocalStorage(){
+        console.log('get from local storage reached');
+
+        let projIDstr = JSON.stringify(this.getProjectID());
+
+        //update references to 'myobject
+        let newObject = window.localStorage.getItem(projIDstr);
+        console.log(newObject);
+        console.log(JSON.parse(newObject));
     },
     deleteTask(taskid){
         //find task id in this.taskArr that == taskid, remove from taskArr
@@ -116,6 +133,7 @@ let projectActions = {
         },
         addTask(){
         //this method finds the projectID and pushes the task to the taskArr within the corresponding Project
+        //should this be a method on the project? 
         
             //get corresponding project id
             let currentProj = this.getTaskProjectID();
@@ -126,6 +144,10 @@ let projectActions = {
             };
             //re-calculate # of active tasks & rerender display
             result.getNoOfTasks();
+        },
+        editTask(){
+            console.log('editTask inside Task Object reached');
+            console.log(this); //task obj
         },
     }
 

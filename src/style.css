@@ -1220,7 +1220,7 @@ input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:befo
 
 
 
-/* pencil icon hover */
+/* pencil icon hover - maybe remove*/
 /* Forward */
 .hvr-forward {
   display: inline-block;
