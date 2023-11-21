@@ -5,20 +5,20 @@ import { displayProject } from './displayProject';
 import { renderProjectCards } from './view.js';
 
 
-//array of all projects, each project is an object
 
 export let allProjectsArr = []; //export to controller and view (try to remove from view)
 
+
 function ProjectFactory(projName, projID){
     let project = Object.create(projectActions);
-    project.name = projName;
+    project.name = projName || 'default';
     project.id = projID;
-    project.taskArr = [];  //set task array to empty array (arr of objects)
+    project.taskArr = [];  
     project.isCurrentProj = false;
     return project;
 }
 
-let projectActions = {
+export let projectActions = {
     getProjectName(){
         return this.name;
     },
@@ -27,30 +27,17 @@ let projectActions = {
     },
     addProjToAllProjArr(){
         allProjectsArr.push(this);
-   
         return allProjectsArr;
     },
     getNoOfTasks(){
         let noOfTasks = this.taskArr.length;
         return noOfTasks;
     },
-    removeProject(){
-
-    },
-    addToLocalStorage(){
-      //save projid as string 
-      //SAVING INDIV PROJECT TO LS
-       // let projIDstr = JSON.stringify(this.getProjectID());
-       // window.localStorage.setItem(projIDstr, (JSON.stringify(this)));
-
+     addToLocalStorage(){
        //SAVE ALLPROJARR TO LS
         console.log('add to local storage reached');
         let allProjArrLS = JSON.stringify(allProjectsArr);
-
-        console.log('allProjArrLS: ', allProjArrLS);
-        
         localStorage.setItem("allProjArrLS", allProjArrLS);
-  
     },
     //maybe move this out of project prototype 
     getFromLocalStorage(){
@@ -63,12 +50,13 @@ let projectActions = {
     },
     deleteTask(taskid){
         //find task id in this.taskArr that == taskid, remove from taskArr
-        //console.log(this.taskArr);
-        //how to find index of object with id of taskid 
             let index = this.taskArr.findIndex(taskobj => taskobj.id == taskid);
             if (index > -1){
                 this.taskArr.splice(index, 1);
             }
+        
+        //get project, call addToLocalStorage() to refresh LS
+        this.addToLocalStorage();
 
           //Clear project section
           displayProject.clearSection();
@@ -78,7 +66,6 @@ let projectActions = {
           renderProjectCards();
           //rerender proj section
           displayProject.display(this);
-          
     }
 
 };
@@ -118,7 +105,7 @@ let projectActions = {
         return task;
     }
 
-    let taskActions = {
+   export let taskActions = {
         getTaskName(){
             return this.name;
         },

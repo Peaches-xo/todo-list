@@ -19,8 +19,6 @@ import { createNewTaskModel } from './model.js';
 
     let createdProject = createNewProjectModel(projName, generateUUID()); //in model
 
-    //createdProject.addToLocalStorage();
-    //createdProject.getFromLocalStorage()
 
 
   
@@ -29,8 +27,7 @@ import { createNewTaskModel } from './model.js';
 
 //call view displayProj or create project card (createdProject)
  
-//initialise 'default' project
-createNewProject('default');
+
 
 
 

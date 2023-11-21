@@ -6,8 +6,9 @@ import { newTaskForm } from './newTaskForm.js';
 import { allProjectsArr } from './model.js'; //maybe move
 import { displayProject } from './displayProject.js';
 import { populateDropdown } from './newTaskForm.js';
+import { projectActions }  from './model.js';
+import { taskActions } from './model.js';
 import { pubSub } from './controller.js';
-
 
 
 //export function thisistheview(){
@@ -21,20 +22,30 @@ let domCachedElements = {
 domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCards);
 
 document.addEventListener("DOMContentLoaded", (event) => {
+   
 
     //check if LS contains anything
-    //let allProjArrLS = localStorage.getItem("allProjArrLS") ?
-    //JSON.parse(localStorage.getItem("allProjArrLS")) : [];
+    let allProjArrLS = localStorage.getItem("allProjArrLS") ?
+    JSON.parse(localStorage.getItem("allProjArrLS")) : [];
+     
+    //loop over allProjArrLS and push each obj to allProjectsArr, 
+    allProjArrLS.forEach((obj) => allProjectsArr.push(obj));
 
-   // console.log(allProjArrLS);
+
+    // loop over allProjectsArr and set prototypes to be able to use methods
+    allProjectsArr.forEach((obj) =>  Object.setPrototypeOf(obj, projectActions));
+
+    //set protos on tasks
+    //loop through proj arr & do something to each proj obj 
+    for (let project of allProjectsArr){
+        for (let task of project.taskArr){
+            Object.setPrototypeOf(task, taskActions);
+        }
+    }
 
 
-
-   
-   //use allProjArrLS to populate allProjArr 
-//allProjectsArr = 
-
-    //initialises default project by creating default proj card
+   //initialises default project by creating default proj card
+    //createNewProject('default');   
     renderProjectCards();
 });
 
@@ -47,7 +58,6 @@ export function renderProjectCards(){
         allProjectsArr.forEach(createProjectItemCard);
     }
 }
-
 
 //callback from foreach above
 //called on page load and also when new project is created
@@ -88,8 +98,9 @@ function createProjectItemCard (item, index){
     let projectTaskNo = document.createElement("p");
     projectTaskNo.classList.add("project-item-taskno");
     
-        
+  
     if ( (allProjectsArr[index].getNoOfTasks()) === 1 ){
+        
         projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active task`; 
     } else {
         projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active tasks`; 
@@ -131,6 +142,9 @@ function createProjectItemCard (item, index){
        
         //remove project from allProjectsArr
         allProjectsArr.splice(indexOfProjObj,1);
+
+        //re-send arr to localstorage to be up to date
+        projObj.addToLocalStorage();
 
         //remove project from white section if current proj
          if (projObj.isCurrentProj = true){
