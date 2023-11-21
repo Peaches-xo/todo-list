@@ -6,6 +6,7 @@ import { renderProjectCards } from './view.js';
 
 
 //array of all projects, each project is an object
+
 export let allProjectsArr = []; //export to controller and view (try to remove from view)
 
 function ProjectFactory(projName, projID){
@@ -26,6 +27,7 @@ let projectActions = {
     },
     addProjToAllProjArr(){
         allProjectsArr.push(this);
+   
         return allProjectsArr;
     },
     getNoOfTasks(){
@@ -38,18 +40,26 @@ let projectActions = {
     addToLocalStorage(){
       //save projid as string 
       //SAVING INDIV PROJECT TO LS
-        let projIDstr = JSON.stringify(this.getProjectID());
-        window.localStorage.setItem(projIDstr, (JSON.stringify(this)));
+       // let projIDstr = JSON.stringify(this.getProjectID());
+       // window.localStorage.setItem(projIDstr, (JSON.stringify(this)));
+
+       //SAVE ALLPROJARR TO LS
         console.log('add to local storage reached');
+        let allProjArrLS = JSON.stringify(allProjectsArr);
+
+        console.log('allProjArrLS: ', allProjArrLS);
+        
+        localStorage.setItem("allProjArrLS", allProjArrLS);
   
     },
+    //maybe move this out of project prototype 
     getFromLocalStorage(){
         console.log('get from local storage reached');
-        let projIDstr = JSON.stringify(this.getProjectID());
-        //update references to 'myobject
-        let newObject = window.localStorage.getItem(projIDstr);
-        console.log(newObject);
-        console.log(JSON.parse(newObject));
+        //let projIDstr = JSON.stringify(this.getProjectID());
+
+        //let parsedAllProjArrLS = JSON.parse(localStorage.getItem('allProjArrLS'));
+        //console.log('parsedAllProjArrLS: ', parsedAllProjArrLS);
+        //console.log(JSON.parse(newObject));
     },
     deleteTask(taskid){
         //find task id in this.taskArr that == taskid, remove from taskArr
@@ -85,6 +95,12 @@ let projectActions = {
      
          newprojName.addProjToAllProjArr();
          newprojName.getNoOfTasks();
+         //localStorage.clear();
+         newprojName.addToLocalStorage();
+
+
+
+        
 
          return newprojName;
      }
@@ -137,9 +153,12 @@ let projectActions = {
 
             if (result !== undefined) {
                 result.taskArr.push(this);
+
             };
             //re-calculate # of active tasks & rerender display
             result.getNoOfTasks();
+
+            result.addToLocalStorage();
         },
         editTask(){
             console.log('editTask inside Task Object reached');

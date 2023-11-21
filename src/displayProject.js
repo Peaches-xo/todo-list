@@ -41,7 +41,7 @@ export let displayProject = {
 
         //could this fn be moved up a level?
         function createTaskElement(item, index){
-            console.log(item); //task object
+           // console.log(item); //task object
             //console.log(index); //0
         
         let details = document.createElement('details');

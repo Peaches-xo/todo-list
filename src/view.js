@@ -9,6 +9,7 @@ import { populateDropdown } from './newTaskForm.js';
 import { pubSub } from './controller.js';
 
 
+
 //export function thisistheview(){
 let domCachedElements = {
     container: document.querySelector(".container"),
@@ -20,17 +21,18 @@ let domCachedElements = {
 domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCards);
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    //check if projects in local storage, if so, load them
-    //how to  check if localstorage isnt empty? 
-    console.log(window.localStorage.length);
-    localStorage.clear();
+
+    //check if LS contains anything
+    //let allProjArrLS = localStorage.getItem("allProjArrLS") ?
+    //JSON.parse(localStorage.getItem("allProjArrLS")) : [];
+
+   // console.log(allProjArrLS);
+
+
+
    
-    //change 'items'
-    let lsProjArray = localStorage.getItem('items') ?
-    JSON.parse(localStorage.getItem('items')) : [];
-
-    console.log(lsProjArray);
-
+   //use allProjArrLS to populate allProjArr 
+//allProjectsArr = 
 
     //initialises default project by creating default proj card
     renderProjectCards();
@@ -42,8 +44,6 @@ export function renderProjectCards(){
     removeChildren(domCachedElements.taskbox);
     //2. loops over all projects array (if arr not empty) & creates project card for each project & append to taskbox
     if (allProjectsArr.length > 0){
-        // console.log('allProjArr.length: ', allProjectsArr.length)
-        // console.log('allProjArr: ', allProjectsArr)
         allProjectsArr.forEach(createProjectItemCard);
     }
 }
@@ -288,7 +288,7 @@ function createProjectItemCard (item, index){
          
             //find project in AllProjArr 
             let foundProj = allProjectsArr.find((project) => project.id === projID);
-            console.log('foundProj: ', foundProj);
+           // console.log('foundProj: ', foundProj);
 
             //Clear project section
             displayProject.clearSection();

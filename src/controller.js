@@ -11,7 +11,7 @@ import { createNewTaskModel } from './model.js';
    //generate ID
    const generateUUID = function b(a){
     return a ? (a^Math.random()*16>>a/4).toString(16) : ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,b)
-  };
+    };
 
 //function that runs when submit button is clicked
  export function createNewProject(projName){
@@ -19,8 +19,8 @@ import { createNewTaskModel } from './model.js';
 
     let createdProject = createNewProjectModel(projName, generateUUID()); //in model
 
-    createdProject.addToLocalStorage();
-    createdProject.getFromLocalStorage()
+    //createdProject.addToLocalStorage();
+    //createdProject.getFromLocalStorage()
 
 
   
