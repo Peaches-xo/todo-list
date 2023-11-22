@@ -439,7 +439,7 @@ h2.project-heading {
     background:#eeeeee;
     border-radius: 10px;
     margin: 10px 10px;
-    padding: 5px 5px 5px 5px;
+    padding: 10px;
     display:flex;
     justify-content: center;
     flex-wrap: nowrap;
@@ -447,18 +447,34 @@ h2.project-heading {
     box-shadow: 0 2px 4px #3a474e26, 0 1px 2px #3a474e26;
 }
 
+.project-task-item label,
+.project-task-item p{
+  outline: transparent outset 2px;
+}
+.project-task-item label:focus-visible,
+.project-task-item p:focus-visible{
+  outline: #fa83fc outset 2px;
+}
 
-/* img.project-task-editbtn {
-    margin-left: auto;
-} */
+*[contenteditable="true"] {
+  background-color: #fbfbfb;
+  border-radius: 3px;
+  box-shadow: 3px 3px 2px -4px;
+  caret-color: #af76f3;
+  transition: 0.3s;
+}
+
 
 
 summary {
     display:flex;
     justify-content: space-between;
     align-items:center;
+    pointer-events:none;  /* */
 }
-
+.taskcheckbox{
+  pointer-events: auto;
+}
 .project-task-priority{
     background-color: var(--project_color6);
     color: #008b92;
@@ -471,6 +487,11 @@ summary {
     text-shadow: 0 1px 0px #79485f7a;
     border-radius: 50px;
     border: transparent;
+}
+
+details.edit-mode .project-task-priority{
+  /* transform: rotate(45deg); */
+  pointer-events: none;
 }
 label{
     font-size: 13px;
@@ -503,7 +524,7 @@ p.project-task-duedate {
   font-size: 13px;
   display: flex;
   align-items: center;
-  padding: 0px 10px;
+  padding: 7px 10px;
   margin-bottom: 5px;
   margin-right: auto;
   color: #cd8cfe;
@@ -512,7 +533,8 @@ p.project-task-duedate {
 .project-task-img{
     vertical-align: top;
     padding-right: 5px;
-    
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 .project-task-footer {
@@ -760,6 +782,12 @@ input[type="checkbox"]:checked {
 
 
 
+
+
+
+
+
+
   .hidden {
     display: none;
   }
@@ -871,9 +899,7 @@ input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:befo
   --border-radius: 10px;
   border-radius: var(--border-radius);
   position: relative;
-  padding: 5px;
-  /* display: grid; */
-  /* grid-template-columns: 30px auto; */
+  padding: 0px 5px;
   align-items: center;
   display: flex;
 }
@@ -881,7 +907,7 @@ input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:befo
   color: var(--text);
   position: relative;
   cursor: pointer;
-  /* display: grid; */
+  padding: 5px;
   align-items: center;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -920,7 +946,6 @@ input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:befo
   margin: 0 15px 0 0;
   cursor: pointer;
   background: var(--background);
-  /* display: grid; */
   align-items: center;
 }
 .task-checkbox input[type=checkbox]::before, 

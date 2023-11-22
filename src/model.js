@@ -30,8 +30,15 @@ export let projectActions = {
         return allProjectsArr;
     },
     getNoOfTasks(){
+        
         let noOfTasks = this.taskArr.length;
         return noOfTasks;
+    },
+    getNoOfActiveTasks(){
+        //loop through taskArr and make new Arr from all that have 
+        //task.isComplete = true
+        
+        //let noOfActiveTasks = 
     },
      addToLocalStorage(){
        //SAVE ALLPROJARR TO LS
@@ -144,12 +151,28 @@ export let projectActions = {
             };
             //re-calculate # of active tasks & rerender display
             result.getNoOfTasks();
-
             result.addToLocalStorage();
         },
-        editTask(){
-            console.log('editTask inside Task Object reached');
+        editTask(updatedTaskData){
+            //receive new values
+            console.log('updatedTaskData from editTask in model: ', updatedTaskData);
+
+            // update values
+            this.name = updatedTaskData.name;
+            this.description = updatedTaskData.desc;
+            this.dueDate = updatedTaskData.date;
+           
             console.log(this); //task obj
+
+
+            let currentProj = this.getTaskProjectID();
+
+            let result = allProjectsArr.find(project => project.id === currentProj);
+        
+            console.log(result);
+
+           result.addToLocalStorage();
+          
         },
     }
 

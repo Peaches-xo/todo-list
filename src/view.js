@@ -32,7 +32,8 @@ let allProjArrLS;
     if (localStorage.getItem("allProjArrLS")){
            allProjArrLS = JSON.parse(localStorage.getItem("allProjArrLS"));
     } else {
-         allProjArrLS = [];
+        
+        allProjArrLS = [];
         createNewProject('default');
     }
      
