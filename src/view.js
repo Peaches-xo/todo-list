@@ -11,6 +11,7 @@ import { taskActions } from './model.js';
 import { pubSub } from './controller.js';
 
 
+
 //export function thisistheview(){
 let domCachedElements = {
     container: document.querySelector(".container"),
@@ -23,10 +24,17 @@ domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCard
 
 document.addEventListener("DOMContentLoaded", (event) => {
    
-
+// localStorage.clear();
     //check if LS contains anything
-    let allProjArrLS = localStorage.getItem("allProjArrLS") ?
-    JSON.parse(localStorage.getItem("allProjArrLS")) : [];
+    //let allProjArrLS = localStorage.getItem("allProjArrLS") ?
+     //JSON.parse(localStorage.getItem("allProjArrLS")) : [];
+let allProjArrLS;
+    if (localStorage.getItem("allProjArrLS")){
+           allProjArrLS = JSON.parse(localStorage.getItem("allProjArrLS"));
+    } else {
+         allProjArrLS = [];
+        createNewProject('default');
+    }
      
     //loop over allProjArrLS and push each obj to allProjectsArr, 
     allProjArrLS.forEach((obj) => allProjectsArr.push(obj));
