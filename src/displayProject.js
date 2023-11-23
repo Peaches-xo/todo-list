@@ -1,5 +1,6 @@
 //displayProject module (view)
 import { allProjectsArr } from "./model";
+import { getRadioValue } from "./model";
 
 
 export let displayProject = {
@@ -87,56 +88,62 @@ export let displayProject = {
             details.appendChild(taskFooter);
 
             taskFooter.addEventListener('click', function taskClickHandler(e){
+                //DELETE BTN CLICKED
                 if (e.target == taskDelIcon){
                     //remove task
                    // console.log(this); //footer element 
                     projectObj.deleteTask(item.id);
                  
+                //EDIT BTN CLICKED
                 } else if (e.target == taskEditIcon){
-                    //if pencil icon
+                    //if pencil icon showing
                     if (taskEditIcon.getAttribute('src') == '/src/images/edit24.png'){
 
 
 
                     // ********************
-                    //move priotiy to inside desc
+                    //move priority to inside desc
                     summary.removeChild(priorityspan);
                    
                     //put this in a function to be exported btween newTaskForm.js and here
 
-                    let taskPriorityWrapper = document.createElement('div');
-                    let taskPriorityInput_low = document.createElement('input');
-                    let taskPriorityInput_med = document.createElement('input');
-                    let taskPriorityInput_high = document.createElement('input');
+                    function createPriorityPicker(){
+                        let taskPriorityWrapper = document.createElement('div');
+                        let taskPriorityInput_low = document.createElement('input');
+                        let taskPriorityInput_med = document.createElement('input');
+                        let taskPriorityInput_high = document.createElement('input');
 
-                    taskPriorityWrapper.classList.add('taskPriority_radio', 'taskEditPriority'); 
-                    taskPriorityInput_low.setAttribute('label','Low');
-                    taskPriorityInput_low.setAttribute('type','radio');
-                    taskPriorityInput_low.setAttribute('id','taskPriority_low');
-                    taskPriorityInput_low.setAttribute('name','taskPriority');
-                    taskPriorityInput_low.setAttribute('value','low');
-                    
-                    taskPriorityInput_med.setAttribute('label','Medium');
-                    taskPriorityInput_med.setAttribute('type','radio');
-                    taskPriorityInput_med.setAttribute('id','taskPriority_med');
-                    taskPriorityInput_med.setAttribute('name','taskPriority');
-                    taskPriorityInput_med.setAttribute('value','med');
-                    
-                    taskPriorityInput_high.setAttribute('label','High');
-                    taskPriorityInput_high.setAttribute('type','radio');
-                    taskPriorityInput_high.setAttribute('id','taskPriority_high');
-                    taskPriorityInput_high.setAttribute('name','taskPriority');
-                    taskPriorityInput_high.setAttribute('value','high');
-                    
-                    taskPriorityWrapper.appendChild(taskPriorityInput_low);
-                    taskPriorityWrapper.appendChild(taskPriorityInput_med);
-                    taskPriorityWrapper.appendChild(taskPriorityInput_high);
+                        taskPriorityWrapper.classList.add('taskPriority_radio', 'taskEditPriority'); 
+                        taskPriorityInput_low.setAttribute('label','Low');
+                        taskPriorityInput_low.setAttribute('type','radio');
+                        taskPriorityInput_low.setAttribute('id','taskPriority_low');
+                        taskPriorityInput_low.setAttribute('name','taskPriority');
+                        taskPriorityInput_low.setAttribute('value','low');
+                        
+                        taskPriorityInput_med.setAttribute('label','Medium');
+                        taskPriorityInput_med.setAttribute('type','radio');
+                        taskPriorityInput_med.setAttribute('id','taskPriority_med');
+                        taskPriorityInput_med.setAttribute('name','taskPriority');
+                        taskPriorityInput_med.setAttribute('value','med');
+                        
+                        taskPriorityInput_high.setAttribute('label','High');
+                        taskPriorityInput_high.setAttribute('type','radio');
+                        taskPriorityInput_high.setAttribute('id','taskPriority_high');
+                        taskPriorityInput_high.setAttribute('name','taskPriority');
+                        taskPriorityInput_high.setAttribute('value','high');
+                        
+                        taskPriorityWrapper.appendChild(taskPriorityInput_low);
+                        taskPriorityWrapper.appendChild(taskPriorityInput_med);
+                        taskPriorityWrapper.appendChild(taskPriorityInput_high);
 
-                    details.insertBefore(taskPriorityWrapper, taskdesc);
+                    return taskPriorityWrapper;
+                    }
+
+                    details.insertBefore(createPriorityPicker(), taskdesc);
 
                    //get value and pass to data object
 
-
+                   
 
 
 
@@ -151,21 +158,28 @@ export let displayProject = {
                          //this pencil icon needs to change to a save icon
                         taskEditIcon.setAttribute('src', '/src/images/diskette24.png');
 
-                    //if save icon
+                    //if SAVE  icon
                     } else if (taskEditIcon.getAttribute('src') == '/src/images/diskette24.png'){
-
-
-                        //taskPriorityInput = document.querySelector('.taskPriority_radio'); 
-                        // call getRadioValue 
-                        //change getRadioValue function to be able to take any radio element - maybe not
 
                         //get new values
                         let updatedTaskData = {
                             name: label.textContent,
                             desc: taskdesc.textContent,
                             date: date.textContent,
-                            // priority: getRadioValue(),
+                            priority: getRadioValue(),
                         }
+                        console.log(updatedTaskData.priority);
+
+                        //MOVE TO model
+                        function getRadioValue(){
+                            let radio = document.getElementsByName('taskPriority');
+                            for (let i = 0; i < radio.length; i++){
+                                if (radio[i].checked){
+                                    return radio[i].value;
+                                }
+                            }
+                        }
+                  
 
                         //if save clicked, call with new values 
                         item.editTask(updatedTaskData);
@@ -183,7 +197,25 @@ export let displayProject = {
 
 
                         //move selected priority bubble back to summary
+                       let taskPriorityWrapper = document.querySelector('div.taskEditPriority');
+
+
+                       //let priorityspan = document.createElement('span');
+                       priorityspan.classList.remove(`${item.priority}Priority`);
+                       priorityspan.classList.add(`${updatedTaskData.priority}Priority`)
+                       //project-task-priority highPriority
+
+                       priorityspan.textContent = updatedTaskData.priority;
+                       //summary.appendChild(priorityspan);
+
+
+                        //priorityspan.
+                        summary.insertBefore(priorityspan, arrow);
+
+                     taskPriorityWrapper.remove();
                     }
+
+                    
                 
     
                 }

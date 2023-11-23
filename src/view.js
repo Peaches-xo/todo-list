@@ -8,6 +8,7 @@ import { displayProject } from './displayProject.js';
 import { populateDropdown } from './newTaskForm.js';
 import { projectActions }  from './model.js';
 import { taskActions } from './model.js';
+import { getRadioValue } from './model.js';
 import { pubSub } from './controller.js';
 
 
@@ -34,26 +35,20 @@ domCachedElements.nav.addEventListener('click', function navClickHandler(e){
     } 
     
 })
-//domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCards);
 
 document.addEventListener("DOMContentLoaded", (event) => {
    
-// localStorage.clear();
     //check if LS contains anything
-    //let allProjArrLS = localStorage.getItem("allProjArrLS") ?
-     //JSON.parse(localStorage.getItem("allProjArrLS")) : [];
-let allProjArrLS;
-    if (localStorage.getItem("allProjArrLS")){
-           allProjArrLS = JSON.parse(localStorage.getItem("allProjArrLS"));
-    } else {
-        
-        allProjArrLS = [];
-        createNewProject('default');
-    }
+    let allProjArrLS;
+        if (localStorage.getItem("allProjArrLS")){
+            allProjArrLS = JSON.parse(localStorage.getItem("allProjArrLS"));
+        } else {
+            allProjArrLS = [];
+            createNewProject('default');
+        }
      
     //loop over allProjArrLS and push each obj to allProjectsArr, 
     allProjArrLS.forEach((obj) => allProjectsArr.push(obj));
-
 
     // loop over allProjectsArr and set prototypes to be able to use methods
     allProjectsArr.forEach((obj) =>  Object.setPrototypeOf(obj, projectActions));
@@ -66,9 +61,6 @@ let allProjArrLS;
         }
     }
 
-
-   //initialises default project by creating default proj card
-    //createNewProject('default');   
     renderProjectCards();
 });
 
@@ -123,7 +115,6 @@ function createProjectItemCard (item, index){
     
   
     if ( (allProjectsArr[index].getNoOfTasks()) === 1 ){
-        
         projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active task`; 
     } else {
         projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active tasks`; 
@@ -362,12 +353,12 @@ function createProjectItemCard (item, index){
         }
     }
 
-     function getRadioValue(){
-        let radio = document.getElementsByName('taskPriority');
-        for (let i = 0; i < radio.length; i++){
-            if (radio[i].checked){
-                return radio[i].value;
-            }
-        }
-    }
+    // function getRadioValue(){
+    //     let radio = document.getElementsByName('taskPriority');
+    //     for (let i = 0; i < radio.length; i++){
+    //         if (radio[i].checked){
+    //             return radio[i].value;
+    //         }
+    //     }
+    // }
 //}

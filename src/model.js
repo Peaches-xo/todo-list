@@ -160,6 +160,7 @@ export let projectActions = {
             // update values
             this.name = updatedTaskData.name;
             this.description = updatedTaskData.desc;
+            this.priority = updatedTaskData.priority;
             this.dueDate = updatedTaskData.date;
            
             console.log(this); //task obj
@@ -186,6 +187,16 @@ export let projectActions = {
 
         return newTask;
 
+    }
+
+    //was in view. Maybe add as setter for taskPriority?
+    export function getRadioValue(){
+        let radio = document.getElementsByName('taskPriority');
+        for (let i = 0; i < radio.length; i++){
+            if (radio[i].checked){
+                return radio[i].value;
+            }
+        }
     }
 
 
