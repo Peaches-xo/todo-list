@@ -35,7 +35,7 @@ export let projectActions = {
         return noOfTasks;
     },
     getNoOfActiveTasks(){
-        //loop through taskArr and make new Arr from all that have 
+        //loop through taskArr and make new Arr from all tasks that have 
         //task.isComplete = true
         
         //let noOfActiveTasks = 
@@ -106,7 +106,7 @@ export let projectActions = {
         task.description = taskDesc;
         task.dueDate = taskDue || new Date().toDateString();
         task.priority = taskPriority;
-        //task.isComplete = isComplete;
+        task.isComplete = false;
         task.projName = projectName;
         task.projID = projID;
         return task;
@@ -128,9 +128,9 @@ export let projectActions = {
         getTaskPriority(){
             return this.priority;
         },
-        // getTaskIsComplete(){
-        //     return this.isComplete;
-        // },
+        getTaskIsComplete(){
+             return this.isComplete;
+         },
         getTaskProjectName(){
             return this.projName;
         },

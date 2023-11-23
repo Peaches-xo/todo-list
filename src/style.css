@@ -196,7 +196,12 @@ body{
     align-items: center;
   }
 
-  .btn:hover{
+.btn-github a {
+    color: #94969b;
+}
+
+  .btn:hover,
+  .btn-github:hover{
     background-color: #464B5B;
     /* color: #ff94ea; */
     color: #fff;
@@ -734,6 +739,19 @@ input[type="checkbox"]:checked {
   display: flex;
   justify-content: center;
 }
+
+.taskEditPriority{
+  margin: 10px 0px;
+  width:auto;
+  background: transparent;
+  box-shadow: unset;
+  gap:5px;
+}
+
+
+
+
+
 
 .taskPriority_radio input {
 	width: auto;

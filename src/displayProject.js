@@ -1,6 +1,7 @@
 //displayProject module (view)
 import { allProjectsArr } from "./model";
 
+
 export let displayProject = {
     //dom elements
     section: document.querySelector('.project'),
@@ -95,6 +96,50 @@ export let displayProject = {
                     //if pencil icon
                     if (taskEditIcon.getAttribute('src') == '/src/images/edit24.png'){
 
+
+
+                    // ********************
+                    //move priotiy to inside desc
+                    summary.removeChild(priorityspan);
+                   
+                    //put this in a function to be exported btween newTaskForm.js and here
+
+                    let taskPriorityWrapper = document.createElement('div');
+                    let taskPriorityInput_low = document.createElement('input');
+                    let taskPriorityInput_med = document.createElement('input');
+                    let taskPriorityInput_high = document.createElement('input');
+
+                    taskPriorityWrapper.classList.add('taskPriority_radio', 'taskEditPriority'); 
+                    taskPriorityInput_low.setAttribute('label','Low');
+                    taskPriorityInput_low.setAttribute('type','radio');
+                    taskPriorityInput_low.setAttribute('id','taskPriority_low');
+                    taskPriorityInput_low.setAttribute('name','taskPriority');
+                    taskPriorityInput_low.setAttribute('value','low');
+                    
+                    taskPriorityInput_med.setAttribute('label','Medium');
+                    taskPriorityInput_med.setAttribute('type','radio');
+                    taskPriorityInput_med.setAttribute('id','taskPriority_med');
+                    taskPriorityInput_med.setAttribute('name','taskPriority');
+                    taskPriorityInput_med.setAttribute('value','med');
+                    
+                    taskPriorityInput_high.setAttribute('label','High');
+                    taskPriorityInput_high.setAttribute('type','radio');
+                    taskPriorityInput_high.setAttribute('id','taskPriority_high');
+                    taskPriorityInput_high.setAttribute('name','taskPriority');
+                    taskPriorityInput_high.setAttribute('value','high');
+                    
+                    taskPriorityWrapper.appendChild(taskPriorityInput_low);
+                    taskPriorityWrapper.appendChild(taskPriorityInput_med);
+                    taskPriorityWrapper.appendChild(taskPriorityInput_high);
+
+                    details.insertBefore(taskPriorityWrapper, taskdesc);
+
+                   //get value and pass to data object
+
+
+
+
+
                         //add class of edit-mode to task related inputs (if needed)
                         details.classList.add('edit-mode');
 
@@ -109,11 +154,17 @@ export let displayProject = {
                     //if save icon
                     } else if (taskEditIcon.getAttribute('src') == '/src/images/diskette24.png'){
 
+
+                        //taskPriorityInput = document.querySelector('.taskPriority_radio'); 
+                        // call getRadioValue 
+                        //change getRadioValue function to be able to take any radio element - maybe not
+
                         //get new values
                         let updatedTaskData = {
                             name: label.textContent,
                             desc: taskdesc.textContent,
                             date: date.textContent,
+                            // priority: getRadioValue(),
                         }
 
                         //if save clicked, call with new values 
@@ -130,6 +181,8 @@ export let displayProject = {
                         taskdesc.setAttribute('contentEditable', 'false');
                         date.setAttribute('contentEditable', 'false');
 
+
+                        //move selected priority bubble back to summary
                     }
                 
     
@@ -156,16 +209,21 @@ export let displayProject = {
 
             checkbox.addEventListener( "change", () => {
                 if ( checkbox.checked ) {
-                   console.log( " Check box is checked.");
-                   //change task.isCompleted to true;
+                   item.isComplete = true;
                    //update active task #s
+
                 } else {
-                    console.log(" Check box NOT checked.");
-                    //set task.isCompleted to false; 
+                    item.isComplete = false;
+                  
                 }
              });
 
+             
 
+            
+
+           
+            
         } //end of createTaskElement
     }
 }

@@ -40,22 +40,6 @@ export function createNewTask(taskName, taskDesc, taskDue, taskPriority, project
 
 
 
-//export const localStorage = {
-
-  //setItem()
-    //takes 2 params, a key and a value
-    //localStorage.setItem('user', JSON.stringify(userArray));
-    //'user' will be a string of projID 
-  //getItem()
-
-  //removeItem()
-
-  //clear()
-
-  //key()
-//}
-
-
 
 
 

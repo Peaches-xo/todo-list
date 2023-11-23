@@ -15,12 +15,26 @@ import { pubSub } from './controller.js';
 //export function thisistheview(){
 let domCachedElements = {
     container: document.querySelector(".container"),
-    addbutton: document.querySelector(".btn-add"),
+    nav: document.querySelector('.nav'),
+    homeBtn: document.querySelector('.btn-home'),
+    addBtn: document.querySelector(".btn-add"),
     viewAllProjectsBtn: document.querySelector(".btn-allproj"),
     taskbox: document.querySelector(".taskbox"),
     activeInfoItem: document.querySelector('.info-item-active'),
 }
-domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCards);
+
+//add event delegation for home, add new, view all and gitub//
+domCachedElements.nav.addEventListener('click', function navClickHandler(e){
+    if (e.target == domCachedElements.homeBtn){
+        displayProject.clearSection();
+    } else if (e.target == domCachedElements.addBtn){
+       openModal();
+    } else if (e.target == domCachedElements.viewAllProjectsBtn){
+        renderProjectCards();
+    } 
+    
+})
+//domCachedElements.viewAllProjectsBtn.addEventListener("click", renderProjectCards);
 
 document.addEventListener("DOMContentLoaded", (event) => {
    
@@ -216,7 +230,7 @@ function createProjectItemCard (item, index){
         clearInputValues();
     };
     //add event listener to open modal on click
-    domCachedElements.addbutton.addEventListener("click", openModal);
+    //domCachedElements.addBtn.addEventListener("click", openModal);
 
     //closes modal
     const closeModal = function () {
@@ -348,7 +362,7 @@ function createProjectItemCard (item, index){
         }
     }
 
-    function getRadioValue(){
+     function getRadioValue(){
         let radio = document.getElementsByName('taskPriority');
         for (let i = 0; i < radio.length; i++){
             if (radio[i].checked){
