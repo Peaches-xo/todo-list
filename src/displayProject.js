@@ -100,14 +100,13 @@ export let displayProject = {
                     if (taskEditIcon.getAttribute('src') == '/src/images/edit24.png'){
 
 
-
-                    // ********************
                     //move priority to inside desc
                     summary.removeChild(priorityspan);
                    
                     //put this in a function to be exported btween newTaskForm.js and here
 
-                    function createPriorityPicker(){
+                    function createPriorityPicker(currentPriority){
+                        console.log('current priority: ', currentPriority); //high
                         let taskPriorityWrapper = document.createElement('div');
                         let taskPriorityInput_low = document.createElement('input');
                         let taskPriorityInput_med = document.createElement('input');
@@ -131,6 +130,17 @@ export let displayProject = {
                         taskPriorityInput_high.setAttribute('id','taskPriority_high');
                         taskPriorityInput_high.setAttribute('name','taskPriority');
                         taskPriorityInput_high.setAttribute('value','high');
+
+
+                        
+                            if (currentPriority == 'high'){                           
+                              taskPriorityInput_high.setAttribute('checked', 'true');                            
+                            } else if (currentPriority == 'med'){                           
+                              taskPriorityInput_med.setAttribute('checked', 'true');                        
+                            } else if (currentPriority == 'low'){
+                              taskPriorityInput_low.setAttribute('checked', 'true');
+                            };
+                          
                         
                         taskPriorityWrapper.appendChild(taskPriorityInput_low);
                         taskPriorityWrapper.appendChild(taskPriorityInput_med);
@@ -139,9 +149,9 @@ export let displayProject = {
                     return taskPriorityWrapper;
                     }
 
-                    details.insertBefore(createPriorityPicker(), taskdesc);
+                    details.insertBefore(createPriorityPicker(item.priority), taskdesc);
 
-                   //get value and pass to data object
+                   
 
                    
 
@@ -167,8 +177,9 @@ export let displayProject = {
                             desc: taskdesc.textContent,
                             date: date.textContent,
                             priority: getRadioValue(),
+                            //isComplete: 
                         }
-                        console.log(updatedTaskData.priority);
+
 
                         //MOVE TO model
                         function getRadioValue(){
@@ -179,16 +190,12 @@ export let displayProject = {
                                 }
                             }
                         }
-                  
-
-                        //if save clicked, call with new values 
-                        item.editTask(updatedTaskData);
 
                         //change save icon back to pencil 
                         taskEditIcon.setAttribute('src', '/src/images/edit24.png');
 
                         //remove edit-mode class
-                         details.classList.remove('edit-mode');
+                        details.classList.remove('edit-mode');
 
                         //set content-editable to false
                         label.setAttribute('contentEditable', 'false');
@@ -197,22 +204,21 @@ export let displayProject = {
 
 
                         //move selected priority bubble back to summary
-                       let taskPriorityWrapper = document.querySelector('div.taskEditPriority');
+                        let taskPriorityWrapper = document.querySelector('div.taskEditPriority');
 
+                        //remove old class & add updated class
+                        priorityspan.classList.remove(`${item.priority}Priority`);
+                        priorityspan.classList.add(`${updatedTaskData.priority}Priority`);
+                        priorityspan.textContent = updatedTaskData.priority;
 
-                       //let priorityspan = document.createElement('span');
-                       priorityspan.classList.remove(`${item.priority}Priority`);
-                       priorityspan.classList.add(`${updatedTaskData.priority}Priority`)
-                       //project-task-priority highPriority
-
-                       priorityspan.textContent = updatedTaskData.priority;
-                       //summary.appendChild(priorityspan);
-
-
-                        //priorityspan.
+                        // add priority span back to summary
                         summary.insertBefore(priorityspan, arrow);
 
-                     taskPriorityWrapper.remove();
+                        //remove priority selector
+                        taskPriorityWrapper.remove();
+
+                        //if save clicked, call with new values 
+                        item.editTask(updatedTaskData);
                     }
 
                     
@@ -239,6 +245,7 @@ export let displayProject = {
             taskFooter.appendChild(taskEditIcon);
             displayProject.section.appendChild(details);
 
+            //this might need to be moved to be able to pass item.isComplete value to updatedTaskData
             checkbox.addEventListener( "change", () => {
                 if ( checkbox.checked ) {
                    item.isComplete = true;
@@ -259,6 +266,5 @@ export let displayProject = {
         } //end of createTaskElement
     }
 }
-
 
 
