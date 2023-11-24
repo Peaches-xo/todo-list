@@ -445,7 +445,7 @@ h2.project-heading {
     background:#eeeeee;
     border-radius: 10px;
     margin: 10px 10px;
-    padding: 10px;
+    padding: 10px 5px 10px 15px;
     display:flex;
     justify-content: center;
     flex-wrap: nowrap;
@@ -454,12 +454,14 @@ h2.project-heading {
 }
 
 .project-task-item label,
-.project-task-item p{
+.project-task-item p,
+.project-task-item p span{
   outline: none;
   border-bottom: solid 2px transparent; 
 }
 .project-task-item label:focus-visible,
-.project-task-item p:focus-visible{
+.project-task-item p:focus-visible,
+.project-task-item span:focus-visible{
   outline: none;
   border-bottom: solid 2px #fa83fc;
 }
@@ -530,19 +532,24 @@ label{
 
 .project-task-description{
     font-size: 13px;
-    margin: 10px 0px;
+    margin: 10px 10px 10px 0px;
     font-style: italic;
     padding: 10px;
 }
 
-p.project-task-duedate {
+.project-task-duedate {
   font-size: 13px;
   display: flex;
-  align-items: center;
-  padding: 7px 10px;
-  margin-bottom: 5px;
+  flex-direction: column;
   margin-right: auto;
   color: #cd8cfe;
+}
+.project-task-duedate span{
+  padding: 5px 0px;
+}
+
+.date-padding{
+  padding: 5px 5px !important;
 }
 
 .project-task-img{
@@ -556,7 +563,7 @@ p.project-task-duedate {
   display: flex;
   align-items: self-end;
   justify-content: flex-end;
-  /* gap: 5px; */
+  margin-bottom: -5px;
 }
 
 .project-task-footer img{
@@ -1311,6 +1318,14 @@ input#toggleInput[type="checkbox"]:checked + label.toggleInput-switch-inner:befo
   div.container{
     width: 98vw;
     height: 98vh;
+  }
+
+ 
+}
+
+@media screen and (max-width: 1200px){
+  header.hello{
+    font-size: 30px;
   }
 }
 

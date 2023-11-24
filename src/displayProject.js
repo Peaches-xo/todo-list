@@ -1,6 +1,7 @@
 //displayProject module (view)
 import { allProjectsArr } from "./model";
 import { getRadioValue } from "./model";
+import { renderProjectCards } from "./view";
 
 
 export let displayProject = {
@@ -153,7 +154,8 @@ export let displayProject = {
 
                    
 
-                   
+                    //add padding class to date
+                    date.classList.add('date-padding');
 
 
 
@@ -177,7 +179,7 @@ export let displayProject = {
                             desc: taskdesc.textContent,
                             date: date.textContent,
                             priority: getRadioValue(),
-                            //isComplete: 
+                            isComplete: item.isComplete,
                         }
 
 
@@ -196,6 +198,9 @@ export let displayProject = {
 
                         //remove edit-mode class
                         details.classList.remove('edit-mode');
+
+                        //remove padding class to date
+                        date.classList.remove('date-padding');
 
                         //set content-editable to false
                         label.setAttribute('contentEditable', 'false');
@@ -217,6 +222,12 @@ export let displayProject = {
                         //remove priority selector
                         taskPriorityWrapper.remove();
 
+
+
+
+
+
+
                         //if save clicked, call with new values 
                         item.editTask(updatedTaskData);
                     }
@@ -229,10 +240,17 @@ export let displayProject = {
             }); //taskfooter event listener close
 
 
-            let date = document.createElement('p');
-            date.textContent = `Due Date: \n ${item.dueDate}`;
-            date.classList.add('project-task-duedate');
-            taskFooter.appendChild(date);
+            let dateWrapper = document.createElement('p');
+            dateWrapper.textContent = ` Due Date:`;
+            dateWrapper.classList.add('project-task-duedate');
+
+                let date = document.createElement('span');
+       
+                date.textContent = item.dueDate;
+                dateWrapper.appendChild(date);
+
+
+            taskFooter.appendChild(dateWrapper);
 
             let taskDelIcon = document.createElement("img");
             taskDelIcon.setAttribute("src", "/src/images/bin24.png");
@@ -245,19 +263,23 @@ export let displayProject = {
             taskFooter.appendChild(taskEditIcon);
             displayProject.section.appendChild(details);
 
-            //this might need to be moved to be able to pass item.isComplete value to updatedTaskData
-            checkbox.addEventListener( "change", () => {
+          
+            checkbox.addEventListener( "change", (updatedTaskData) => {
                 if ( checkbox.checked ) {
-                   item.isComplete = true;
-                   //update active task #s
+                    updatedTaskData.isComplete = true;
+                    item.isComplete = true;
+                //update active task #s
 
                 } else {
+                    updatedTaskData.isComplete = false;
                     item.isComplete = false;
-                  
+                
                 }
-             });
-
-             
+                // projectObj.getNoOfActiveTasks();
+                // projectObj.getNoOfCompletedTasks();
+                item.editTask(updatedTaskData);
+                renderProjectCards();
+            });
 
             
 

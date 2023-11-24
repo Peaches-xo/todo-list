@@ -10,6 +10,8 @@ import { projectActions }  from './model.js';
 import { taskActions } from './model.js';
 import { getRadioValue } from './model.js';
 import { pubSub } from './controller.js';
+import { format } from 'date-fns';
+import { formatDateValue } from './model.js';
 
 
 
@@ -37,7 +39,10 @@ domCachedElements.nav.addEventListener('click', function navClickHandler(e){
 })
 
 document.addEventListener("DOMContentLoaded", (event) => {
-   
+   let today = document.querySelector('.today');
+   today.textContent = ` ` + (format(new Date(),"eeee"));
+
+
     //check if LS contains anything
     let allProjArrLS;
         if (localStorage.getItem("allProjArrLS")){
@@ -112,15 +117,38 @@ function createProjectItemCard (item, index){
 
     let projectTaskNo = document.createElement("p");
     projectTaskNo.classList.add("project-item-taskno");
+
+    let projectActiveTaskNo = document.createElement("p");
+    projectActiveTaskNo.classList.add("project-item-taskno");
+
+    let projectCompletedTaskNo = document.createElement("p");
+    projectCompletedTaskNo.classList.add("project-item-taskno");
+
     
-  
+    //refactor this to be smaller & reusable 
     if ( (allProjectsArr[index].getNoOfTasks()) === 1 ){
-        projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active task`; 
+        projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()}  task`; 
     } else {
-        projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()} active tasks`; 
+        projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()}  tasks`; 
     };
+
+    if ( (allProjectsArr[index].getNoOfActiveTasks()) === 1 ){
+        projectActiveTaskNo.textContent = `${allProjectsArr[index].getNoOfActiveTasks()} active task`; 
+    } else {
+        projectActiveTaskNo.textContent = `${allProjectsArr[index].getNoOfActiveTasks()} active tasks`; 
+    };
+
+    if ( (allProjectsArr[index].getNoOfCompletedTasks()) === 1 ){
+        projectCompletedTaskNo.textContent = `${allProjectsArr[index].getNoOfCompletedTasks()} completed task`; 
+    } else {
+        projectCompletedTaskNo.textContent = `${allProjectsArr[index].getNoOfCompletedTasks()} completed tasks`; 
+    };
+
+
         
     projectItem.appendChild(projectTaskNo);
+    projectItem.appendChild(projectActiveTaskNo);
+    projectItem.appendChild(projectCompletedTaskNo);
 
     let projectItemWrapper = document.createElement("div");
     projectItemWrapper.classList.add("project-item-wrapper");
@@ -308,7 +336,10 @@ function createProjectItemCard (item, index){
             let projID = selectedProject.options[selectedProject.selectedIndex].dataset.projectid; 
             let taskName = taskNameInput.value;
             let taskDescription = taskDescriptionInput.value;
-            let taskDueDate = taskDueDateInput.value;
+            // let taskDueDate = taskDueDateInput.value; 
+
+            let taskDueDate = formatDateValue(taskDueDateInput.value);
+            
             let taskPriority = getRadioValue(); 
    
             //create task
@@ -353,12 +384,4 @@ function createProjectItemCard (item, index){
         }
     }
 
-    // function getRadioValue(){
-    //     let radio = document.getElementsByName('taskPriority');
-    //     for (let i = 0; i < radio.length; i++){
-    //         if (radio[i].checked){
-    //             return radio[i].value;
-    //         }
-    //     }
-    // }
-//}
+

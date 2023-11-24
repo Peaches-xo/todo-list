@@ -8,27 +8,18 @@ import { allProjectsArr } from './model.js';
 import { createNewProjectModel } from './model.js';
 import { createNewTaskModel } from './model.js';
 
-   //generate ID
-   const generateUUID = function b(a){
-    return a ? (a^Math.random()*16>>a/4).toString(16) : ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,b)
-    };
+//generate ID
+const generateUUID = function b(a){
+return a ? (a^Math.random()*16>>a/4).toString(16) : ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,b)
+};
 
 //function that runs when submit button is clicked
- export function createNewProject(projName){
+export function createNewProject(projName){
     //call to a function inside model, passing the projName, model will create the object and return the object to controller to be passed to the view to render the display
 
     let createdProject = createNewProjectModel(projName, generateUUID()); //in model
 
-
-
-  
-    //pass newly created obj to view to add card
 } 
-
-//call view displayProj or create project card (createdProject)
- 
-
-
 
 
 export function createNewTask(taskName, taskDesc, taskDue, taskPriority, projectName, projID){

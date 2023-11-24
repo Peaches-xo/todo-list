@@ -1,8 +1,9 @@
 //the model handles all the data and logic 
-import { addProjectToDropdown } from './model';
+// import { addProjectToDropdown } from './model';
 import { newProjectForm } from './newProjectForm';
 import { displayProject } from './displayProject';
 import { renderProjectCards } from './view.js';
+import { compareAsc, format } from 'date-fns';
 
 
 
@@ -30,30 +31,27 @@ export let projectActions = {
         return allProjectsArr;
     },
     getNoOfTasks(){
-        
         let noOfTasks = this.taskArr.length;
         return noOfTasks;
     },
     getNoOfActiveTasks(){
-        //loop through taskArr and make new Arr from all tasks that have 
-        //task.isComplete = true
+        console.log('getNoOfActiveTasks() reached');
+      
+        let noOfActiveTasks = this.taskArr.filter((task) => task.isComplete == false);
         
-        //let noOfActiveTasks = 
+
+        return noOfActiveTasks.length;
+    },
+    getNoOfCompletedTasks(){
+        console.log('getNoOfCompletedTasks reached');
+        let noOfCompletedTasks = this.taskArr.filter((task) => task.isComplete == true);
+        return noOfCompletedTasks.length;
     },
      addToLocalStorage(){
        //SAVE ALLPROJARR TO LS
         console.log('add to local storage reached');
         let allProjArrLS = JSON.stringify(allProjectsArr);
         localStorage.setItem("allProjArrLS", allProjArrLS);
-    },
-    //maybe move this out of project prototype 
-    getFromLocalStorage(){
-        console.log('get from local storage reached');
-        //let projIDstr = JSON.stringify(this.getProjectID());
-
-        //let parsedAllProjArrLS = JSON.parse(localStorage.getItem('allProjArrLS'));
-        //console.log('parsedAllProjArrLS: ', parsedAllProjArrLS);
-        //console.log(JSON.parse(newObject));
     },
     deleteTask(taskid){
         //find task id in this.taskArr that == taskid, remove from taskArr
@@ -89,12 +87,9 @@ export let projectActions = {
      
          newprojName.addProjToAllProjArr();
          newprojName.getNoOfTasks();
-         //localStorage.clear();
          newprojName.addToLocalStorage();
 
 
-
-        
 
          return newprojName;
      }
@@ -151,26 +146,29 @@ export let projectActions = {
             };
             //re-calculate # of active tasks & rerender display
             result.getNoOfTasks();
+            result.getNoOfActiveTasks();
+            result.getNoOfCompletedTasks();
             result.addToLocalStorage();
         },
         editTask(updatedTaskData){
             //receive new values
-            console.log('updatedTaskData from editTask in model: ', updatedTaskData);
+
 
             // update values
             this.name = updatedTaskData.name;
             this.description = updatedTaskData.desc;
             this.priority = updatedTaskData.priority;
             this.dueDate = updatedTaskData.date;
-           
-            console.log(this); //task obj
+            this.isComplete = updatedTaskData.isComplete;
+
 
 
             let currentProj = this.getTaskProjectID();
 
             let result = allProjectsArr.find(project => project.id === currentProj);
         
-            console.log(result);
+           
+          
 
            result.addToLocalStorage();
           
@@ -198,6 +196,17 @@ export let projectActions = {
             }
         }
     }
+
+    export function formatDateValue(date){
+       //date rec as string
+       date = date.split("-");
+       console.log(date); //['2023', '10','03']
+       let formattedDate = format(new Date(date[0],date[1]-1,date[2]),'eee, do MMM, yyyy');
+    
+       return formattedDate;
+    }
+
+
 
 
 
