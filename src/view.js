@@ -8,10 +8,10 @@ import { displayProject } from './displayProject.js';
 import { populateDropdown } from './newTaskForm.js';
 import { projectActions }  from './model.js';
 import { taskActions } from './model.js';
-import { getRadioValue } from './model.js';
 import { pubSub } from './controller.js';
 import { format } from 'date-fns';
 import { formatDateValue } from './model.js';
+import { getRadioValue } from './model.js';
 
 
 
@@ -24,6 +24,7 @@ let domCachedElements = {
     viewAllProjectsBtn: document.querySelector(".btn-allproj"),
     taskbox: document.querySelector(".taskbox"),
     activeInfoItem: document.querySelector('.info-item-active'),
+    completedInfoItem: document.querySelector('.info-item-completed'),
 }
 
 //add event delegation for home, add new, view all and gitub//
@@ -39,8 +40,10 @@ domCachedElements.nav.addEventListener('click', function navClickHandler(e){
 })
 
 document.addEventListener("DOMContentLoaded", (event) => {
-   let today = document.querySelector('.today');
-   today.textContent = ` ` + (format(new Date(),"eeee"));
+
+    //greeting
+    let today = document.querySelector('.today');
+    today.textContent = ` ` + (format(new Date(),"eeee"));
 
 
     //check if LS contains anything
@@ -67,6 +70,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     renderProjectCards();
+    renderInfoCards(allProjectsArr);
 });
 
 
@@ -104,11 +108,13 @@ function createProjectItemCard (item, index){
             displayProject.clearSection();
             //toggle currentProj boolean in project
             allProjectsArr[index].isCurrentProj = true;
+      
             //display project in white section 
             displayProject.display(allProjectsArr[index]);
         }
     });
 
+    // projectItem.classList.add("project-item", "hvr-grow-shadow");
     projectItem.classList.add("project-item");
 
     let projectTitle = document.createElement("h5");
@@ -124,25 +130,29 @@ function createProjectItemCard (item, index){
     let projectCompletedTaskNo = document.createElement("p");
     projectCompletedTaskNo.classList.add("project-item-taskno");
 
-    
-    //refactor this to be smaller & reusable 
-    if ( (allProjectsArr[index].getNoOfTasks()) === 1 ){
-        projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()}  task`; 
-    } else {
-        projectTaskNo.textContent = `${allProjectsArr[index].getNoOfTasks()}  tasks`; 
-    };
 
-    if ( (allProjectsArr[index].getNoOfActiveTasks()) === 1 ){
-        projectActiveTaskNo.textContent = `${allProjectsArr[index].getNoOfActiveTasks()} active task`; 
-    } else {
-        projectActiveTaskNo.textContent = `${allProjectsArr[index].getNoOfActiveTasks()} active tasks`; 
-    };
+    let noOfTasks = item.getNoOfTasks();
 
-    if ( (allProjectsArr[index].getNoOfCompletedTasks()) === 1 ){
-        projectCompletedTaskNo.textContent = `${allProjectsArr[index].getNoOfCompletedTasks()} completed task`; 
+    if (noOfTasks === 1){
+        projectTaskNo.textContent = `${noOfTasks} task`;
     } else {
-        projectCompletedTaskNo.textContent = `${allProjectsArr[index].getNoOfCompletedTasks()} completed tasks`; 
-    };
+        projectTaskNo.textContent = `${noOfTasks} tasks`;
+    }
+
+    let noOfActiveTasks = item.getNoOfActiveTasks();
+    if (noOfActiveTasks === 1){
+        projectActiveTaskNo.textContent = `${noOfActiveTasks} active task`;
+    } else {
+        projectActiveTaskNo.textContent = `${noOfActiveTasks} active tasks`;
+    }
+
+    let noOfCompletedTasks = item.getNoOfCompletedTasks();
+    if (noOfCompletedTasks === 1){
+        projectCompletedTaskNo.textContent = `${noOfCompletedTasks} completed task`;
+    } else {
+        projectCompletedTaskNo.textContent = `${noOfCompletedTasks} completed tasks`;
+    }
+
 
 
         
@@ -163,9 +173,8 @@ function createProjectItemCard (item, index){
             projectItemDelBtn.appendChild(projectItemDelIcon);
 
         projectItemWrapper.appendChild(projectItemDelBtn);
-        //code to add project due date if including?
 
-    //3. append each project cards to  display area (domCachedElements.taskbox)
+    //3. append each project cards to  display area 
     domCachedElements.taskbox.appendChild(projectItem);
    }
 
@@ -201,18 +210,30 @@ function createProjectItemCard (item, index){
    }
 
 
-   function renderInfoCards(allProjArr){
+export function renderInfoCards(allProjArr){
     //this function will display the current number of ACTIVE, COMPLETED and OVERDUE tasks
     //this function will need to be called upon starting & also whenever a new task is created, deleted, date changed or marked complete
 
+    //ACTIVE
+    let result = allProjArr.reduce(function (acc, obj) { return acc + obj.getNoOfActiveTasks() }, 0);
 
-    // ACTIVE TASKS
-    //loop over all proj arr, for each proj, getNoOfTasks(), add total number of tasks
-    // update card
+    let active = document.createElement('span');
+    active.textContent = ` Active`;
+    domCachedElements.activeInfoItem.textContent = `${result}`;
+    domCachedElements.activeInfoItem.appendChild(active);
+
 
     // COMPLETED TASKS
     //loop over all proj arr, for each proj, loop over tasksArr and count how many are isComplete = true, add total number of tasks
     // update card
+
+
+    let completed = allProjArr.reduce(function (acc, obj) { return acc + obj.getNoOfCompletedTasks() }, 0);
+
+    let completeSpan = document.createElement('span');
+    completeSpan.textContent =  ` Complete`;
+    domCachedElements.completedInfoItem.textContent = `${completed}`;
+    domCachedElements.completedInfoItem.appendChild(completeSpan);
 
     //OVERDUE TASKS
      //loop over all proj arr, for each proj, loop over tasksArr and count how many have due date in the past(less than current date), add total number of tasks
@@ -372,6 +393,7 @@ function createProjectItemCard (item, index){
 
     function clearInputValues(){
         //get latest values
+        console.log('clearInputValues called');
         taskNameInput = document.querySelector("#taskName");
         taskDescriptionInput = document.querySelector('#taskDesc');
         projNameInput =  document.querySelector("#projName");

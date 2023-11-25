@@ -4,6 +4,7 @@ import { newProjectForm } from './newProjectForm';
 import { displayProject } from './displayProject';
 import { renderProjectCards } from './view.js';
 import { compareAsc, format } from 'date-fns';
+import { renderInfoCards } from './view.js';
 
 
 
@@ -52,6 +53,7 @@ export let projectActions = {
         console.log('add to local storage reached');
         let allProjArrLS = JSON.stringify(allProjectsArr);
         localStorage.setItem("allProjArrLS", allProjArrLS);
+        renderInfoCards(allProjectsArr);
     },
     deleteTask(taskid){
         //find task id in this.taskArr that == taskid, remove from taskArr
@@ -149,20 +151,19 @@ export let projectActions = {
             result.getNoOfActiveTasks();
             result.getNoOfCompletedTasks();
             result.addToLocalStorage();
+          
         },
         editTask(updatedTaskData){
-            //receive new values
-
 
             // update values
-            this.name = updatedTaskData.name;
-            this.description = updatedTaskData.desc;
-            this.priority = updatedTaskData.priority;
-            this.dueDate = updatedTaskData.date;
-            this.isComplete = updatedTaskData.isComplete;
+            this.name = updatedTaskData.name || this.name;
+            this.description = updatedTaskData.desc || this.description;
+            this.priority = updatedTaskData.priority || this.priority;
+            this.dueDate = updatedTaskData.date || this.dueDate;
+            this.isComplete = updatedTaskData.isComplete || this.isComplete;
 
-
-
+            console.log('priority in editTask method: ', this.priority);
+            console.log('updatedTaskData.priority: ',updatedTaskData.priority);//undefined
             let currentProj = this.getTaskProjectID();
 
             let result = allProjectsArr.find(project => project.id === currentProj);
@@ -171,7 +172,7 @@ export let projectActions = {
           
 
            result.addToLocalStorage();
-          
+           
         },
     }
 
@@ -187,16 +188,6 @@ export let projectActions = {
 
     }
 
-    //was in view. Maybe add as setter for taskPriority?
-    export function getRadioValue(){
-        let radio = document.getElementsByName('taskPriority');
-        for (let i = 0; i < radio.length; i++){
-            if (radio[i].checked){
-                return radio[i].value;
-            }
-        }
-    }
-
     export function formatDateValue(date){
        //date rec as string
        date = date.split("-");
@@ -210,3 +201,12 @@ export let projectActions = {
 
 
 
+    export function getRadioValue(){
+        let radio = document.getElementsByName('taskPriority');
+        for (let i = 0; i < radio.length; i++){
+            if (radio[i].checked){
+                console.log('priority from getRadioValue:', radio[i].value);
+                return radio[i].value;
+            }
+        }
+    }

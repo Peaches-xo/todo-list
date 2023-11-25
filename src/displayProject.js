@@ -1,6 +1,5 @@
 //displayProject module (view)
 import { allProjectsArr } from "./model";
-import { getRadioValue } from "./model";
 import { renderProjectCards } from "./view";
 
 
@@ -23,7 +22,7 @@ export let displayProject = {
         //takes in project and creates dom element for each task 
         //may need to refactor to smaller functions as contains some logic
 
-        //toggle currentProj boolean in projects
+      
 
         //create elements
         let headingh2 = document.createElement('h2');
@@ -59,6 +58,17 @@ export let displayProject = {
                     checkbox.setAttribute('id', `task${index}`); 
                     checkbox.setAttribute('type', 'checkbox');
                     checkbox.classList.add('checkbox','taskcheckbox');
+
+                    console.log(item.isComplete);
+                    if (item.isComplete == true){
+                        checkbox.setAttribute('checked','true');
+                    }
+                  
+
+                    let updatedTaskData = {};
+                    checkbox.addEventListener( "change", ()=>{
+                        checkboxHandler(updatedTaskData);
+                    });
 
                     let label = document.createElement('label');
                     label.setAttribute('for', `task${index}`);
@@ -100,7 +110,6 @@ export let displayProject = {
                     //if pencil icon showing
                     if (taskEditIcon.getAttribute('src') == '/src/images/edit24.png'){
 
-
                     //move priority to inside desc
                     summary.removeChild(priorityspan);
                    
@@ -131,8 +140,6 @@ export let displayProject = {
                         taskPriorityInput_high.setAttribute('id','taskPriority_high');
                         taskPriorityInput_high.setAttribute('name','taskPriority');
                         taskPriorityInput_high.setAttribute('value','high');
-
-
                         
                             if (currentPriority == 'high'){                           
                               taskPriorityInput_high.setAttribute('checked', 'true');                            
@@ -142,7 +149,6 @@ export let displayProject = {
                               taskPriorityInput_low.setAttribute('checked', 'true');
                             };
                           
-                        
                         taskPriorityWrapper.appendChild(taskPriorityInput_low);
                         taskPriorityWrapper.appendChild(taskPriorityInput_med);
                         taskPriorityWrapper.appendChild(taskPriorityInput_high);
@@ -151,12 +157,9 @@ export let displayProject = {
                     }
 
                     details.insertBefore(createPriorityPicker(item.priority), taskdesc);
-
                    
-
                     //add padding class to date
                     date.classList.add('date-padding');
-
 
 
                         //add class of edit-mode to task related inputs (if needed)
@@ -173,7 +176,7 @@ export let displayProject = {
                     //if SAVE  icon
                     } else if (taskEditIcon.getAttribute('src') == '/src/images/diskette24.png'){
 
-                        //get new values
+                        // //get new values
                         let updatedTaskData = {
                             name: label.textContent,
                             desc: taskdesc.textContent,
@@ -184,10 +187,11 @@ export let displayProject = {
 
 
                         //MOVE TO model
-                        function getRadioValue(){
+                         function getRadioValue(){
                             let radio = document.getElementsByName('taskPriority');
                             for (let i = 0; i < radio.length; i++){
                                 if (radio[i].checked){
+                                    console.log('priority from getRadioValue:', radio[i].value);
                                     return radio[i].value;
                                 }
                             }
@@ -224,16 +228,13 @@ export let displayProject = {
 
 
 
+                      
 
-
-
+                        console.log('priority in displayProject: ', updatedTaskData.priority);
 
                         //if save clicked, call with new values 
                         item.editTask(updatedTaskData);
                     }
-
-                    
-                
     
                 }
                 
@@ -262,12 +263,13 @@ export let displayProject = {
             
             taskFooter.appendChild(taskEditIcon);
             displayProject.section.appendChild(details);
-
-          
-            checkbox.addEventListener( "change", (updatedTaskData) => {
+            
+            
+            function checkboxHandler(updatedTaskData){
                 if ( checkbox.checked ) {
                     updatedTaskData.isComplete = true;
                     item.isComplete = true;
+                    console.log(updatedTaskData);
                 //update active task #s
 
                 } else {
@@ -275,11 +277,11 @@ export let displayProject = {
                     item.isComplete = false;
                 
                 }
-                // projectObj.getNoOfActiveTasks();
-                // projectObj.getNoOfCompletedTasks();
+             
+          
                 item.editTask(updatedTaskData);
                 renderProjectCards();
-            });
+            };
 
             
 
