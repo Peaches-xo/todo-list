@@ -1,169 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#9D4EDD"/>
-    <link rel="icon" type="image/x-icon" href="/src/images/peach.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#9D4EDD" />
+    <link rel="icon" type="image/x-icon" href="/src/images/peach.png" />
     <title>ToDo List</title>
-</head>
-<body class="fancy-gradient">
-    
-   
-
+  </head>
+  <body class="fancy-gradient">
     <div class="container">
-        <nav class="nav">
-            
-            <p class="welcome-text chameleon animate">Welcome to your Todo list. <br>
-                <img class="logo" src="/src/images/crystals.png"><br>
-                <span style="font-size: 14px;">Manage your projects, keep track of tasks. </span><br><strong>Get more done.</strong> </p>
-            <button class="btn btn-home "><img src="/src/images/squares24.png">Home</button>
-            <button class="btn btn-add"><img src="/src/images/wand24.png">Add New...</button>
-            <button class="btn btn-allproj"> <img src="/src/images/viewallprojects.png">View All Projects</button>
-           
-            <a class="btn btn-github" target=”_blank” href="https://github.com/Peaches-xo/todo-list"><img src="/src/images/github24.png">Github</a>
+      <nav class="nav">
+        <p class="welcome-text chameleon animate">
+          Welcome to your Todo list. <br />
+          <img class="logo" src="/src/images/crystals.png" /><br />
+          <span style="font-size: 14px"
+            >Manage your projects, keep track of tasks. </span
+          ><br /><strong>Get more done.</strong>
+        </p>
+        <button class="btn btn-home">
+          <img src="/src/images/squares24.png" />Home
+        </button>
+        <button class="btn btn-add">
+          <img src="/src/images/wand24.png" />Add New...
+        </button>
+        <button class="btn btn-allproj">
+          <img src="/src/images/viewallprojects.png" />View All Projects
+        </button>
 
+        <a
+          class="btn btn-github"
+          target="”_blank”"
+          href="https://github.com/Peaches-xo/todo-list"
+          ><img src="/src/images/github24.png" />Github</a
+        >
+      </nav>
+      <header class="hello">
+        <img
+          class="img-hand wave"
+          src="/src/images/wavinghand.png"
+        />Happy&nbsp;<span class="today"></span>, Peaches
+      </header>
+      <div class="info">
+        <div class="info-item info-item-active"></div>
+        <div class="info-item info-item-completed"></div>
+        <div class="info-item"></div>
+        <!-- <<strong>3</strong> Overdue</div> -->
+      </div>
+      <h3 class="heading">All <strong> projects</strong></h3>
 
-        </nav>
-        <header class="hello"><img class="img-hand wave" src="/src/images/wavinghand.png">Happy&nbsp;<span class='today'></span>, Peaches</header>
-        <div class="info">
-            <div class="info-item info-item-active"></div>
-            <div class="info-item info-item-completed"></div>
-            <div class="info-item"></div><!-- <<strong>3</strong> Overdue</div> -->
-        </div>
-        <h3 class="heading">All  <strong>  projects</strong></h3>
-  
-        <section class="taskbox">
-            <!-- <div class="project-item">
-                <h5>Default Project</h5>
-                <p class="project-item-taskno">0 active tasks</p>
-                <div class="project-item-wrapper">
-                    <button class="project-item-delbtn"><img src="/src/images/bin24.png"></button>
-                    
-                </div>
-            </div> -->
+      <section class="taskbox">
 
+      </section>
 
-           
-         
-        </section>
+      <!-- PROJECT SECTION  -->
+      <!-- <div class="projheading">Current <strong>project:</strong></div> -->
+      <section class="project">
 
-
-        <!-- PROJECT SECTION  -->
-        <div class="projheading">Current <strong>project:</strong>
-        </div>
-        <section class="project">
-            <!-- <h2 class="project-heading">Default Project</h2>
-            <h3 class="gradient-text">To do</h3> -->
-<!--         
-            <details class="project-task-item">
-                <summary>
-                    <div class="task-checkbox"> 
-                        <input id="task1" type="checkbox" class="checkbox taskcheckbox">
-                        <label for="task1">Walk the dog </label>
-                    </div>
-                    <span class="project-task-priority highPriority">High</span>
-                    <img class="project-task-img" src="/src/images/downgrey16.png">
-                </summary> 
-                <p class="project-task-description">Walk The Dog to talburpin park</p> 
-                <img class="project-task-editbtn" src="/src/images/edit24.png">
-            </details> -->
-
-            <!-- <details class="project-task-item">
-                <summary>
-                   <label for="task2"><input type="checkbox" class="checkbox taskcheckbox" id="task2"> Label then input inside label </label>
-                   
-                   <span class="project-task-priority medPriority">Med</span>
-                   <img class="project-task-img" src="/src/images/angle-small-down.png">
-               </summary> 
-               <p class="project-task-description">Walk The Dog to talburpin park</p> 
-               <img class="project-task-editbtn" src="/src/images/edit.png">
-           </details> -->
-  
-           <!-- <details class="project-task-item">
-            <summary>
-               <label for="task3"><input type="checkbox" class="checkbox taskcheckbox" id="task3"> Another really quite long task name </label>
-               
-               <span class="project-task-priority lowPriority">Low</span>
-               <img class="project-task-img" src="/src/images/angle-small-down.png">
-           </summary> 
-           <p class="project-task-description">Walk The Dog to talburpin park</p> 
-           <img class="project-task-editbtn" src="/src/images/edit.png">
-       </details> -->
-
-
-<!-- 
-            <h3>Completed</h3>
-
-       <details class="project-task-item">
-        <summary>
-           <label for="task4"><input type="checkbox" class="checkbox taskcheckbox" id="task4" checked="true"> Another really quite long task name </label>
-           
-           <span class="project-task-priority lowPriority">Low</span>
-           <img class="project-task-img" src="/src/images/angle-small-down.png">
-       </summary> 
-       <p class="project-task-description">Walk The Dog to talburpin park</p> 
-       <img class="project-task-editbtn" src="/src/images/edit.png">
-   </details> -->
-
-
-
-  
-        </section>
-
+      </section>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- modal container -->
     <section class="modal hidden">
-        <img class= "create-modal-icon" src="/src/images/stars.png" alt="">
-        <button class="btn-close"><img src="/src/images/cross32.png"></button>
-        <h3>Create a new... </h3>
-        <div class="flex">          
-            <div class="create-modal-select-type">
-      
-                    <input type="checkbox" name="toggleInput" id="toggleInput" >
-                    <label for="toggleInput" data-on="Task" data-off="Project" class="toggleInput-switch-inner"></label>
-               
-
-            </div>
+      <img class="create-modal-icon" src="/src/images/stars.png" alt="" />
+      <button class="btn-close"><img src="/src/images/cross32.png" /></button>
+      <h3>Create a new...</h3>
+      <div class="flex">
+        <div class="create-modal-select-type">
+          <input type="checkbox" name="toggleInput" id="toggleInput" />
+          <label
+            for="toggleInput"
+            data-on="Task"
+            data-off="Project"
+            class="toggleInput-switch-inner"
+          ></label>
         </div>
-        <form action="">
-            <div class="create-modal-input-area showProjModule">
-                <!-- Code for PROJECT CREATION -->
-                <label for="projName">Project Name:</label>
-                <input type="text" class="name" id="projName">
-            </div>
-         </form>
-  
-      
-    <div class="create-modal-buttons">
-        <button type="" class="clear-btn gradient-h3"> <img src="/src/images/eraser24.png"> Clear </button>
-        <button type="submit" class="gradient-h3"><img src="/src/images/diskette24.png"> Save  </button>
-    </div>
+      </div>
+      <form action="">
+        <div class="create-modal-input-area showProjModule">
+          <!-- Code for PROJECT CREATION -->
+          <label for="projName">Project Name:</label>
+          <input type="text" class="name" id="projName" />
+        </div>
+      </form>
+
+      <div class="create-modal-buttons">
+        <button type="" class="clear-btn gradient-h3">
+          <img src="/src/images/eraser24.png" /> Clear
+        </button>
+        <button type="submit" class="gradient-h3">
+          <img src="/src/images/diskette24.png" /> Save
+        </button>
+      </div>
     </section>
     <!-- dark blurred bg -->
     <div class="overlay hidden"></div>
- 
-
 
     <script defer src="index_bundle.js"></script>
-</body>
+  </body>
 </html>
