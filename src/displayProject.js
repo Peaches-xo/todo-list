@@ -89,10 +89,19 @@ export let displayProject = {
 
       let arrow = document.createElement('img');
       arrow.classList.add('project-task-img');
-    //   arrow.setAttribute('src', '/src/images/downgrey16.png');
-      arrow.setAttribute('src', downgrey16);
-    //   imageFactory(arrow);
-      summary.appendChild(arrow);
+      arrow.setAttribute('src', '/src/images/downgrey16.png');
+
+    function imageFactory(image){
+        const myImage = new Image();
+        myImage.src = image;
+        return myImage;
+    }
+
+    //   arrow.setAttribute('src', downgrey16);
+     
+
+    //   summary.appendChild(arrow);
+    summary.appendChild(imageFactory(downgrey16));
       details.appendChild(summary);
 
       let taskdesc = document.createElement('p');
