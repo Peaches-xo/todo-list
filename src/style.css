@@ -363,6 +363,9 @@ body {
     align-items: center;
   background: linear-gradient(143deg, rgba(204,169,226,1) 0%, rgba(227,159,209,0.7637648809523809) 46%, rgba(253,147,190,1) 100%);
 
+  background: linear-gradient(143deg, rgba(204,169,226,1) 0%, rgba(227,159,209,0.7637648809523809) 46%, #fee0d7 100%);
+  /* #ffd3c6 */
+
   /* border-left: solid 2px #fbded7;
   border-bottom: solid 2px #fbded7; */
 
@@ -977,7 +980,7 @@ input#toggleInput[type='checkbox']:checked
   width: fit-content;
   transition: color 0.3s ease;
   font-weight: 900;
-  font-size: 14px;
+  font-size: 15px;
 }
 .task-checkbox label::before, /* dash */
 .task-checkbox label::after {

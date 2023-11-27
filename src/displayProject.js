@@ -1,6 +1,9 @@
 //displayProject module (view)
 import { allProjectsArr } from './model';
 import { renderProjectCards } from './view';
+// import { imageFactory } from './controller';
+
+import arrow from '/src/images/downgrey16.png';
 
 export let displayProject = {
   //dom elements
@@ -83,7 +86,9 @@ export let displayProject = {
 
       let arrow = document.createElement('img');
       arrow.classList.add('project-task-img');
-      arrow.setAttribute('src', '/src/images/downgrey16.png');
+    //   arrow.setAttribute('src', '/src/images/downgrey16.png');
+      arrow.setAttribute('src', arrow);
+    //   imageFactory(arrow);
       summary.appendChild(arrow);
       details.appendChild(summary);
 

@@ -2,10 +2,10 @@
 
 ## The Odin Project // Todo List
 
-<!-- [View Deployment](https://peaches-xo.github.io/tictactoe/) -->
+[View Deployment](https://peaches-xo.github.io/todo-list/)
 <!-- ![plan](/images/plan.png) -->
 
-![tictactoe screenshot](/images/Screen%20Shot%202022-09-11%20at%205.55.47%20pm.png)
+![todo list screenshot](/images/Screen%20Shot%202022-09-11%20at%205.55.47%20pm.png)
 
 ### **Goals**
 
@@ -37,3 +37,4 @@ Consider using the following:
 1. Getting the organisation of the modules sorted out. I wanted to use MVC (Model-View-Controller) but found it tricky to get all modules in the right place and passing the right information around.
 
 ### **To Come Back To:**
+Adding form validation as part of an upcoming assignment task
