@@ -22,6 +22,9 @@ import viewallprojects from 'images/viewallprojects.png';
 import github24 from 'src/images/github24.png';
 import wavinghand from 'src/images/wavinghand.png';
 import stars from '/images/stars.png';
+import cross32 from '/images/cross32.png';
+import eraser24 from '/images/eraser24.png';
+import { diskette24 } from 'src/images/diskette24.png';
 
 
 //export function thisistheview(){
@@ -34,6 +37,7 @@ let domCachedElements = {
   taskbox: document.querySelector('.taskbox'),
   activeInfoItem: document.querySelector('.info-item-active'),
   completedInfoItem: document.querySelector('.info-item-completed'),
+
 };
 
 
@@ -52,18 +56,22 @@ domCachedElements.nav.addEventListener('click', function navClickHandler(e) {
 
 document.addEventListener('DOMContentLoaded', (event) => {
   let domCachedImages = {
-    crystalImg: document.querySelector('.logo').src = crystals,
+    crystalImg: document.querySelector('.logo'),
     homeImg: document.querySelector('.btn-home>img').src = squares24,
     addImg: document.querySelector('.btn-add>img').src = wand24,
     viewImg: document.querySelector('.btn-allproj>img').src = viewallprojects,
     githubImg: document.querySelector('.btn-github>img').src = github24,
     handImg: document.querySelector('.img-hand').src = wavinghand.png,
     starsImg: document.querySelector('.create-modal-icon').src = stars.png,
-
+    crossImg: document.querySelector('.btn-close>img'),
+    eraserImg: document.querySelector('.clear-btn>img'),
+    disketteImg: document.querySelector('.submit-btn>img'),
   }
 
-  
-
+  domCachedImages.crystalImg.src = crystals;
+  domCachedImages.crossImg.src = cross32;
+  domCachedImages.eraserImg.src = eraser24;
+  domCachedImages.disketteImg.src = diskette24;
 
 
 
