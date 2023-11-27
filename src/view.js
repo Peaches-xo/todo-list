@@ -13,7 +13,6 @@ import { format } from 'date-fns';
 import { formatDateValue } from './model.js';
 import { getRadioValue } from './model.js';
 
-
 import { bin24 } from 'src/images/bin24.png';
 import crystals from '/images/crystals.png ';
 import squares24 from '/images/squares24.png';
@@ -37,8 +36,36 @@ let domCachedElements = {
   taskbox: document.querySelector('.taskbox'),
   activeInfoItem: document.querySelector('.info-item-active'),
   completedInfoItem: document.querySelector('.info-item-completed'),
-
 };
+
+let domCachedImages = {
+  crystalImg: document.querySelector('.logo'),
+  homeImg: document.querySelector('.btn-home>img'),
+  addImg: document.querySelector('.btn-add>img'),
+  viewImg: document.querySelector('.btn-allproj>img'),
+  githubImg: document.querySelector('.btn-github>img'),
+  handImg: document.querySelector('.img-hand'),
+  starsImg: document.querySelector('.create-modal-icon'),
+  crossImg: document.querySelector('.btn-close>img'),
+  eraserImg: document.querySelector('.clear-btn>img'),
+  disketteImg: document.querySelector('.submit-btn>img'),
+}
+
+domCachedImages.crystalImg.src = crystals;
+domCachedImages.homeImg.src = squares24;
+domCachedImages.addImg.src = wand24;
+domCachedImages.viewImg.src = viewallprojects;
+domCachedImages.githubImg.src = github24;
+domCachedImages.handImg.src = wavinghand;
+domCachedImages.starsImg.src = stars;
+domCachedImages.crystalImg.src = crystals;
+domCachedImages.crossImg.src = cross32;
+domCachedImages.eraserImg.src = eraser24;
+domCachedImages.disketteImg.src = diskette24;
+
+
+
+
 
 
 
@@ -55,23 +82,7 @@ domCachedElements.nav.addEventListener('click', function navClickHandler(e) {
 });
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  let domCachedImages = {
-    crystalImg: document.querySelector('.logo'),
-    homeImg: document.querySelector('.btn-home>img').src = squares24,
-    addImg: document.querySelector('.btn-add>img').src = wand24,
-    viewImg: document.querySelector('.btn-allproj>img').src = viewallprojects,
-    githubImg: document.querySelector('.btn-github>img').src = github24,
-    handImg: document.querySelector('.img-hand').src = wavinghand.png,
-    starsImg: document.querySelector('.create-modal-icon').src = stars.png,
-    crossImg: document.querySelector('.btn-close>img'),
-    eraserImg: document.querySelector('.clear-btn>img'),
-    disketteImg: document.querySelector('.submit-btn>img'),
-  }
-
-  domCachedImages.crystalImg.src = crystals;
-  domCachedImages.crossImg.src = cross32;
-  domCachedImages.eraserImg.src = eraser24;
-  domCachedImages.disketteImg.src = diskette24;
+ 
 
 
 
