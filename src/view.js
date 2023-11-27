@@ -13,6 +13,9 @@ import { format } from 'date-fns';
 import { formatDateValue } from './model.js';
 import { getRadioValue } from './model.js';
 
+
+import { bin24 } from 'src/images/bin24.png';
+
 //export function thisistheview(){
 let domCachedElements = {
   container: document.querySelector('.container'),
@@ -24,6 +27,8 @@ let domCachedElements = {
   activeInfoItem: document.querySelector('.info-item-active'),
   completedInfoItem: document.querySelector('.info-item-completed'),
 };
+
+
 
 //add event delegation for home, add new, view all and gitub//
 domCachedElements.nav.addEventListener('click', function navClickHandler(e) {
@@ -156,7 +161,8 @@ function createProjectItemCard(item, index) {
   projectItemDelBtn.classList.add('project-item-delbtn');
 
   let projectItemDelIcon = document.createElement('img');
-  projectItemDelIcon.setAttribute('src', '/src/images/bin24.png');
+//   projectItemDelIcon.setAttribute('src', '/src/images/bin24.png');
+  projectItemDelIcon.src = bin24;
   projectItemDelIcon.classList.add('hvr-wobble-top');
   projectItemDelBtn.appendChild(projectItemDelIcon);
 
@@ -373,7 +379,6 @@ modalElements.clearButton.addEventListener('click', clearInputValues);
 
 function clearInputValues() {
   //get latest values
-  console.log('clearInputValues called');
   taskNameInput = document.querySelector('#taskName');
   taskDescriptionInput = document.querySelector('#taskDesc');
   projNameInput = document.querySelector('#projName');

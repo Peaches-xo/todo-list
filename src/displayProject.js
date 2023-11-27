@@ -1,12 +1,12 @@
 //displayProject module (view)
 import { allProjectsArr } from './model';
 import { renderProjectCards } from './view';
-// import { imageFactory } from './controller';
+import { imageFactory } from './controller';
 
-import downgrey16 from '/src/images/downgrey16.png';
-import diskette24 from './images/diskette24.png';
-import edit24 from './images/edit24.png';
-import bin24 from './images/bin24.png';
+import downgrey16 from '/images/downgrey16.png';
+import diskette24 from '/images/diskette24.png';
+import edit24 from '/images/edit24.png';
+import bin24 from '/images/bin24.png';
 
 export let displayProject = {
   //dom elements
@@ -89,19 +89,10 @@ export let displayProject = {
 
       let arrow = document.createElement('img');
       arrow.classList.add('project-task-img');
-      arrow.setAttribute('src', '/src/images/downgrey16.png');
+      //arrow.setAttribute('src', '/src/images/downgrey16.png');
+      arrow.src = downgrey16;
+      summary.appendChild(arrow);
 
-    function imageFactory(image){
-        const myImage = new Image();
-        myImage.src = image;
-        return myImage;
-    }
-
-    //   arrow.setAttribute('src', downgrey16);
-     
-
-    //   summary.appendChild(arrow);
-    summary.appendChild(imageFactory(downgrey16));
       details.appendChild(summary);
 
       let taskdesc = document.createElement('p');
@@ -123,6 +114,7 @@ export let displayProject = {
           //EDIT BTN CLICKED
         } else if (e.target == taskEditIcon) {
           //if pencil icon showing
+          //might need to adjust the if statement to not be based on src, use class instead
           if (taskEditIcon.getAttribute('src') == '/src/images/edit24.png') {
             //move priority to inside desc
             summary.removeChild(priorityspan);
@@ -188,7 +180,9 @@ export let displayProject = {
 
             //this pencil icon needs to change to a save icon
             // taskEditIcon.setAttribute('src', '/src/images/diskette24.png');
-            taskEditIcon.setAttribute('src', diskette24);
+            // taskEditIcon.setAttribute('src', diskette24);
+            taskEditIcon.src = diskette24;
+   
 
             //if SAVE  icon
           } else if (
@@ -217,7 +211,8 @@ export let displayProject = {
 
             //change save icon back to pencil
             // taskEditIcon.setAttribute('src', '/src/images/edit24.png');
-            taskEditIcon.setAttribute('src', edit24);
+            // taskEditIcon.setAttribute('src', edit24);
+            taskEditIcon.src = edit24;
 
             //remove edit-mode class
             details.classList.remove('edit-mode');
@@ -270,13 +265,15 @@ export let displayProject = {
 
       let taskDelIcon = document.createElement('img');
     //   taskDelIcon.setAttribute('src', '/src/images/bin24.png');
-      taskDelIcon.setAttribute('src', bin24);
+    //   taskDelIcon.setAttribute('src', bin24);
+      taskDelIcon.src = bin24;
       taskFooter.appendChild(taskDelIcon);
 
       let taskEditIcon = document.createElement('img');
       taskEditIcon.classList.add('project-task-editbtn');
-      taskEditIcon.setAttribute('src', '/src/images/edit24.png');
-      taskEditIcon.setAttribute('src', edit24);
+    //   taskEditIcon.setAttribute('src', '/src/images/edit24.png');
+    //   taskEditIcon.setAttribute('src', edit24);
+    taskEditIcon.src = edit24;
 
       taskFooter.appendChild(taskEditIcon);
       displayProject.section.appendChild(details);
@@ -285,8 +282,6 @@ export let displayProject = {
         if (checkbox.checked) {
           updatedTaskData.isComplete = true;
           item.isComplete = true;
-          console.log(updatedTaskData);
-          //update active task #s
         } else {
           updatedTaskData.isComplete = false;
           item.isComplete = false;
