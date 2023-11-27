@@ -15,6 +15,10 @@ import { getRadioValue } from './model.js';
 
 
 import { bin24 } from 'src/images/bin24.png';
+import crystals from 'crystals.png ';
+import squares24 from 'squares24.png';
+import wand24 from 'wand24.png';
+import viewallprojects from 'viewallprojects.png';
 
 //export function thisistheview(){
 let domCachedElements = {
@@ -28,6 +32,14 @@ let domCachedElements = {
   completedInfoItem: document.querySelector('.info-item-completed'),
 };
 
+let domCachedImages = {
+  // <img class="logo" src="/src/images/crystals.png" /><br />
+  crystalImg: document.querySelector('.logo').src = crystals,
+  homeImg: document.querySelector('.btn-home>img').src = squares24,
+  addImg: document.querySelector('.btn-add>img').src = wand24,
+  viewImg: document.querySelector('.btn-allproj>img').src = viewallprojects,
+
+}
 
 
 //add event delegation for home, add new, view all and gitub//
