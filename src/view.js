@@ -15,10 +15,14 @@ import { getRadioValue } from './model.js';
 
 
 import { bin24 } from 'src/images/bin24.png';
-import crystals from 'crystals.png ';
-import squares24 from 'squares24.png';
-import wand24 from 'wand24.png';
-import viewallprojects from 'viewallprojects.png';
+import crystals from '/images/crystals.png ';
+import squares24 from '/images/squares24.png';
+import wand24 from '/images/wand24.png';
+import viewallprojects from 'images/viewallprojects.png';
+import github24 from 'src/images/github24.png';
+import wavinghand from 'src/images/wavinghand.png';
+import stars from '/images/stars.png';
+
 
 //export function thisistheview(){
 let domCachedElements = {
@@ -32,14 +36,7 @@ let domCachedElements = {
   completedInfoItem: document.querySelector('.info-item-completed'),
 };
 
-let domCachedImages = {
-  // <img class="logo" src="/src/images/crystals.png" /><br />
-  crystalImg: document.querySelector('.logo').src = crystals,
-  homeImg: document.querySelector('.btn-home>img').src = squares24,
-  addImg: document.querySelector('.btn-add>img').src = wand24,
-  viewImg: document.querySelector('.btn-allproj>img').src = viewallprojects,
 
-}
 
 
 //add event delegation for home, add new, view all and gitub//
@@ -54,6 +51,26 @@ domCachedElements.nav.addEventListener('click', function navClickHandler(e) {
 });
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  let domCachedImages = {
+    crystalImg: document.querySelector('.logo').src = crystals,
+    homeImg: document.querySelector('.btn-home>img').src = squares24,
+    addImg: document.querySelector('.btn-add>img').src = wand24,
+    viewImg: document.querySelector('.btn-allproj>img').src = viewallprojects,
+    githubImg: document.querySelector('.btn-github>img').src = github24,
+    handImg: document.querySelector('.img-hand').src = wavinghand.png,
+    starsImg: document.querySelector('.create-modal-icon').src = stars.png,
+
+  }
+
+  
+
+
+
+
+
+
+
+
   //greeting
   let today = document.querySelector('.today');
   today.textContent = ` ` + format(new Date(), 'eeee');
