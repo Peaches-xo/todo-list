@@ -3,7 +3,10 @@ import { allProjectsArr } from './model';
 import { renderProjectCards } from './view';
 // import { imageFactory } from './controller';
 
-import arrow from '/src/images/downgrey16.png';
+import downgrey16 from '/src/images/downgrey16.png';
+import diskette24 from './images/diskette24.png';
+import edit24 from './images/edit24.png';
+import bin24 from './images/bin24.png';
 
 export let displayProject = {
   //dom elements
@@ -87,7 +90,7 @@ export let displayProject = {
       let arrow = document.createElement('img');
       arrow.classList.add('project-task-img');
     //   arrow.setAttribute('src', '/src/images/downgrey16.png');
-      arrow.setAttribute('src', arrow);
+      arrow.setAttribute('src', downgrey16);
     //   imageFactory(arrow);
       summary.appendChild(arrow);
       details.appendChild(summary);
@@ -175,11 +178,13 @@ export let displayProject = {
             date.setAttribute('contentEditable', 'true');
 
             //this pencil icon needs to change to a save icon
-            taskEditIcon.setAttribute('src', '/src/images/diskette24.png');
+            // taskEditIcon.setAttribute('src', '/src/images/diskette24.png');
+            taskEditIcon.setAttribute('src', diskette24);
 
             //if SAVE  icon
           } else if (
-            taskEditIcon.getAttribute('src') == '/src/images/diskette24.png'
+            // taskEditIcon.getAttribute('src') == '/src/images/diskette24.png'
+            taskEditIcon.getAttribute('src') == diskette24
           ) {
             // //get new values
             let updatedTaskData = {
@@ -202,7 +207,8 @@ export let displayProject = {
             }
 
             //change save icon back to pencil
-            taskEditIcon.setAttribute('src', '/src/images/edit24.png');
+            // taskEditIcon.setAttribute('src', '/src/images/edit24.png');
+            taskEditIcon.setAttribute('src', edit24);
 
             //remove edit-mode class
             details.classList.remove('edit-mode');
@@ -254,12 +260,14 @@ export let displayProject = {
       taskFooter.appendChild(dateWrapper);
 
       let taskDelIcon = document.createElement('img');
-      taskDelIcon.setAttribute('src', '/src/images/bin24.png');
+    //   taskDelIcon.setAttribute('src', '/src/images/bin24.png');
+      taskDelIcon.setAttribute('src', bin24);
       taskFooter.appendChild(taskDelIcon);
 
       let taskEditIcon = document.createElement('img');
       taskEditIcon.classList.add('project-task-editbtn');
       taskEditIcon.setAttribute('src', '/src/images/edit24.png');
+      taskEditIcon.setAttribute('src', edit24);
 
       taskFooter.appendChild(taskEditIcon);
       displayProject.section.appendChild(details);
