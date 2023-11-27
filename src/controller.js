@@ -50,11 +50,6 @@ export function createNewTask(
   return task;
 }
 
-// export function imageFactory(image){
-// 	const myImage = new Image();
-// 	myImage.src = image;
-// 	return myImage;
-// }
 
 
 
