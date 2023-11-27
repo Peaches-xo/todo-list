@@ -24,7 +24,7 @@ import wavinghand from 'src/images/wavinghand.png';
 import stars from '/images/stars.png';
 import cross32 from '/images/cross32.png';
 import eraser24 from '/images/eraser24.png';
-import { diskette24 } from 'src/images/diskette24.png';
+import diskette24 from '/images/diskette24.png';
 
 
 //export function thisistheview(){
