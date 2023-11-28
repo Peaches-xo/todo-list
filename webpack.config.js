@@ -14,6 +14,7 @@ module.exports = {
     // filename: '[name].bundle.js',
     filename: 'index_bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'assets/[name][ext]',
     // clean: true,
   },
   module: {

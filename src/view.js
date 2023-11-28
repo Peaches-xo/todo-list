@@ -13,17 +13,17 @@ import { format } from 'date-fns';
 import { formatDateValue } from './model.js';
 import { getRadioValue } from './model.js';
 
-import { bin24 } from 'src/images/bin24.png';
-import crystals from '/images/crystals.png ';
-import squares24 from '/images/squares24.png';
-import wand24 from '/images/wand24.png';
-import viewallprojects from 'images/viewallprojects.png';
-import github24 from 'src/images/github24.png';
-import wavinghand from 'src/images/wavinghand.png';
-import stars from '/images/stars.png';
-import cross32 from '/images/cross32.png';
-import eraser24 from '/images/eraser24.png';
-import diskette24 from '/images/diskette24.png';
+// import { bin24 } from 'src/images/bin24.png';
+// import crystals from '/images/crystals.png ';
+// import squares24 from '/images/squares24.png';
+// import wand24 from '/images/wand24.png';
+// import viewallprojects from 'images/viewallprojects.png';
+// import github24 from 'src/images/github24.png';
+// import wavinghand from 'src/images/wavinghand.png';
+// import stars from '/images/stars.png';
+// import cross32 from '/images/cross32.png';
+// import eraser24 from '/images/eraser24.png';
+// import diskette24 from '/images/diskette24.png';
 
 
 //export function thisistheview(){

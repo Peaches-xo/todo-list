@@ -3,10 +3,10 @@ import { allProjectsArr } from './model';
 import { renderProjectCards } from './view';
 import { imageFactory } from './controller';
 
-import diskette24 from '/images/diskette24.png';
-import edit24 from '/images/edit24.png';
-import bin24 from '/images/bin24.png';
-import downgrey16 from './src/images/downgrey16.png';
+// import diskette24 from '/images/diskette24.png';
+// import edit24 from '/images/edit24.png';
+// import bin24 from '/images/bin24.png';
+// import downgrey16 from './src/images/downgrey16.png';
 
 export let displayProject = {
   //dom elements
