@@ -1,7 +1,9 @@
 //modal display - create New Task
 //contains code to create dom elements and append them inside Add New... modal
-
 import { allProjectsArr } from './model';
+
+
+
 
 let div = document.querySelector('div.create-modal-input-area');
 

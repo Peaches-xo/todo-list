@@ -8,22 +8,15 @@ import { displayProject } from './displayProject.js';
 import { populateDropdown } from './newTaskForm.js';
 import { projectActions } from './model.js';
 import { taskActions } from './model.js';
-import { pubSub } from './controller.js';
+
 import { format } from 'date-fns';
 import { formatDateValue } from './model.js';
 import { getRadioValue } from './model.js';
 
-// import { bin24 } from 'src/images/bin24.png';
-// import crystals from '/images/crystals.png ';
-// import squares24 from '/images/squares24.png';
-// import wand24 from '/images/wand24.png';
-// import viewallprojects from 'images/viewallprojects.png';
-// import github24 from 'src/images/github24.png';
-// import wavinghand from 'src/images/wavinghand.png';
-// import stars from '/images/stars.png';
-// import cross32 from '/images/cross32.png';
-// import eraser24 from '/images/eraser24.png';
-// import diskette24 from '/images/diskette24.png';
+
+
+import bin24 from './/images/bin24.png'; //WORKING! 
+
 
 
 //export function thisistheview(){
@@ -38,39 +31,10 @@ let domCachedElements = {
   completedInfoItem: document.querySelector('.info-item-completed'),
 };
 
-let domCachedImages = {
-  crystalImg: document.querySelector('.logo'),
-  homeImg: document.querySelector('.btn-home>img'),
-  addImg: document.querySelector('.btn-add>img'),
-  viewImg: document.querySelector('.btn-allproj>img'),
-  githubImg: document.querySelector('.btn-github>img'),
-  handImg: document.querySelector('.img-hand'),
-  starsImg: document.querySelector('.create-modal-icon'),
-  crossImg: document.querySelector('.btn-close>img'),
-  eraserImg: document.querySelector('.clear-btn>img'),
-  disketteImg: document.querySelector('.submit-btn>img'),
-}
-
-domCachedImages.crystalImg.src = crystals;
-domCachedImages.homeImg.src = squares24;
-domCachedImages.addImg.src = wand24;
-domCachedImages.viewImg.src = viewallprojects;
-domCachedImages.githubImg.src = github24;
-domCachedImages.handImg.src = wavinghand;
-domCachedImages.starsImg.src = stars;
-domCachedImages.crystalImg.src = crystals;
-domCachedImages.crossImg.src = cross32;
-domCachedImages.eraserImg.src = eraser24;
-domCachedImages.disketteImg.src = diskette24;
 
 
 
 
-
-
-
-
-//add event delegation for home, add new, view all and gitub//
 domCachedElements.nav.addEventListener('click', function navClickHandler(e) {
   if (e.target == domCachedElements.homeBtn) {
     displayProject.clearSection();
@@ -83,13 +47,6 @@ domCachedElements.nav.addEventListener('click', function navClickHandler(e) {
 
 document.addEventListener('DOMContentLoaded', (event) => {
  
-
-
-
-
-
-
-
   //greeting
   let today = document.querySelector('.today');
   today.textContent = ` ` + format(new Date(), 'eeee');
@@ -141,11 +98,6 @@ function createProjectItemCard(item, index) {
 
   projectItem.addEventListener('click', function projClickHandler(e) {
     if (e.target == projectItemDelIcon) {
-      // console.log('allProjArr: ', allProjectsArr);
-      // console.log('item: ', item);
-      // console.log('index: ', index);
-      // console.log(this); //the card div that has been clicked on
-
       //remove proj
       deleteProject(projectItem, allProjectsArr[index]); //in view. might need to move to proj.prototype
     } else {
@@ -153,7 +105,6 @@ function createProjectItemCard(item, index) {
       displayProject.clearSection();
       //toggle currentProj boolean in project
       allProjectsArr[index].isCurrentProj = true;
-
       //display project in white section
       displayProject.display(allProjectsArr[index]);
     }
@@ -209,7 +160,6 @@ function createProjectItemCard(item, index) {
   projectItemDelBtn.classList.add('project-item-delbtn');
 
   let projectItemDelIcon = document.createElement('img');
-//   projectItemDelIcon.setAttribute('src', '/src/images/bin24.png');
   projectItemDelIcon.src = bin24;
   projectItemDelIcon.classList.add('hvr-wobble-top');
   projectItemDelBtn.appendChild(projectItemDelIcon);
@@ -298,7 +248,7 @@ const openModal = function () {
   clearInputValues();
 };
 //add event listener to open modal on click
-//domCachedElements.addBtn.addEventListener("click", openModal);
+domCachedElements.addBtn.addEventListener("click", openModal);
 
 //closes modal
 const closeModal = function () {

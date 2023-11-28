@@ -3,10 +3,11 @@ import { allProjectsArr } from './model';
 import { renderProjectCards } from './view';
 import { imageFactory } from './controller';
 
-// import diskette24 from '/images/diskette24.png';
-// import edit24 from '/images/edit24.png';
-// import bin24 from '/images/bin24.png';
-// import downgrey16 from './src/images/downgrey16.png';
+
+import downgrey16 from './/images/downgrey16.png';
+import bin24 from './/images/bin24.png';
+import edit24 from './/images/edit24.png';
+import diskette24 from './/images/diskette24.png';
 
 export let displayProject = {
   //dom elements
@@ -116,7 +117,8 @@ export let displayProject = {
         } else if (e.target == taskEditIcon) {
           //if pencil icon showing
           //might need to adjust the if statement to not be based on src, use class instead
-          if (taskEditIcon.getAttribute('src') == '/src/images/edit24.png') {
+          // if (taskEditIcon.getAttribute('src') == '/src/images/edit24.png') {
+          if (taskEditIcon.classList.contains('pencil'))  {
             //move priority to inside desc
             summary.removeChild(priorityspan);
 
@@ -181,14 +183,15 @@ export let displayProject = {
 
             //this pencil icon needs to change to a save icon
             // taskEditIcon.setAttribute('src', '/src/images/diskette24.png');
-            // taskEditIcon.setAttribute('src', diskette24);
             taskEditIcon.src = diskette24;
-   
+            taskEditIcon.classList.remove('pencil');
+            taskEditIcon.classList.add('diskette');
 
             //if SAVE  icon
           } else if (
             // taskEditIcon.getAttribute('src') == '/src/images/diskette24.png'
-            taskEditIcon.getAttribute('src') == diskette24
+            // taskEditIcon.getAttribute('src') == diskette24
+            taskEditIcon.classList.contains('diskette')
           ) {
             // //get new values
             let updatedTaskData = {
@@ -214,6 +217,7 @@ export let displayProject = {
             // taskEditIcon.setAttribute('src', '/src/images/edit24.png');
             // taskEditIcon.setAttribute('src', edit24);
             taskEditIcon.src = edit24;
+            taskEditIcon.classList.remove('diskette');
 
             //remove edit-mode class
             details.classList.remove('edit-mode');
@@ -271,7 +275,7 @@ export let displayProject = {
       taskFooter.appendChild(taskDelIcon);
 
       let taskEditIcon = document.createElement('img');
-      taskEditIcon.classList.add('project-task-editbtn');
+      taskEditIcon.classList.add('project-task-editbtn', 'pencil');
     //   taskEditIcon.setAttribute('src', '/src/images/edit24.png');
     //   taskEditIcon.setAttribute('src', edit24);
     taskEditIcon.src = edit24;

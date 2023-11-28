@@ -348,7 +348,7 @@ body {
 
 .project-item {
   border-radius: 10px;
-  height: 140px;
+  height: 167px;
   cursor: pointer;
   margin: 8px;
   padding: 10px;
@@ -582,8 +582,9 @@ label {
   display: flex;
   flex-direction: column;
   margin-right: auto;
-  color: #cd8cfe;
-  color: #9d4ed8;
+  /* color: #cd8cfe;
+  color: #9d4ed8; */
+  color: #a67dc5;
 }
 .project-task-duedate span {
   padding: 5px 0px;
@@ -979,7 +980,7 @@ input#toggleInput[type='checkbox']:checked
   width: -moz-fit-content;
   width: fit-content;
   transition: color 0.3s ease;
-  font-weight: 900;
+  font-weight: 600;
   font-size: 15px;
 }
 .task-checkbox label::before, /* dash */

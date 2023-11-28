@@ -9,24 +9,47 @@ import { allProjectsArr } from './model.js';
 import { createNewProjectModel } from './model.js';
 import { createNewTaskModel } from './model.js';
 
+import squares24 from './/images/squares24.png';
+import wand24 from './/images/wand24.png';
+import viewallprojects from './images/viewallprojects.png';
+import github24 from './/images/github24.png';
+import wavinghand from './/images/wavinghand.png';
+import stars from './/images/stars.png';
+import cross32 from './/images/cross32.png';
+import eraser24 from './/images/eraser24.png';
+import downgrey16 from './/images/downgrey16.png';
 
-import { bin24 } from 'src/images/bin24.png';
-import crystals from '/images/crystals.png ';
-import squares24 from '/images/squares24.png';
-import wand24 from '/images/wand24.png';
-import viewallprojects from 'images/viewallprojects.png';
-import github24 from 'src/images/github24.png';
-import wavinghand from 'src/images/wavinghand.png';
-import stars from '/images/stars.png';
-import cross32 from '/images/cross32.png';
-import eraser24 from '/images/eraser24.png';
-import diskette24 from '/images/diskette24.png';
+//working! 
+import crystals from './/images/crystals.png'; 
+import diskette24 from './/images/diskette24.png';
 
-import diskette24 from '../images/diskette24.png';
-import edit24 from '/images/edit24.png';
-import bin24 from '/images/bin24.png';
-import downgrey16 from './src/images/downgrey16.png';
+export let domCachedImages = {
+  crystalImg: document.querySelector('.logo'),
+  homeImg: document.querySelector('.btn-home>img'),
+  addImg: document.querySelector('.btn-add>img'),
+  viewImg: document.querySelector('.btn-allproj>img'),
+  githubImg: document.querySelector('.btn-github>img'),
+  handImg: document.querySelector('.img-hand'),
+  starsImg: document.querySelector('.create-modal-icon'),
+  crossImg: document.querySelector('.btn-close>img'),
+  eraserImg: document.querySelector('.clear-btn>img'),
+  disketteImg: document.querySelector('.submit-btn>img'),
+}
+function setImgSrc(){
+domCachedImages.crystalImg.src = crystals;
+domCachedImages.homeImg.src = squares24;
+domCachedImages.addImg.src = wand24;
+domCachedImages.viewImg.src = viewallprojects;
+domCachedImages.githubImg.src = github24;
+domCachedImages.handImg.src = wavinghand;
+domCachedImages.starsImg.src = stars;
+domCachedImages.crystalImg.src = crystals;
+domCachedImages.crossImg.src = cross32;
+domCachedImages.eraserImg.src = eraser24;
+domCachedImages.disketteImg.src = diskette24;
 
+};
+setImgSrc();
 
 
 //generate ID
@@ -66,29 +89,3 @@ export function createNewTask(
 
 
 
-
-// export const pubSub = {
-//   events: {},
-//   subscribe: function (evName, fn) {
-//     console.log(`PUBSUB: someone just subscribed to know about ${evName}`);
-//     //add an event with a name as new or to existing list
-//     this.events[evName] = this.events[evName] || [];
-//     this.events[evName].push(fn);
-//   },
-//   unsubscribe: function (evName, fn) {
-//     console.log(`PUBSUB: someone just UNsubscribed from ${evName}`);
-//     //remove an event function by name
-//     if (this.events[evName]) {
-//       this.events[evName] = this.events[evName].filter((f) => f !== fn);
-//     }
-//   },
-//   publish: function (evName, data) {
-//     console.log(`PUBSUB: Making a broadcast about ${evName} with ${data}`);
-//     //emit/publish the event to anyone who is subscribed
-//     if (this.events[evName]) {
-//       this.events[evName].forEach((f) => {
-//         f(data);
-//       });
-//     }
-//   },
-// };
