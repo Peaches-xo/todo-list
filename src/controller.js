@@ -22,6 +22,7 @@ import downgrey16 from './/images/downgrey16.png';
 //working! 
 import crystals from './/images/crystals.png'; 
 import diskette24 from './/images/diskette24.png';
+import peach from './/images/peach.png';
 
 export let domCachedImages = {
   crystalImg: document.querySelector('.logo'),

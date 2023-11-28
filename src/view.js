@@ -260,24 +260,13 @@ modalElements.closeModalBtn.addEventListener('click', closeModal);
 modalElements.overlay.addEventListener('click', closeModal);
 modalElements.submitButton.addEventListener('click', closeModal);
 
-// PUBSUB - not working
-
-// modalElements.submitButton.addEventListener('click', () => {
-//     pubSub.publish('event:name-changed', {name: input.value});
-//   });
-
-//   pubSub.subscribe('event:name-changed', data => {
-//     console.log(`Your name is: ${data.name}`);
-//   });
 
 let projNameInput = document.querySelector('#projName');
-
 let selectedProject = document.querySelector('#projDropdown');
 let taskNameInput = document.querySelector('#taskName');
 let taskDescriptionInput = document.querySelector('#taskDesc');
 let taskDueDateInput = document.querySelector('#taskDueDate');
 let taskPriorityInput = document.querySelector('.taskPriority_radio');
-
 let div = document.querySelector('div.create-modal-input-area');
 
 let createNewElements = {
@@ -336,10 +325,7 @@ modalElements.submitButton.addEventListener('click', function (event) {
       selectedProject.options[selectedProject.selectedIndex].dataset.projectid;
     let taskName = taskNameInput.value;
     let taskDescription = taskDescriptionInput.value;
-    // let taskDueDate = taskDueDateInput.value;
-
     let taskDueDate = formatDateValue(taskDueDateInput.value);
-
     let taskPriority = getRadioValue();
 
     //create task
@@ -354,7 +340,6 @@ modalElements.submitButton.addEventListener('click', function (event) {
 
     //find project in AllProjArr
     let foundProj = allProjectsArr.find((project) => project.id === projID);
-    // console.log('foundProj: ', foundProj);
 
     //Clear project section
     displayProject.clearSection();

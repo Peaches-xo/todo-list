@@ -296,7 +296,8 @@ body {
   margin: 20px 10px;
   width: 100px;
   background-color: #c8aef8; /* best colour on macmini  */
-  background-color: #af76f3; /* best color on macbook */
+  background-color: #ac8fe2;
+  /*background-color: #af76f3;  best color on macbook */
   border-left: solid 2px #c6adf2;
   border-bottom: solid 2px #c6adf2;
   color: whitesmoke;
